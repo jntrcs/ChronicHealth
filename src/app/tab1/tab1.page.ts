@@ -1,3 +1,4 @@
+import { Symptom } from '../models/Symptom';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,7 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  public symptoms: Symptom[] = [
+    new Symptom('Headache', 'bandage-outline', 'severity'),
+    new Symptom('Fever', 'bandage-outline', 'present'),
+    new Symptom('Cough', 'bandage-outline', 'count')
+    // Add more symptoms here as needed
+  ];
 
   constructor() {}
-
 }

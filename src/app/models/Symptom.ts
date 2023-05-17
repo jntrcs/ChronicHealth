@@ -1,16 +1,18 @@
 import { Measurement, PresentMeasurement, 
-  CountMeasurement, SeverityMeasurement } from '../model/Measurement';
+  CountMeasurement, SeverityMeasurement } from './Measurement';
+
 
 export class Symptom {
     constructor(
       public name: string,
       public icon: string,
-      measurementString: string
+      measurementString: string, 
     ) {
       this.measurement = this.createMeasurement(measurementString);
     }
   
     public measurement: Measurement;
+
   
     private createMeasurement(measurementString: string): Measurement {
       switch (measurementString) {
