@@ -27,8 +27,6 @@ export class SurveySymptomComponent  implements OnInit {
   }
   ngAfterViewInit() {
     if (this.symptom.measurement instanceof PresentMeasurement){
-      console.log("present")
-      console.log(this.measurementContainer)
       this.measurementContainer.createComponent(SurveyPresentMeasurementComponent)
 
     } else if(this.symptom.measurement instanceof CountMeasurement)
