@@ -1,5 +1,5 @@
 import { Measurement, PresentMeasurement, 
-  CountMeasurement, SeverityMeasurement } from './Measurement';
+  CountMeasurement, SeverityMeasurement } from './Measurement'
 
 
 export class Symptom {
@@ -19,9 +19,9 @@ export class Symptom {
         case 'present':
           return new PresentMeasurement('Present');
         case 'count':
-          return new CountMeasurement('Count', 'occurrences');
+          return new CountMeasurement('Count');
         case 'severity':
-          return new SeverityMeasurement('Severity', '1-10 scale');
+          return new SeverityMeasurement('Severity');
         default:
           throw new Error(`Invalid measurement type: ${measurementString}`);
       }

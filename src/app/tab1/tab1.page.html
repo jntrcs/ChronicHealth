@@ -8,13 +8,6 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let symptom of symptoms">
-
-      <ion-label>
-        <h5>{{ symptom.name }}</h5>
-        <ng-container *ngComponentOutlet="symptom.measurement.component"></ng-container>
-
-      </ion-label>
-    </ion-item>
+    <app-survey-symptom *ngFor="let symptom of symptoms" [symptom]="symptom"></app-survey-symptom>
   </ion-list>
 </ion-content>
