@@ -11,13 +11,15 @@
   <ion-reorder-group [disabled]="false" (ionItemReorder)="reorderItems($event)">
     <ion-item *ngFor="let survey_item of survey_list" ionReorder>
       <app-survey-item-editor-view [survey_item]="survey_item"></app-survey-item-editor-view>
-      <ion-reorder slot="end"></ion-reorder>
+      <ion-buttons slot="end">
+        <ion-button (click)="editSurveyItem(survey_item)">
+          <ion-icon name="create"></ion-icon>
+        </ion-button>
+        <ion-button (click)="deleteSurveyItem(survey_item)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+        <ion-reorder slot="end"></ion-reorder>
+      </ion-buttons>
     </ion-item>
   </ion-reorder-group>
-
 </ion-content>
-
-<!--Start with an array of SurveyItems.
-   Loop over list, 
-   determine actual class of SurveyItem, 
-   call view specific to that item -->

@@ -25,4 +25,16 @@ export class StaticSurveyEditorComponent  implements OnInit {
     this.survey_list.splice(event.detail.to, 0, draggedItem);
     event.detail.complete();
   }
+
+  deleteSurveyItem(survey_item: SurveyItem){
+    const index = this.survey_list.findIndex(item => item.id === survey_item.id);
+    if (index !== -1) {
+      this.survey_list.splice(index, 1);
+    }
+  }
+
+  editSurveyItem(survey_item: SurveyItem){
+
+  }
 }
+
