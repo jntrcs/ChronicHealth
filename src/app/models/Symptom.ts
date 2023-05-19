@@ -1,13 +1,14 @@
 import { Measurement, PresentMeasurement, 
   CountMeasurement, SeverityMeasurement } from './Measurement'
+import {SurveyItem} from './SurveyItem'
 
-
-export class Symptom {
+export class Symptom extends SurveyItem {
     constructor(
-      public name: string,
+      name: string,
       public icon: string,
       measurementString: string, 
     ) {
+      super(name);
       this.measurement = this.createMeasurement(measurementString);
     }
   

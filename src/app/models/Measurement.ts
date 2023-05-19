@@ -1,5 +1,3 @@
-import { Type } from '@angular/core';
-
 export class Measurement {
   constructor(public name: string) {}
 }
