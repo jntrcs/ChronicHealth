@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { StaticSurveyEditorComponent } from './static-survey-editor/static-survey-editor.component';
 import { SurveyItemEditorViewComponent } from './survey-item-editor-view/survey-item-editor-view.component';
+import { GenericUIModule } from '../generic-ui/generic-ui.module';
 
 
 
 @NgModule({
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    GenericUIModule
   ],
   declarations: [StaticSurveyEditorComponent, SurveyItemEditorViewComponent],
   exports: [StaticSurveyEditorComponent, SurveyItemEditorViewComponent]

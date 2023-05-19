@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SurveyItem } from 'src/app/models/SurveyItem';
 import { Symptom } from 'src/app/models/Symptom';
+import { ConfirmationModal } from 'src/app/generic-ui/confirmation-modal-component/confirmation-modal.component';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-static-survey-editor',
@@ -16,7 +18,7 @@ export class StaticSurveyEditorComponent  implements OnInit {
     // Add more symptoms here as needed
   ];
 
-  constructor() { }
+  constructor(private modalController: ModalController) { }
 
   ngOnInit() {}
 
@@ -26,10 +28,23 @@ export class StaticSurveyEditorComponent  implements OnInit {
     event.detail.complete();
   }
 
-  deleteSurveyItem(survey_item: SurveyItem){
-    const index = this.survey_list.findIndex(item => item.id === survey_item.id);
-    if (index !== -1) {
-      this.survey_list.splice(index, 1);
+  async deleteSurveyItem(survey_item: SurveyItem) {
+    console.log(SurveyItem);
+    const confirmationModal = await this.modalController.create({
+      component: ConfirmationModal,
+      componentProps: {
+        message: 'Are you sure you want to delete this item?'
+      }
+    });
+  
+    await confirmationModal.present();
+  
+    const { data } = await confirmationModal.onDidDismiss();
+    if (data && data.confirmed) {
+      const index = this.survey_list.findIndex(item => item.id === survey_item.id);
+      if (index !== -1) {
+        this.survey_list.splice(index, 1);
+      }
     }
   }
 
