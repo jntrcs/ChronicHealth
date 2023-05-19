@@ -1,4 +1,10 @@
-<p>
-  <ion-toggle [checked]="isPresent" (ionChange)="togglePresent()"></ion-toggle>
-</p>
-<h5>{{ this.symptom.name }}</h5>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <div class="name-toggle-container">
+        <h5>{{ symptom.name }}</h5>
+        <ion-toggle [checked]="isPresent" (ionChange)="togglePresent()"></ion-toggle>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>

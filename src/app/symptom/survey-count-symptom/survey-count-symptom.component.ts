@@ -25,4 +25,7 @@ export class SurveyCountSymptomComponent  implements OnInit {
     //this.count = event.detail.value as number;
   }
 
+  getCount(){
+    return((this.symptom.measurement as CountMeasurement).count)
+  }
 }
