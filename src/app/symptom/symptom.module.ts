@@ -7,12 +7,11 @@ import { SurveyPresentSymptomComponent } from './survey-present-symptom/survey-p
 import { SurveySeveritySymptomComponent } from './survey-severity-symptom/survey-severity-symptom.component';
 
 
-
 @NgModule({
   imports: [
     CommonModule,
     IonicModule
-    ],
+      ],
     exports:[SurveySymptomComponent, SurveyCountSymptomComponent, SurveyPresentSymptomComponent,
     SurveySeveritySymptomComponent],
     declarations:[SurveySymptomComponent, SurveyCountSymptomComponent, SurveyPresentSymptomComponent,
