@@ -8,5 +8,16 @@
 <ion-content>
   <p>The every day section of the survey let's you choose the things you want to track every single day. You can add, remove, and rearrange survey components on this page.</p>
 
+  <ion-reorder-group [disabled]="false" (ionItemReorder)="reorderItems($event)">
+    <ion-item *ngFor="let survey_item of survey_list" ionReorder>
+      <app-survey-item-editor-view [survey_item]="survey_item"></app-survey-item-editor-view>
+      <ion-reorder slot="end"></ion-reorder>
+    </ion-item>
+  </ion-reorder-group>
+
 </ion-content>
 
+<!--Start with an array of SurveyItems.
+   Loop over list, 
+   determine actual class of SurveyItem, 
+   call view specific to that item -->

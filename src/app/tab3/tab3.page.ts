@@ -10,12 +10,7 @@ import { SurveyItem } from '../models/SurveyItem';
 })
 export class Tab3Page {
 
-  public survey_list: SurveyItem[] = [
-    new Symptom('Headache', 'bandage-outline', 'severity'),
-    new Symptom('Fever', 'bandage-outline', 'present'),
-    new Symptom('Cough', 'bandage-outline', 'count')
-    // Add more symptoms here as needed
-  ];
+
 
   constructor(private router: Router) {}
 
