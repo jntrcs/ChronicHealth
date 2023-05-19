@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SurveyCountMeasurementComponent } from './survey-count-measurement.component';
+import { SurveyCountSymptomComponent } from './survey-count-symptom.component';
 
-describe('SurveyCountMeasurementComponent', () => {
-  let component: SurveyCountMeasurementComponent;
-  let fixture: ComponentFixture<SurveyCountMeasurementComponent>;
+describe('SurveyCountSymptomComponent', () => {
+  let component: SurveyCountSymptomComponent;
+  let fixture: ComponentFixture<SurveyCountSymptomComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SurveyCountMeasurementComponent ],
+      declarations: [ SurveyCountSymptomComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SurveyCountMeasurementComponent);
+    fixture = TestBed.createComponent(SurveyCountSymptomComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

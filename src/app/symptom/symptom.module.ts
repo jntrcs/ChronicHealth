@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SurveySymptomComponent } from './survey-symptom/survey-symptom.component';
 import { IonicModule } from '@ionic/angular';
-import { MeasurementsModule } from '../measurements/measurements.module';
+import { SurveyCountSymptomComponent } from './survey-count-symptom/survey-count-symptom.component';
+import { SurveyPresentSymptomComponent } from './survey-present-symptom/survey-present-symptom.component';
+import { SurveySeveritySymptomComponent } from './survey-severity-symptom/survey-severity-symptom.component';
 
 
 
@@ -11,8 +13,10 @@ import { MeasurementsModule } from '../measurements/measurements.module';
     CommonModule,
     IonicModule
     ],
-    exports:[SurveySymptomComponent],
-    declarations:[SurveySymptomComponent]
+    exports:[SurveySymptomComponent, SurveyCountSymptomComponent, SurveyPresentSymptomComponent,
+    SurveySeveritySymptomComponent],
+    declarations:[SurveySymptomComponent, SurveyCountSymptomComponent, SurveyPresentSymptomComponent,
+      SurveySeveritySymptomComponent]
 })
 export class SymptomModule { }
  

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SurveySeverityMeasurementComponent } from './survey-severity-measurement.component';
+import { SurveySeveritySymptomComponent } from './survey-severity-symptom.component';
 
-describe('SurveySeverityMeasurementComponent', () => {
-  let component: SurveySeverityMeasurementComponent;
-  let fixture: ComponentFixture<SurveySeverityMeasurementComponent>;
+describe('SurveySeveritySymptomComponent', () => {
+  let component: SurveySeveritySymptomComponent;
+  let fixture: ComponentFixture<SurveySeveritySymptomComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SurveySeverityMeasurementComponent ],
+      declarations: [ SurveySeveritySymptomComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SurveySeverityMeasurementComponent);
+    fixture = TestBed.createComponent(SurveySeveritySymptomComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

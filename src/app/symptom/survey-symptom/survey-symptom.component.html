@@ -1,2 +1,7 @@
-<h5>{{ symptom.name }}</h5>
-<ng-container #measurementContainer></ng-container>
+<ng-container *ngTemplateOutlet="measurementContainer; context: { symptom: symptom }"></ng-container>
+<ng-template #measurementContainer let-symptom="symptom">
+    <!-- Use the symptom object here -->
+    <div>
+      Symptom Name: {{ symptom.name }}
+    </div>
+  </ng-template>
