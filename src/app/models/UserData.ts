@@ -11,7 +11,7 @@ export class UserData {
         new Symptom('Cough', 'bandage-outline', 'count')
   ];
 
-    this.static_survey = this.all_symptoms.slice(0, 2);
+    this.static_survey = this.all_symptoms
         
     }
   

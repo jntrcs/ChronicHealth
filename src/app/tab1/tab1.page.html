@@ -8,6 +8,6 @@
 
 <ion-content>
   <ion-list>
-    <app-survey-symptom *ngFor="let symptom of symptoms" [symptom]="symptom"></app-survey-symptom>
+    <app-survey-item-view *ngFor="let survey_item of static_survey" [survey_item]="survey_item"></app-survey-item-view>
   </ion-list>
 </ion-content>

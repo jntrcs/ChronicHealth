@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SurveyItem } from 'src/app/models/SurveyItem';
-import { Symptom } from 'src/app/models/Symptom';
 import { ConfirmationModal } from 'src/app/generic-ui/confirmation-modal-component/confirmation-modal.component';
 import { ModalController } from '@ionic/angular';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-static-survey-editor',
@@ -11,14 +11,11 @@ import { ModalController } from '@ionic/angular';
 })
 export class StaticSurveyEditorComponent  implements OnInit {
 
-  public survey_list: SurveyItem[] = [
-    new Symptom('Headache', 'bandage-outline', 'severity'),
-    new Symptom('Fever', 'bandage-outline', 'present'),
-    new Symptom('Cough', 'bandage-outline', 'count')
-    // Add more symptoms here as needed
-  ];
+  public survey_list: SurveyItem[];
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController, private userService: UserService ) {
+    this.survey_list = userService.get_static_survey();
+   }
 
   ngOnInit() {}
 

@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { SymptomModule } from '../symptom/symptom.module';
+import { SurveyItemViewComponent } from './survey-item-view/survey-item-view.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { SymptomModule } from '../symptom/symptom.module';
     Tab1PageRoutingModule,
     SymptomModule
   ],
-  declarations: [Tab1Page]
+  declarations: [Tab1Page, SurveyItemViewComponent],
+  exports: [SurveyItemViewComponent]
 })
 export class Tab1PageModule {}
  

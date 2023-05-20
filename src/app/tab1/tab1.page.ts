@@ -1,5 +1,6 @@
-import { Symptom } from '../models/Symptom';
 import { Component } from '@angular/core';
+import { UserService } from '../user.service';
+import { SurveyItem } from '../models/SurveyItem';
 
 @Component({
   selector: 'app-tab1',
@@ -7,12 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  public symptoms: Symptom[] = [
-    new Symptom('Headache', 'bandage-outline', 'severity'),
-    new Symptom('Fever', 'bandage-outline', 'present'),
-    new Symptom('Cough', 'bandage-outline', 'count')
-    // Add more symptoms here as needed
-  ];
 
-  constructor() {}
+
+  public static_survey: SurveyItem[];
+
+  constructor(private userService: UserService) {
+    this.static_survey = userService.get_static_survey();
+  }
 }
