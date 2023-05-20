@@ -1,6 +1,14 @@
 
 <ion-searchbar></ion-searchbar>
 
+
+
 <ion-item *ngFor="let survey_item of survey_item_list">
- {{survey_item.name}}
+
+
+ <ion-list class="settings-card"  (click)="addToStaticSurvey(survey_item)">
+    <div class="settings-button">
+      <ion-label> {{survey_item.name}}</ion-label>
+    </div>
+  </ion-list>
 </ion-item>

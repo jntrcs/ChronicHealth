@@ -37,7 +37,10 @@ filter_by_id(all: SurveyItem[], remove: SurveyItem[]){
 
 remove_from_static_survey(index:number){
   this.user_data.static_survey.splice(index, 1);
-  console.log(this.user_data.static_survey)
+}
+
+add_to_static_survey(survey_item: SurveyItem){
+  this.user_data.static_survey.push(survey_item);
 }
 
 
