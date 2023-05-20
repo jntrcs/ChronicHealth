@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { StaticSurveyEditorComponent } from './survey-editor/static-survey-editor/static-survey-editor.component';
+import { PreconfiguredSearchSymptomComponent } from './preconfigured-search/preconfigured-search-symptom/preconfigured-search-symptom.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'static-survey-editor',
     component: StaticSurveyEditorComponent,
+  },
+  {
+    path: 'preconfigured-search-symptom',
+    component: PreconfiguredSearchSymptomComponent,
   }
 ];
 @NgModule({

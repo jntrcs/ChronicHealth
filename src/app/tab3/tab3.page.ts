@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Symptom } from '../models/Symptom';
-import { SurveyItem } from '../models/SurveyItem';
+
 
 @Component({
   selector: 'app-tab3',

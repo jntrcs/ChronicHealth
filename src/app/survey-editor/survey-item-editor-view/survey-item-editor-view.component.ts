@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentRef, ChangeDetectorRef } from '@angular/core';
 import { SurveyItem } from 'src/app/models/SurveyItem';
 import { SurveySymptomEditorViewComponent } from 'src/app/symptom/survey-symptom-editor-view/survey-symptom-editor-view.component';
 import { Symptom } from 'src/app/models/Symptom';
@@ -15,7 +15,7 @@ export class SurveyItemEditorViewComponent  implements OnInit {
   @ViewChild('measurementContainer', { read: ViewContainerRef })
   public measurementContainer!: ViewContainerRef;
 
-  constructor(){
+  constructor(private cd: ChangeDetectorRef){
   }
 
 
@@ -29,6 +29,7 @@ export class SurveyItemEditorViewComponent  implements OnInit {
       componentRef.instance.symptom = this.survey_item;
 
     }
+    this.cd.detectChanges();
 }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentRef, ChangeDetectorRef } from '@angular/core';
 import { CountMeasurement, PresentMeasurement, SeverityMeasurement } from 'src/app/models/Measurement';
 import { Symptom } from 'src/app/models/Symptom';
 import { SurveyPresentSymptomComponent } from '../survey-present-symptom/survey-present-symptom.component';
@@ -17,7 +17,7 @@ export class SurveySymptomComponent  implements OnInit {
   @ViewChild('measurementContainer', { read: ViewContainerRef })
   public measurementContainer!: ViewContainerRef;
 
-  constructor(){
+  constructor(private cd: ChangeDetectorRef){
   }
 
 
@@ -26,7 +26,7 @@ export class SurveySymptomComponent  implements OnInit {
   }
   ngAfterViewInit() {
     if (this.symptom.measurement instanceof PresentMeasurement){
-      const componentRef: ComponentRef<SurveyPresentSymptomComponent> = this.measurementContainer.createComponent(SurveyPresentSymptomComponent,)
+      const componentRef: ComponentRef<SurveyPresentSymptomComponent> = this.measurementContainer.createComponent(SurveyPresentSymptomComponent)
       componentRef.instance.symptom = this.symptom;
 
     } else if(this.symptom.measurement instanceof CountMeasurement)
@@ -40,6 +40,7 @@ export class SurveySymptomComponent  implements OnInit {
 
 }
 
+this.cd.detectChanges();
   }
 
 }

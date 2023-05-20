@@ -11,14 +11,15 @@ export class UserData {
         new Symptom('Cough', 'bandage-outline', 'count')
   ];
 
-    this.static_survey = this.all_symptoms
-        
+      this.static_survey = [...this.all_symptoms];     
+      console.log(this.all_symptoms);
+      console.log(this.static_survey)   
     }
   
     public all_symptoms: Symptom[];
     public static_survey: SurveyItem[];
     // public history: DayRecords[];
 
-  
+
 
   }

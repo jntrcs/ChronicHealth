@@ -29,4 +29,22 @@ set_symptoms(symptoms: Symptom[]){
   this.user_data.all_symptoms = symptoms
 }
 
+filter_by_id(all: SurveyItem[], remove: SurveyItem[]){
+  console.log(all);
+  console.log(remove);
+  const removeIds = remove.map(item => item.id);
+  console.log( 'static survey ids')
+  console.log(removeIds)
+  const itemsNotInRemove = all.filter(item => !removeIds.includes(item.id));
+  console.log('items not in all')
+  console.log(itemsNotInRemove)
+  return itemsNotInRemove;
+}
+
+remove_from_static_survey(index:number){
+  this.user_data.static_survey.splice(index, 1);
+  console.log(this.user_data.all_symptoms);
+}
+
+
 }

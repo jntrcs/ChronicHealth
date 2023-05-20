@@ -3,6 +3,7 @@ import { SurveyItem } from 'src/app/models/SurveyItem';
 import { ConfirmationModal } from 'src/app/generic-ui/confirmation-modal-component/confirmation-modal.component';
 import { ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-static-survey-editor',
@@ -13,7 +14,7 @@ export class StaticSurveyEditorComponent  implements OnInit {
 
   public survey_list: SurveyItem[];
 
-  constructor(private modalController: ModalController, private userService: UserService ) {
+  constructor(private modalController: ModalController, private userService: UserService, private router: Router ) {
     this.survey_list = userService.get_static_survey();
    }
 
@@ -26,7 +27,6 @@ export class StaticSurveyEditorComponent  implements OnInit {
   }
 
   async deleteSurveyItem(survey_item: SurveyItem) {
-    console.log(SurveyItem);
     const confirmationModal = await this.modalController.create({
       component: ConfirmationModal,
       componentProps: {
@@ -37,12 +37,18 @@ export class StaticSurveyEditorComponent  implements OnInit {
     await confirmationModal.present();
   
     const { data } = await confirmationModal.onDidDismiss();
-    if (data && data.confirmed) {
+    if (data?.confirmed) {
       const index = this.survey_list.findIndex(item => item.id === survey_item.id);
       if (index !== -1) {
-        this.survey_list.splice(index, 1);
+        this.userService.remove_from_static_survey(index);
       }
     }
+  }
+
+  openPreConfiguredSearch(type: string){
+    this.router.navigate(['/preconfigured-search-symptom']);
+
+
   }
 
   editSurveyItem(survey_item: SurveyItem){

@@ -1,0 +1,15 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button default-href="#"></ion-back-button>
+  </ion-buttons>
+  <ion-title>Select a Symptom</ion-title>
+</ion-toolbar>
+
+<ion-content>
+  <app-preconfigured-search-generic [survey_item_list]="symptom_list"></app-preconfigured-search-generic>
+
+  <ion-button (click)="openSymptomCreator()">
+    <ion-icon name="add"></ion-icon>
+    New symptom
+  </ion-button>
+</ion-content>
