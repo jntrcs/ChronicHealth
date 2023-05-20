@@ -12,8 +12,6 @@ export class UserData {
   ];
 
       this.static_survey = [...this.all_symptoms];     
-      console.log(this.all_symptoms);
-      console.log(this.static_survey)   
     }
   
     public all_symptoms: Symptom[];

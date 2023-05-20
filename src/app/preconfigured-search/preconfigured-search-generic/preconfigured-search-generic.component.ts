@@ -10,9 +10,11 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
 
   @Input() survey_item_list!: SurveyItem[];
   constructor() {
-    //console.log(this.survey_item_list)
+
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.survey_item_list)
+  }
 
 }

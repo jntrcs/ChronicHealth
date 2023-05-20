@@ -9,7 +9,7 @@ import { PreconfiguredSearchGenericComponent } from './preconfigured-search-gene
   declarations: [PreconfiguredSearchSymptomComponent, PreconfiguredSearchGenericComponent],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
   ],
   exports: [PreconfiguredSearchSymptomComponent]
 })
