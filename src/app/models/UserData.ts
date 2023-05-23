@@ -6,11 +6,11 @@ export class UserData {
 // This should load the data from memory.
 //For now, just create a bunch of sample data
     this.all_symptoms =[
-        new Symptom('Headache', 'bandage-outline', 'severity'),
-        new Symptom('Fever', 'bandage-outline', 'present'),
-        new Symptom('Cough', 'bandage-outline', 'count'),
-        new Symptom("Weak legs", 'bandage-outline', 'severity'),
-        new Symptom("Fatigue", "bandage-outline", 'present')
+        new Symptom('Headache',  'severity'),
+        new Symptom('Fever',  'present'),
+        new Symptom('Cough',  'count'),
+        new Symptom("Weak legs", 'severity'),
+        new Symptom("Fatigue", 'present')
   ];
 
       this.static_survey = [...this.all_symptoms].slice(0,3);     

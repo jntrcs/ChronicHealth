@@ -5,7 +5,7 @@ import {SurveyItem} from './SurveyItem'
 export class Symptom extends SurveyItem {
     constructor(
       name: string,
-      public icon: string,
+      //public icon: string,
       measurementString: string, 
     ) {
       super(name);
@@ -18,11 +18,11 @@ export class Symptom extends SurveyItem {
     private createMeasurement(measurementString: string): Measurement {
       switch (measurementString) {
         case 'present':
-          return new PresentMeasurement('Present');
+          return new PresentMeasurement();
         case 'count':
-          return new CountMeasurement('Count');
+          return new CountMeasurement();
         case 'severity':
-          return new SeverityMeasurement('Severity');
+          return new SeverityMeasurement();
         default:
           throw new Error(`Invalid measurement type: ${measurementString}`);
       }

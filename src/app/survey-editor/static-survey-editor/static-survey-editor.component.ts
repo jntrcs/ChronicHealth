@@ -46,7 +46,10 @@ export class StaticSurveyEditorComponent  implements OnInit {
   }
 
   openPreConfiguredSearch(type: string){
-    this.router.navigate(['/preconfigured-search-symptom']);
+    if (type==='symptom'){
+      this.router.navigate(['/preconfigured-search-symptom']);
+
+    }
 
 
   }

@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 import { SurveyEditorModule } from '../survey-editor/survey-editor.module';
+import { ConfigurersModule } from '../configurers/configurers.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { SurveyEditorModule } from '../survey-editor/survey-editor.module';
     FormsModule,
     ExploreContainerComponentModule,
     Tab3PageRoutingModule,
-    SurveyEditorModule
+    SurveyEditorModule,
+    ConfigurersModule
   ],
   declarations: [Tab3Page]
 })

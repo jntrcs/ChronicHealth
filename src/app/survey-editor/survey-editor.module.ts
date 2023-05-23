@@ -5,6 +5,7 @@ import { StaticSurveyEditorComponent } from './static-survey-editor/static-surve
 import { SurveyItemEditorViewComponent } from './survey-item-editor-view/survey-item-editor-view.component';
 import { GenericUIModule } from '../generic-ui/generic-ui.module';
 import { PreconfiguredSearchModule } from '../preconfigured-search/preconfigured-search.module';
+import { ConfigurersModule } from '../configurers/configurers.module';
 
 
 
@@ -13,7 +14,8 @@ import { PreconfiguredSearchModule } from '../preconfigured-search/preconfigured
     CommonModule,
     IonicModule,
     GenericUIModule,
-    PreconfiguredSearchModule
+    PreconfiguredSearchModule,
+    ConfigurersModule
   ],
   declarations: [StaticSurveyEditorComponent, SurveyItemEditorViewComponent],
   exports: [StaticSurveyEditorComponent, SurveyItemEditorViewComponent]
