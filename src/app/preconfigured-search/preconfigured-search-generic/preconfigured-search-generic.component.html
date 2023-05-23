@@ -1,9 +1,9 @@
 
-<ion-searchbar></ion-searchbar>
+<ion-searchbar (ionInput)="filterItems($event)"></ion-searchbar>
 
 
 
-<ion-item *ngFor="let survey_item of survey_item_list">
+<ion-item *ngFor="let survey_item of filtered_survey_items">
 
 
  <ion-list class="settings-card"  (click)="addToStaticSurvey(survey_item)">
