@@ -46,6 +46,9 @@ export class ConfigureSymptomComponent  implements OnInit {
       if (typeof this.symptomName ==='undefined'){
         this.symptomName = '';
       }
+      if (typeof this.symptomMeasurement ==='undefined'){
+        this.symptomMeasurement = 'severity';
+      }
     }
 
     isAlertOpen = false;
