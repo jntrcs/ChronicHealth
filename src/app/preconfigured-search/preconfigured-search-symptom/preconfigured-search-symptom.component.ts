@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { SurveyItem } from 'src/app/models/SurveyItem';
 import { UserService } from 'src/app/user.service';
 
@@ -21,7 +21,14 @@ export class PreconfiguredSearchSymptomComponent  implements OnInit {
   
 
   openSymptomCreator(){
-    this.router.navigate(['/symptom-editor']);
+    const navigationExtras: NavigationExtras = {
+      state: {
+        add_to_static_survey: true,
+        cancel_return_url: '/preconfigured-search-symptom',
+        success_return_url: '/static-survey-editor'
+      }
+    }
+    this.router.navigate(['/symptom-editor'], navigationExtras);
 
   }
 }

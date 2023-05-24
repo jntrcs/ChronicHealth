@@ -14,32 +14,46 @@ export class ConfigureSymptomComponent  implements OnInit {
   @Input() symptomMeasurement!: string;
 
   @Input() mode!: 'add' | 'edit';
-  @Output() save: EventEmitter<string> = new EventEmitter<string>();
-  @Output() cancel: EventEmitter<void> = new EventEmitter<void>();
+
+  add_to_static_survey: boolean = false;
+  cancel_return_url: string = '';
+  success_return_url: string ='';
 
   constructor(private userService: UserService, private router: Router){
 
   }
 
   saveSymptom() {
-
+    if(this.mode==='add'){
     const isNameDuplicate = this.userService.get_symptoms().some(symptom => symptom.name.toLowerCase() === this.symptomName.toLowerCase());
     if (isNameDuplicate) {
       this.setOpen(true);
       return; // Prevent saving the duplicate symptom
     }
+  }
     const symptom = new Symptom(this.symptomName, this.symptomMeasurement);
+    if (this.add_to_static_survey){
+      this.userService.add_to_static_survey(symptom);
+    }
     this.userService.get_symptoms().push(symptom);
-    //this.router.navigate(['/symptom-editor']);
+    this.router.navigate([this.success_return_url]);
 
-    this.save.emit(this.symptomName);
   }
 
   cancel_click() {
-    this.cancel.emit();
+    this.router.navigate([this.cancel_return_url]);
   }
 
   ngOnInit(): void {
+
+    const inputs = history.state;
+    this.add_to_static_survey = inputs.add_to_static_survey;
+    this.success_return_url = inputs.success_return_url;
+    this.cancel_return_url = inputs.cancel_return_url;
+    
+    // Use the inputs as needed
+    const input1 = inputs.add_to_static_survey;
+
     if (typeof this.mode === 'undefined') {
         this.mode = 'add';
       }
