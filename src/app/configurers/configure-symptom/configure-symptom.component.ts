@@ -12,20 +12,38 @@ export class ConfigureSymptomComponent  implements OnInit {
 
   @Input() symptomName!: string;  
   @Input() symptomMeasurement!: string;
-
   @Input() mode!: 'add' | 'edit';
+  @Input() symptom!: Symptom |null;
 
   add_to_static_survey: boolean = false;
   cancel_return_url: string = '';
   success_return_url: string ='';
 
   constructor(private userService: UserService, private router: Router){
+    const inputs = history.state;
+    this.add_to_static_survey = inputs.add_to_static_survey;
+    this.success_return_url = inputs.success_return_url;
+    this.cancel_return_url = inputs.cancel_return_url;
+
+   if (typeof inputs.symptom_id !=='undefined'){
+    this.symptom = userService.getSurveyItemByID(inputs.symptom_id);
+    console.log(this.symptom);
+    if(this.symptom!==null){
+      console.log(this.symptom);
+      this.mode = 'edit'
+      this.symptomName = this.symptom.name;
+      this.symptomMeasurement = this.symptom.measurement.name;
+    }
+
+   }
 
   }
 
   saveSymptom() {
     if(this.mode==='add'){
-    const isNameDuplicate = this.userService.get_symptoms().some(symptom => symptom.name.toLowerCase() === this.symptomName.toLowerCase());
+    const isNameDuplicate = this.userService.get_symptoms().some(
+      symptom => symptom.name.toLowerCase() === this.symptomName.toLowerCase());
+
     if (isNameDuplicate) {
       this.setOpen(true);
       return; // Prevent saving the duplicate symptom
@@ -40,19 +58,21 @@ export class ConfigureSymptomComponent  implements OnInit {
 
   }
 
+  updateSymptom(){
+    //add validation
+    this.symptom = this.symptom as Symptom;
+    this.symptom.changeMeasurement(this.symptomMeasurement);
+    this.symptom.name = this.symptomName;
+    this.router.navigate([this.success_return_url]);
+
+  }
+
   cancel_click() {
     this.router.navigate([this.cancel_return_url]);
   }
 
   ngOnInit(): void {
 
-    const inputs = history.state;
-    this.add_to_static_survey = inputs.add_to_static_survey;
-    this.success_return_url = inputs.success_return_url;
-    this.cancel_return_url = inputs.cancel_return_url;
-    
-    // Use the inputs as needed
-    const input1 = inputs.add_to_static_survey;
 
     if (typeof this.mode === 'undefined') {
         this.mode = 'add';
@@ -63,7 +83,9 @@ export class ConfigureSymptomComponent  implements OnInit {
       if (typeof this.symptomMeasurement ==='undefined'){
         this.symptomMeasurement = 'severity';
       }
+
     }
+
 
     isAlertOpen = false;
     public alertButtons = ['OK'];

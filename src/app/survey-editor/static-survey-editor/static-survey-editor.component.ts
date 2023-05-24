@@ -3,7 +3,8 @@ import { SurveyItem } from 'src/app/models/SurveyItem';
 import { ConfirmationModal } from 'src/app/generic-ui/confirmation-modal-component/confirmation-modal.component';
 import { ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/user.service';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
+import { Symptom } from 'src/app/models/Symptom';
 
 @Component({
   selector: 'app-static-survey-editor',
@@ -55,6 +56,18 @@ export class StaticSurveyEditorComponent  implements OnInit {
   }
 
   editSurveyItem(survey_item: SurveyItem){
+    if (survey_item instanceof Symptom){
+      const navigationExtras: NavigationExtras = {
+        state: {
+          add_to_static_survey: false,
+          cancel_return_url: '/static-survey-editor',
+          success_return_url: '/static-survey-editor',
+          symptom_id: survey_item.id
+        }
+      }
+      this.router.navigate(['/symptom-editor'], navigationExtras);
+  
+    }
 
   }
 }

@@ -1,6 +1,6 @@
 <div>
   <h2>{{ mode === 'add' ? 'Add Symptom' : 'Edit Symptom' }}</h2>
-  <form (ngSubmit)="saveSymptom()" #symptomForm="ngForm">
+  <form (ngSubmit)="mode === 'add' ? saveSymptom() : updateSymptom()" #symptomForm="ngForm">
     <ion-item>
       <ion-input labelPlacement="floating" label="Symptom Name:" [(ngModel)]="symptomName" name="symptomName" required></ion-input>
     </ion-item>

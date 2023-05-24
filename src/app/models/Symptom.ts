@@ -27,4 +27,8 @@ export class Symptom extends SurveyItem {
           throw new Error(`Invalid measurement type: ${measurementString}`);
       }
     }
+
+    public changeMeasurement(measurementString: string):void{
+      this.measurement = this.createMeasurement(measurementString);
+    }
   }

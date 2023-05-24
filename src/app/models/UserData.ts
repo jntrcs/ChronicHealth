@@ -19,7 +19,4 @@ export class UserData {
     public all_symptoms: Symptom[];
     public static_survey: SurveyItem[];
     // public history: DayRecords[];
-
-
-
   }
