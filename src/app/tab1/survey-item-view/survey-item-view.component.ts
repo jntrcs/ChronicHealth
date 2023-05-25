@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SurveyItem } from 'src/app/models/SurveyItem';
 import { Symptom } from 'src/app/models/Symptom';
+import { Treatment } from 'src/app/models/Treatment';
 
 @Component({
   selector: 'app-survey-item-view',
@@ -31,4 +32,14 @@ export class SurveyItemViewComponent  implements OnInit {
     return surveyItem instanceof Symptom;
   }
 
+
+  getTreatment(surveyItem: SurveyItem): Treatment {
+
+    return surveyItem as Treatment;
+
+}
+
+isTreatment(surveyItem: SurveyItem): boolean {
+  return surveyItem instanceof Treatment;
+}
 }

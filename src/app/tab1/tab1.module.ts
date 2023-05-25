@@ -8,6 +8,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { SymptomModule } from '../symptom/symptom.module';
 import { SurveyItemViewComponent } from './survey-item-view/survey-item-view.component';
+import { TreatmentModule } from '../treatment/treatment.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { SurveyItemViewComponent } from './survey-item-view/survey-item-view.com
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    SymptomModule
+    SymptomModule,
+    TreatmentModule
   ],
   declarations: [Tab1Page, SurveyItemViewComponent],
   exports: [SurveyItemViewComponent]

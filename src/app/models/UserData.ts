@@ -1,5 +1,7 @@
+import { Illness } from "./Illness";
 import { SurveyItem } from "./SurveyItem";
 import { Symptom } from "./Symptom";
+import { Treatment } from "./Treatment";
 
 export class UserData {
     constructor() {
@@ -13,10 +15,19 @@ export class UserData {
         new Symptom("Fatigue", 'present')
   ];
 
-      this.static_survey = [...this.all_symptoms].slice(0,3);     
+  this.all_treatments = [
+    new Treatment("Allergy Pill", "present")
+  ];
+
+  this.all_illnesses = [];
+
+      this.static_survey = [...this.all_symptoms].slice(0,3);
+      this.static_survey.push(this.all_treatments[0])     
     }
   
     public all_symptoms: Symptom[];
+    public all_illnesses: Illness[];
+    public all_treatments: Treatment[];
     public static_survey: SurveyItem[];
     // public history: DayRecords[];
   }
