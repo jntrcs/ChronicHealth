@@ -12,7 +12,6 @@ import { CountMeasurement } from 'src/app/models/Measurement';
 export class SurveyCountSymptomComponent  implements OnInit {
 
   @Input() symptom!: Symptom;
-  @Input() measurement!: CountMeasurement;
 
   ngOnInit() {}
 
@@ -22,13 +21,13 @@ export class SurveyCountSymptomComponent  implements OnInit {
   }
 
   updateCount(event: Event) {
-   // (this.symptom.measurement as CountMeasurement).count = Number((event as RangeCustomEvent).detail.value)
-   this.measurement.count = Number((event as RangeCustomEvent).detail.value);
+   (this.symptom.measurement as CountMeasurement).count = Number((event as RangeCustomEvent).detail.value)
+   //this.symptom.measurement.count = Number((event as RangeCustomEvent).detail.value);
     //this.count = event.detail.value as number;
   }
 
   getCount(){
-   // return((this.symptom.measurement as CountMeasurement).count)
-   return(this.measurement.count)
+    return((this.symptom.measurement as CountMeasurement).count)
+   //return(this.measurement.count)
   }
 }

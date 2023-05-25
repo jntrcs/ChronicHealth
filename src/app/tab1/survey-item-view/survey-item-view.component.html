@@ -1,1 +1,3 @@
-<ng-container #measurementContainer></ng-container>
+<div *ngIf="isSymptom(survey_item)">
+    <app-survey-symptom [symptom] = "getSymptom(survey_item)"></app-survey-symptom>
+</div>

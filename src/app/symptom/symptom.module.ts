@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { SurveyCountSymptomComponent } from './survey-count-symptom/survey-count-symptom.component';
 import { SurveyPresentSymptomComponent } from './survey-present-symptom/survey-present-symptom.component';
 import { SurveySeveritySymptomComponent } from './survey-severity-symptom/survey-severity-symptom.component';
+import { SurveySymptomEditorViewComponent } from './survey-symptom-editor-view/survey-symptom-editor-view.component';
 
 
 @NgModule({
@@ -13,9 +14,9 @@ import { SurveySeveritySymptomComponent } from './survey-severity-symptom/survey
     IonicModule
       ],
     exports:[SurveySymptomComponent, SurveyCountSymptomComponent, SurveyPresentSymptomComponent,
-    SurveySeveritySymptomComponent],
+    SurveySeveritySymptomComponent, SurveySymptomEditorViewComponent],
     declarations:[SurveySymptomComponent, SurveyCountSymptomComponent, SurveyPresentSymptomComponent,
-      SurveySeveritySymptomComponent]
+      SurveySeveritySymptomComponent,SurveySymptomEditorViewComponent]
 })
 export class SymptomModule { }
  

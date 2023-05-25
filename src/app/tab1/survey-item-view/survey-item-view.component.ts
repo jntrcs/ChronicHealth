@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, ViewContainerRef, ViewChild, ComponentRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SurveyItem } from 'src/app/models/SurveyItem';
-import { SurveySymptomComponent } from 'src/app/symptom/survey-symptom/survey-symptom.component';
 import { Symptom } from 'src/app/models/Symptom';
 
 @Component({
@@ -12,23 +11,24 @@ export class SurveyItemViewComponent  implements OnInit {
 
   @Input() survey_item!: SurveyItem;
 
-  @ViewChild('measurementContainer', { read: ViewContainerRef })
-  public measurementContainer!: ViewContainerRef;
 
-  constructor(private cd:ChangeDetectorRef){
+
+  constructor(){
   }
 
 
 
   ngOnInit(){
   }
-  ngAfterViewInit() {
-    if (this.survey_item instanceof Symptom){
-      const componentRef: ComponentRef<SurveySymptomComponent> = 
-        this.measurementContainer.createComponent(SurveySymptomComponent)
-      componentRef.instance.symptom = this.survey_item;
 
-    }
-    this.cd.detectChanges();
-}
+  getSymptom(surveyItem: SurveyItem): Symptom {
+
+      return surveyItem as Symptom;
+
+  }
+
+  isSymptom(surveyItem: SurveyItem): boolean {
+    return surveyItem instanceof Symptom;
+  }
+
 }
