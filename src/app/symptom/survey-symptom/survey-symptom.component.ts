@@ -28,15 +28,20 @@ export class SurveySymptomComponent  implements OnInit {
     if (this.symptom.measurement instanceof PresentMeasurement){
       const componentRef: ComponentRef<SurveyPresentSymptomComponent> = this.measurementContainer.createComponent(SurveyPresentSymptomComponent)
       componentRef.instance.symptom = this.symptom;
+      componentRef.instance.measurement = this.symptom.measurement;
 
     } else if(this.symptom.measurement instanceof CountMeasurement)
 {
   const componentRef: ComponentRef<SurveyCountSymptomComponent> = this.measurementContainer.createComponent(SurveyCountSymptomComponent)
   componentRef.instance.symptom = this.symptom;
+  componentRef.instance.measurement = this.symptom.measurement;
+
 
 } else if(this.symptom.measurement instanceof SeverityMeasurement){
   const componentRef: ComponentRef<SurveySeveritySymptomComponent> =this.measurementContainer.createComponent(SurveySeveritySymptomComponent)
   componentRef.instance.symptom = this.symptom;
+  componentRef.instance.measurement = this.symptom.measurement;
+
 
 }
 

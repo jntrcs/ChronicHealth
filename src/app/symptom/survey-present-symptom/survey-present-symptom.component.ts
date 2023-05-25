@@ -9,6 +9,7 @@ import { Symptom } from 'src/app/models/Symptom';
 })
 export class SurveyPresentSymptomComponent  implements OnInit {
   @Input() symptom!: Symptom;
+  @Input() measurement!: PresentMeasurement
 
   isPresent: boolean = false;
 
@@ -18,8 +19,8 @@ export class SurveyPresentSymptomComponent  implements OnInit {
 
   togglePresent() {
     //this.isPresent = !this.isPresent;
-    (this.symptom.measurement as PresentMeasurement).isPresent = !(this.symptom.measurement as PresentMeasurement).isPresent
-
+    //(this.symptom.measurement as PresentMeasurement).isPresent = !(this.symptom.measurement as PresentMeasurement).isPresent
+    this.measurement.isPresent = !this.measurement.isPresent;
   }
 
 }
