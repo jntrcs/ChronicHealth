@@ -16,13 +16,16 @@ export class UserData {
   ];
 
   this.all_treatments = [
-    new Treatment("Allergy Pill", "present", [new Symptom("Fatigue", "present", true)])
+    new Treatment("Allergy Pill", "present", [new Symptom("Fatigue", "count", true)]),
+    new Treatment("Rituxin", "count", [new Symptom("Fatigue", "present", true)])
+
   ];
 
   this.all_illnesses = [];
 
       this.static_survey = [...this.all_symptoms].slice(0,3);
-      this.static_survey.push(this.all_treatments[0])     
+      this.static_survey.push(this.all_treatments[0])   ;
+      this.static_survey.push(this.all_treatments[1])  
     }
   
     public all_symptoms: Symptom[];

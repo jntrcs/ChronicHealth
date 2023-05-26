@@ -1,9 +1,11 @@
-<!--<div *ngIf="isPresentMeasurement(treatment.measurement)">
+<div *ngIf="isPresentMeasurement(treatment.measurement)">
   <app-survey-present-treatment [treatment] = "treatment"></app-survey-present-treatment >
 </div>
 
 <div *ngIf="isCountMeasurement(treatment.measurement)">
   <app-survey-count-treatment [treatment] = "treatment"></app-survey-count-treatment>
-</div>-->
+</div>
 
-<p>Show side effects here!!!!</p>
+<ion-list>
+  <app-survey-symptom *ngFor="let side_effects of treatment.side_effects" [symptom]="side_effects"></app-survey-symptom>
+</ion-list>
