@@ -1,9 +1,4 @@
 <div class="survey-severity-component"><h5>{{ this.symptom.name }}</h5>
-<ion-item>
-  <ion-label class="option-label" [class.selected]="get_selected_option() === 'None'" (click)="selectOption('None')">None</ion-label>
-  <ion-label class="option-label" [class.selected]="get_selected_option() === 'Mild'" (click)="selectOption('Mild')">Mild</ion-label>
-  <ion-label class="option-label" [class.selected]="get_selected_option() === 'Moderate'" (click)="selectOption('Moderate')">Moderate</ion-label>
-  <ion-label class="option-label" [class.selected]="get_selected_option() === 'Severe'" (click)="selectOption('Severe')">Severe</ion-label>
-</ion-item>
 
+<app-severity-view [measurement]="getSeverityMeasurement()"></app-severity-view>
 </div>

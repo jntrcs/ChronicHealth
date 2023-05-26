@@ -12,18 +12,13 @@ export class SurveySeveritySymptomComponent  implements OnInit {
 
   constructor() {}
 
-  selectOption(option: string) {
-    (this.symptom.measurement as SeverityMeasurement).severity = option;
-    //this.symptom.measurement.severity = option;
-  }
 
-  get_selected_option(){
-    return((this.symptom.measurement as SeverityMeasurement).severity);
-    //return(this.symptom.measurement.severity);
-  }
 
   ngOnInit() {
   }
 
+  getSeverityMeasurement():SeverityMeasurement{
+    return this.symptom.measurement as SeverityMeasurement;
+  }
 
 }

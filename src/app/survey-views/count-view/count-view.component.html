@@ -1,0 +1,5 @@
+<ion-item class="custom-item">
+  <ion-range  min="0" max="24" step="1" value=0 snaps=true ticks=true (ionChange)="updateCount($event)">
+   <div slot="label">{{ getCount() }}</div>
+  </ion-range>
+</ion-item>

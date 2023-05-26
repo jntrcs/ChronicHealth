@@ -3,7 +3,7 @@
     <ion-col>
       <div class="name-toggle-container">
         <h5>{{ symptom.name }}</h5>
-        <ion-toggle [checked]="isPresent" (ionChange)="togglePresent()"></ion-toggle>
+        <app-present-view [measurement]="getPresentMeasurement()"></app-present-view>
       </div>
     </ion-col>
   </ion-row>

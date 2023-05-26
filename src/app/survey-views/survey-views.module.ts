@@ -7,18 +7,21 @@ import { SurveySeveritySymptomComponent } from './survey-severity-symptom/survey
 import { SurveyPresentSymptomComponent } from './survey-present-symptom/survey-present-symptom.component';
 import { SurveyCountSymptomComponent } from './survey-count-symptom/survey-count-symptom.component';
 import { SurveyItemViewComponent } from './survey-item-view/survey-item-view.component';
+import { CountViewComponent } from './count-view/count-view.component';
+import { SeverityViewComponent } from './severity-view/severity-view.component';
+import { PresentViewComponent } from './present-view/present-view.component';
 
 
 
 @NgModule({
   declarations: [SurveyTreatmentComponent, SurveySymptomComponent,SurveySeveritySymptomComponent,
   SurveyPresentSymptomComponent, SurveySeveritySymptomComponent, SurveyCountSymptomComponent,
-  SurveyItemViewComponent],
+  SurveyItemViewComponent, CountViewComponent, SeverityViewComponent, PresentViewComponent],
   imports: [
     CommonModule, IonicModule
   ],
   exports: [SurveyTreatmentComponent, SurveySymptomComponent,SurveySeveritySymptomComponent,
     SurveyPresentSymptomComponent, SurveySeveritySymptomComponent, SurveyCountSymptomComponent,
-    SurveyItemViewComponent]
+    SurveyItemViewComponent, CountViewComponent, SeverityViewComponent, PresentViewComponent]
 })
 export class SurveyViewsModule { }

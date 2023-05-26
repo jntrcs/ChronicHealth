@@ -16,10 +16,10 @@ export class SurveyPresentSymptomComponent  implements OnInit {
 
   ngOnInit() {}
 
-  togglePresent() {
-    //this.isPresent = !this.isPresent;
-    (this.symptom.measurement as PresentMeasurement).isPresent = !(this.symptom.measurement as PresentMeasurement).isPresent
-    //this.measurement.isPresent = !this.measurement.isPresent;
+
+
+  getPresentMeasurement():PresentMeasurement{
+    return this.symptom.measurement as PresentMeasurement;
   }
 
 }

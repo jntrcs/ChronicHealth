@@ -20,14 +20,9 @@ export class SurveyCountSymptomComponent  implements OnInit {
   constructor(){
   }
 
-  updateCount(event: Event) {
-   (this.symptom.measurement as CountMeasurement).count = Number((event as RangeCustomEvent).detail.value)
-   //this.symptom.measurement.count = Number((event as RangeCustomEvent).detail.value);
-    //this.count = event.detail.value as number;
-  }
 
-  getCount(){
-    return((this.symptom.measurement as CountMeasurement).count)
-   //return(this.measurement.count)
+
+  getCountMeasurement():CountMeasurement{
+    return(this.symptom.measurement as CountMeasurement)
   }
 }
