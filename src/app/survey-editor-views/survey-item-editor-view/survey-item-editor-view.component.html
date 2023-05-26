@@ -1,3 +1,8 @@
-<div *ngIf="isSymptom(survey_item)">
-    <app-survey-symptom-editor-view [symptom] = "getSymptom(survey_item)"></app-survey-symptom-editor-view>
+<div> <!--*ngIf="isSymptom(survey_item)">
+    <app-survey-symptom-editor-view [symptom] = "getSymptom(survey_item)"></app-survey-symptom-editor-view>-->
+    <p>
+        {{ this.survey_item.name}}
+        </p>
+        
 </div>
+
