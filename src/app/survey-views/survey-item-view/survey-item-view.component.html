@@ -6,3 +6,7 @@
 <div *ngIf="isTreatment(survey_item)">
     <app-survey-treatment [treatment] = "getTreatment(survey_item)"></app-survey-treatment>
 </div>
+
+<div *ngIf="isIllness(survey_item)">
+    <app-survey-illness [illness] = "getIllness(survey_item)"></app-survey-illness>
+</div>

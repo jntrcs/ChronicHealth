@@ -8,10 +8,10 @@ import { Symptom } from './Symptom';
     public doctor_confirmed: boolean;
     public symptoms: Symptom[];
 
-      constructor(name: string) {
+      constructor(name: string, symptoms: Symptom[]) {
         super(name);
         this.doctor_confirmed = false;
-        this.symptoms =[];
+        this.symptoms =symptoms;
       }
 
     

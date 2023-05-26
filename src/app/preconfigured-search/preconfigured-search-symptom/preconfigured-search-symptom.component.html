@@ -8,8 +8,10 @@
 <ion-content>
   <app-preconfigured-search-generic [survey_item_list]="symptom_list"></app-preconfigured-search-generic>
 
-  <ion-button (click)="openSymptomCreator()">
-    <ion-icon name="add"></ion-icon>
-    New symptom
-  </ion-button>
+
+  <ion-fab  horizontal="end" vertical="bottom">
+    <ion-fab-button (click)="openSymptomCreator()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

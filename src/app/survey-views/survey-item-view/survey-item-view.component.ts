@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Illness } from 'src/app/models/Illness';
 import { SurveyItem } from 'src/app/models/SurveyItem';
 import { Symptom } from 'src/app/models/Symptom';
 import { Treatment } from 'src/app/models/Treatment';
@@ -41,5 +42,15 @@ export class SurveyItemViewComponent  implements OnInit {
 
 isTreatment(surveyItem: SurveyItem): boolean {
   return surveyItem instanceof Treatment;
+}
+
+isIllness(surveyItem: SurveyItem): boolean {
+  return surveyItem instanceof Illness;
+}
+
+getIllness(surveyItem: SurveyItem): Illness {
+
+  return surveyItem as Illness;
+
 }
 }
