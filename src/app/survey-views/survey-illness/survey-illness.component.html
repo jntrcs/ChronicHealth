@@ -1,14 +1,16 @@
-<div class="illness-component"><h5>{{ illness.name }}</h5>
- 
-  <ion-segment value="suspected">
-    <ion-segment-button value="suspected">
-      <ion-label>Suspected</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="medically confirmed">
-      <ion-label>Medically Confirmed</ion-label>
-    </ion-segment-button>
-  </ion-segment>
 
+  <div class="illness-component">
+    <ion-row align-items-center>
+      <ion-col size="auto">
+        <h5>{{ illness.name }}</h5>
+      </ion-col>
+      <ion-col>
+        <ion-item lines="none" class="option-container">
+          <ion-label class="option-label" [class.selected]="get_selected_option() === 'suspected'" (click)="selectOption('suspected')">Suspected</ion-label>
+          <ion-label class="option-label" [class.selected]="get_selected_option() === 'medically confirmed'" (click)="selectOption('medically confirmed')">Medically Confirmed</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
 
 <ion-list>
   <app-survey-symptom *ngFor="let symptom of illness.symptoms" [symptom]="symptom"></app-survey-symptom>

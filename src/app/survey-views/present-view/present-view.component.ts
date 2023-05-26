@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Color } from '@ionic/core';
 import { PresentMeasurement } from 'src/app/models/Measurement';
 
 @Component({
@@ -9,7 +10,10 @@ import { PresentMeasurement } from 'src/app/models/Measurement';
 export class PresentViewComponent  implements OnInit {
 
   @Input() measurement!:PresentMeasurement;
-  constructor() { }
+  toggleColor:string;
+  constructor() {
+    this.toggleColor = "side-effect"
+   }
 
   ngOnInit() {}
 

@@ -3,13 +3,85 @@
 
 /** Ionic CSS Variables **/
 :root {
+
+
+
+  
+  
+    .ion-color-side-effect {
+      --ion-color-base: var(--ion-color-side-effect);
+      --ion-color-base-rgb: var(--ion-color-side-effect-rgb);
+      --ion-color-contrast: var(--ion-color-side-effect-contrast);
+      --ion-color-contrast-rgb: var(--ion-color-side-effect-contrast-rgb);
+      --ion-color-shade: var(--ion-color-side-effect-shade);
+      --ion-color-tint: var(--ion-color-side-effect-tint);
+    }
+
+  .ion-color-treatment {
+    --ion-color-base: var(--ion-color-treatment);
+    --ion-color-base-rgb: var(--ion-color-treatment-rgb);
+    --ion-color-contrast: var(--ion-color-treatment-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-treatment-contrast-rgb);
+    --ion-color-shade: var(--ion-color-treatment-shade);
+    --ion-color-tint: var(--ion-color-treatment-tint);
+  }
+
+  .ion-color-symptom {
+    --ion-color-base: var(--ion-color-symptom);
+    --ion-color-base-rgb: var(--ion-color-symptom-rgb);
+    --ion-color-contrast: var(--ion-color-symptom-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-symptom-contrast-rgb);
+    --ion-color-shade: var(--ion-color-symptom-shade);
+    --ion-color-tint: var(--ion-color-symptom-tint);
+  }
+
+  .ion-color-illness {
+    --ion-color-base: var(--ion-color-illness);
+    --ion-color-base-rgb: var(--ion-color-illness-rgb);
+    --ion-color-contrast: var(--ion-color-illness-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-illness-contrast-rgb);
+    --ion-color-shade: var(--ion-color-illness-shade);
+    --ion-color-tint: var(--ion-color-illness-tint);
+  }
+
+  --ion-color-side-effect: #9999C3;
+  --ion-color-side-effect-rgb: 153,153,195;
+  --ion-color-side-effect-contrast: #000000;
+  --ion-color-side-effect-contrast-rgb: 0,0,0;
+  --ion-color-side-effect-shade: #8787ac;
+  --ion-color-side-effect-tint: #a3a3c9;
+
+	--ion-color-treatment: #F25F5C;
+	--ion-color-treatment-rgb: 242,95,92;
+	--ion-color-treatment-contrast: #000000;
+	--ion-color-treatment-contrast-rgb: 0,0,0;
+	--ion-color-treatment-shade: #d55451;
+	--ion-color-treatment-tint: #f36f6c;
+
+
+  --ion-color-illness: #247BA0;
+	--ion-color-illness-rgb: 36,123,160;
+	--ion-color-illness-contrast: #ffffff;
+	--ion-color-illness-contrast-rgb: 255,255,255;
+	--ion-color-illness-shade: #206c8d;
+	--ion-color-illness-tint: #3a88aa;
+  
+	--ion-color-symptom: #FFD21F;
+	--ion-color-symptom-rgb: 255,210,31;
+	--ion-color-symptom-contrast: #000000;
+	--ion-color-symptom-contrast-rgb: 0,0,0;
+	--ion-color-symptom-shade: #e0b91b;
+	--ion-color-symptom-tint: #ffd735;
+
+
   /** primary **/
-  --ion-color-primary: #3880ff;
-  --ion-color-primary-rgb: 56, 128, 255;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary: #06A77D;
+	--ion-color-primary-rgb: 6,167,125;
+	--ion-color-primary-contrast: #ffffff;
+	--ion-color-primary-contrast-rgb: 255,255,255;
+	--ion-color-primary-shade: #05936e;
+	--ion-color-primary-tint: #1fb08a;
+
 
   /** secondary **/
   --ion-color-secondary: #3dc2ff;
