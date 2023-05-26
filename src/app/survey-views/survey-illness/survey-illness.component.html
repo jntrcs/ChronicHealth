@@ -1,7 +1,7 @@
-<p>
-  survey-illness works!
-</p>
+<div class="illness-component"><h5>{{ illness.name }}</h5>
 
 <ion-list>
   <app-survey-symptom *ngFor="let symptom of illness.symptoms" [symptom]="symptom"></app-survey-symptom>
 </ion-list>
+
+</div>

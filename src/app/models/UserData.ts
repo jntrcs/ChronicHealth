@@ -16,20 +16,24 @@ export class UserData {
   ];
 
   this.all_treatments = [
-    new Treatment("Allergy Pill", "present", [new Symptom("Fatigue", "count", true)]),
-    new Treatment("Rituxin", "count", [new Symptom("Fatigue", "present", true)])
+    new Treatment("Allergy Pill", "present", []),
+    new Treatment("Rituxin", "count", [new Symptom("Fatigue", "present", true),
+    new Symptom("Pain", "severity", true)])
 
   ];
 
   this.all_illnesses = [
-    new Illness("Allergy Pill", [new Symptom("Fatigue", "count", true)])
+    new Illness("Flu", [new Symptom("Body Aches", "severity", false),
+                        new Symptom("Congestion", "severity", false)])
   ]
 
 
       this.static_survey = [...this.all_symptoms].slice(0,3);
       this.static_survey.push(this.all_treatments[0])   ;
       this.static_survey.push(this.all_treatments[1]) ;
-      this.static_survey.push(this.all_illnesses[0]); 
+      this.static_survey.push(this.all_illnesses[0]);
+      
+      console.log(this.static_survey)
     }
   
     public all_symptoms: Symptom[];
