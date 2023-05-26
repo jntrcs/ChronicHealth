@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CountMeasurement, Measurement, PresentMeasurement } from 'src/app/models/Measurement';
 import { Treatment } from 'src/app/models/Treatment';
 
 @Component({
@@ -13,4 +14,15 @@ export class SurveyTreatmentComponent  implements OnInit {
 
   ngOnInit() {}
 
+
+  isPresentMeasurement(measurement:Measurement):boolean{
+    return measurement instanceof PresentMeasurement;
+  }
+
+  isCountMeasurement(measurement:Measurement):boolean{
+    return measurement instanceof CountMeasurement;
+  }
+
+
 }
+ 

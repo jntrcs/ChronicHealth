@@ -16,7 +16,7 @@ export class UserData {
   ];
 
   this.all_treatments = [
-    new Treatment("Allergy Pill", "present")
+    new Treatment("Allergy Pill", "present", [new Symptom("Fatigue", "present", true)])
   ];
 
   this.all_illnesses = [];

@@ -7,6 +7,7 @@ export class Symptom extends SurveyItem {
       name: string,
       //public icon: string,
       measurementString: string, 
+      public is_side_effect: boolean = false
     ) {
       super(name);
       this.measurement = this.createMeasurement(measurementString);
@@ -31,4 +32,5 @@ export class Symptom extends SurveyItem {
     public changeMeasurement(measurementString: string):void{
       this.measurement = this.createMeasurement(measurementString);
     }
+    
   }

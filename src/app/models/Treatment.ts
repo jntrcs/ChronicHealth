@@ -1,6 +1,6 @@
 import { CountMeasurement, Measurement, PresentMeasurement } from "./Measurement";
-import { SideEffect } from "./SideEffect";
 import { SurveyItem } from "./SurveyItem";
+import { Symptom } from "./Symptom";
 
 
 export class Treatment extends SurveyItem {
@@ -8,13 +8,15 @@ export class Treatment extends SurveyItem {
       name: string,
       //public icon: string,
       measurementString: string, 
+      side_effects: Symptom[]
     ) {
       super(name);
       this.measurement = this.createMeasurement(measurementString);
+      this.side_effects = side_effects;
     }
   
     public measurement: Measurement;
-    public side_effects: SideEffect[]=[];
+    public side_effects: Symptom[]=[];
 
   
     private createMeasurement(measurementString: string): Measurement {

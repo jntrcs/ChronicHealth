@@ -13,6 +13,6 @@ import { ConfigurersModule } from '../configurers/configurers.module';
     IonicModule,
     ConfigurersModule
   ],
-  exports: [PreconfiguredSearchSymptomComponent]
+  exports: [PreconfiguredSearchSymptomComponent, PreconfiguredSearchGenericComponent]
 })
 export class PreconfiguredSearchModule { }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { SurveyItem } from 'src/app/models/SurveyItem';
-import { SurveySymptomEditorViewComponent } from 'src/app/symptom/survey-symptom-editor-view/survey-symptom-editor-view.component';
+import { SurveySymptomEditorViewComponent } from 'src/app/survey-editor-views/survey-symptom-editor-view/survey-symptom-editor-view.component';
 import { Symptom } from 'src/app/models/Symptom';
 
 @Component({

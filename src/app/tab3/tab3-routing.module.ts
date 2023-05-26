@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Tab3Page } from './tab3.page';
-import { StaticSurveyEditorComponent } from '../survey-editor/static-survey-editor/static-survey-editor.component';
+import { StaticSurveyEditorComponent } from '../survey-editor-views/static-survey-editor/static-survey-editor.component';
 
 const routes: Routes = [
   {
