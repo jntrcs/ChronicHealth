@@ -1,4 +1,14 @@
 <div class="illness-component"><h5>{{ illness.name }}</h5>
+ 
+  <ion-segment value="suspected">
+    <ion-segment-button value="suspected">
+      <ion-label>Suspected</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="medically confirmed">
+      <ion-label>Medically Confirmed</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
 
 <ion-list>
   <app-survey-symptom *ngFor="let symptom of illness.symptoms" [symptom]="symptom"></app-survey-symptom>

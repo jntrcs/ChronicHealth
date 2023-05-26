@@ -8,7 +8,7 @@ export class UserData {
 // This should load the data from memory.
 //For now, just create a bunch of sample data
     this.all_symptoms =[
-        new Symptom('Headache',  'severity'),
+        new Symptom('Shortness of Breath',  'severity'),
         new Symptom('Fever',  'present'),
         new Symptom('Cough',  'count'),
         new Symptom("Weak legs", 'severity'),
