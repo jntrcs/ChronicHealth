@@ -26,4 +26,18 @@ export class SeverityViewComponent  implements OnInit {
   isSelected(choice:string):boolean{
     return(choice===this.measurement.severity)
   }
+
+  get_unselected_class():string{
+
+    switch (this.measurement.color) {
+      case "symptom":
+        return("option-labelsymptom");
+      case "illness":
+        return("option-labelillness");
+      case "treatment":
+        return("option-labelsideeffect")
+      default:
+        return("error")
+  }
+}
 }

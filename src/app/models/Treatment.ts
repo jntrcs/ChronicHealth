@@ -13,6 +13,7 @@ export class Treatment extends SurveyItem {
       super(name);
       this.measurement = this.createMeasurement(measurementString);
       this.side_effects = side_effects;
+      this.convert_symptom_measurements(this.side_effects);
     }
   
     public measurement: Measurement;
@@ -33,4 +34,11 @@ export class Treatment extends SurveyItem {
     public changeMeasurement(measurementString: string):void{
       this.measurement = this.createMeasurement(measurementString);
     }
+
+    convert_symptom_measurements(symptoms:Symptom[]){
+      for (let i = 0; i < symptoms.length; i++) {
+        symptoms[i].measurement.color = "treatment";
+      }        
+    }
+
   }

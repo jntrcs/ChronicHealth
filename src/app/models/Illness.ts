@@ -12,6 +12,15 @@ import { Symptom } from './Symptom';
         super(name);
         this.doctor_confirmed = false;
         this.symptoms =symptoms;
+        this.convert_symptom_measurements(this.symptoms);
+        
+
+      }
+
+      convert_symptom_measurements(symptoms:Symptom[]){
+        for (let i = 0; i < symptoms.length; i++) {
+          symptoms[i].measurement.color = "illness";
+        }        
       }
 
     
