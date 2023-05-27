@@ -22,4 +22,8 @@ export class SeverityViewComponent  implements OnInit {
     return(this.measurement.severity);
     //return(this.symptom.measurement.severity);
   }
+
+  isSelected(choice:string):boolean{
+    return(choice===this.measurement.severity)
+  }
 }

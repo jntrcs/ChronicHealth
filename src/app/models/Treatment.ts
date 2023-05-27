@@ -22,9 +22,9 @@ export class Treatment extends SurveyItem {
     private createMeasurement(measurementString: string): Measurement {
       switch (measurementString) {
         case 'present':
-          return new PresentMeasurement();
+          return new PresentMeasurement('treatment');
         case 'count':
-          return new CountMeasurement();
+          return new CountMeasurement('treatment');
         default:
           throw new Error(`Invalid measurement type: ${measurementString}`);
       }

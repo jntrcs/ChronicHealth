@@ -9,6 +9,7 @@ import { Symptom } from 'src/app/models/Symptom';
 })
 export class SurveyPresentSymptomComponent  implements OnInit {
   @Input() symptom!: Symptom;
+  color: string = 'symptom'
 
   isPresent: boolean = false;
 

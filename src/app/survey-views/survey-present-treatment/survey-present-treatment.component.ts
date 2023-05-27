@@ -10,7 +10,11 @@ import { Treatment } from 'src/app/models/Treatment';
 export class SurveyPresentTreatmentComponent  implements OnInit {
 
   @Input() treatment!:Treatment;
-  constructor() { }
+
+  color: string = 'treatment'
+  constructor(
+
+  ) { }
 
   ngOnInit() {}
 

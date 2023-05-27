@@ -1,6 +1,18 @@
 <ion-item>
-  <ion-label class="option-label" [class.selected]="get_selected_option() === 'None'" (click)="selectOption('None')">None</ion-label>
-  <ion-label class="option-label" [class.selected]="get_selected_option() === 'Mild'" (click)="selectOption('Mild')">Mild</ion-label>
-  <ion-label class="option-label" [class.selected]="get_selected_option() === 'Moderate'" (click)="selectOption('Moderate')">Moderate</ion-label>
-  <ion-label class="option-label" [class.selected]="get_selected_option() === 'Severe'" (click)="selectOption('Severe')">Severe</ion-label>
+  <ion-label [class]="measurement.color==='symptom' ? 'option-labelsymptom':'option-labelsideeffect'" 
+  [class.selected-symptom]="isSelected('None') && measurement.color==='symptom'" 
+  [class.selected-sideeffect]="isSelected('None') && measurement.color==='side-effect'" 
+  (click)="selectOption('None')">None</ion-label>
+  <ion-label [class]="measurement.color==='symptom' ? 'option-labelsymptom':'option-labelsideeffect'" 
+  [class.selected-symptom]="isSelected('Mild') && measurement.color==='symptom'" 
+  [class.selected-sideeffect]="isSelected('Mild') && measurement.color==='side-effect'" 
+  (click)="selectOption('Mild')">Mild</ion-label>
+  <ion-label [class]="measurement.color==='symptom' ? 'option-labelsymptom':'option-labelsideeffect'" 
+  [class.selected-symptom]="isSelected('Moderate') && measurement.color==='symptom'" 
+  [class.selected-sideeffect]="isSelected('Moderate') && measurement.color==='side-effect'" 
+  (click)="selectOption('Moderate')">Moderate</ion-label>
+  <ion-label [class]="measurement.color==='symptom' ? 'option-labelsymptom':'option-labelsideeffect'" 
+  [class.selected-symptom]="isSelected('Severe') && measurement.color==='symptom'" 
+  [class.selected-sideeffect]="isSelected('Severe') && measurement.color==='side-effect'" 
+  (click)="selectOption('Severe')">Severe</ion-label>
 </ion-item>
