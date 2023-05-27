@@ -23,16 +23,6 @@ export class SurveySymptomComponent  implements OnInit {
 
   }
 
-  isPresentMeasurement(measurement:Measurement):boolean{
-    return measurement instanceof PresentMeasurement;
-  }
 
-  isCountMeasurement(measurement:Measurement):boolean{
-    return measurement instanceof CountMeasurement;
-  }
-
-  isSeverityMeasurement(measurement:Measurement):boolean{
-    return measurement instanceof SeverityMeasurement;
-  }
 
 }

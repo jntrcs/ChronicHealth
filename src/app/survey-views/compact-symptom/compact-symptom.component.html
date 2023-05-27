@@ -1,0 +1,22 @@
+<div class="compact-symptom">
+  <ion-grid>
+  <ion-row align-items-center>
+    <ion-col size="auto">
+      <p>{{ symptom .name }}</p>
+    </ion-col>
+    <ion-col size="auto">
+      <div *ngIf="symptom.measurement.isPresentMeasurement()">
+        <app-present-view [measurement] = "symptom.measurement.get_measurement_class()"></app-present-view  >
+    </div>
+    
+    <div *ngIf="symptom.measurement.isCountMeasurement()">
+        <app-count-view [measurement] = "symptom.measurement.get_measurement_class()"></app-count-view>
+    </div>
+    
+    <div *ngIf="symptom.measurement.isSeverityMeasurement()" class="compact-severity">
+        <app-severity-view [measurement] = "symptom.measurement.get_measurement_class()"></app-severity-view>
+    </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</div>

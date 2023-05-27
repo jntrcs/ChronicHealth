@@ -1,16 +1,35 @@
-export class Measurement {
+export abstract class Measurement {
   name: string;
   color: string
   constructor(name: string, color: string) {
     this.name=name;
     this.color = color;
   }
+
+  isPresentMeasurement():boolean{
+    return this instanceof PresentMeasurement;
+  }
+
+  isCountMeasurement():boolean{
+    return this instanceof CountMeasurement;
+  }
+
+  isSeverityMeasurement():boolean{
+    return this instanceof SeverityMeasurement;
+  }
+
+  abstract get_measurement_class():any;
+
 }
 
 export class PresentMeasurement extends Measurement {
   public isPresent: boolean = false;
   constructor(color: string) {
     super('present', color);
+  }
+
+  get_measurement_class():PresentMeasurement{
+    return(this)
   }
 }
 
@@ -19,11 +38,17 @@ export class CountMeasurement extends Measurement {
   constructor(color:string) {
     super('count', color);
   }
+  get_measurement_class():CountMeasurement{
+    return(this)
+  }
 }
 
 export class SeverityMeasurement extends Measurement {
   public severity: string = "None"
   constructor(color:string) {
     super('severity', color);
+  }
+  get_measurement_class():SeverityMeasurement{
+    return(this)
   }
 }

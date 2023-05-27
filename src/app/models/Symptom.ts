@@ -32,5 +32,8 @@ export class Symptom extends SurveyItem {
     public changeMeasurement(measurementString: string):void{
       this.measurement = this.createMeasurement(measurementString);
     }
+
+
+    
     
   }

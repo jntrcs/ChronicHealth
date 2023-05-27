@@ -1,11 +1,11 @@
-<div *ngIf="isPresentMeasurement(symptom.measurement)">
+<div *ngIf="symptom.measurement.isPresentMeasurement()">
     <app-survey-present-symptom [symptom] = "symptom"></app-survey-present-symptom >
 </div>
 
-<div *ngIf="isCountMeasurement(symptom.measurement)">
+<div *ngIf="symptom.measurement.isCountMeasurement()">
     <app-survey-count-symptom [symptom] = "symptom"></app-survey-count-symptom>
 </div>
 
-<div *ngIf="isSeverityMeasurement(symptom.measurement)">
+<div *ngIf="symptom.measurement.isSeverityMeasurement()">
     <app-survey-severity-symptom [symptom] = "symptom"></app-survey-severity-symptom>
 </div>

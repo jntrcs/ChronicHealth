@@ -54,3 +54,13 @@
     background-color: var(--ion-color-illness);
   }
 
+
+
+  ion-item {
+    min-width: 350px; /* Adjust the minimum width as needed */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    max-height: 40px;
+  }

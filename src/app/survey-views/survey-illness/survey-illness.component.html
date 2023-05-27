@@ -12,8 +12,8 @@
       </ion-col>
     </ion-row>
 
-<ion-list>
-  <app-survey-symptom *ngFor="let symptom of illness.symptoms" [symptom]="symptom"></app-survey-symptom>
+<ion-list class="symptom-list">
+  <app-compact-symptom *ngFor="let symptom of illness.symptoms" [symptom]="symptom"></app-compact-symptom>
 </ion-list>
 
 </div>
