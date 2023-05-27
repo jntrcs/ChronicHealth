@@ -4,7 +4,7 @@
       <ion-col size="auto">
         <h5>{{ illness.name }}</h5>
       </ion-col>
-      <ion-col>
+      <ion-col size="auto">
         <ion-item lines="none" class="option-container">
           <ion-label class="option-label" [class.selected]="get_selected_option() === 'suspected'" (click)="selectOption('suspected')">Suspected</ion-label>
           <ion-label class="option-label" [class.selected]="get_selected_option() === 'medically confirmed'" (click)="selectOption('medically confirmed')">Medically Confirmed</ion-label>

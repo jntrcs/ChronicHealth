@@ -1,4 +1,4 @@
-<ion-item>
+<ion-item lines="none">
   <ion-label [class]="measurement.color==='symptom' ? 'option-labelsymptom':'option-labelsideeffect'" 
   [class.selected-symptom]="isSelected('None') && measurement.color==='symptom'" 
   [class.selected-sideeffect]="isSelected('None') && measurement.color==='side-effect'" 
@@ -16,3 +16,4 @@
   [class.selected-sideeffect]="isSelected('Severe') && measurement.color==='side-effect'" 
   (click)="selectOption('Severe')">Severe</ion-label>
 </ion-item>
+

@@ -1,12 +1,12 @@
-<div *ngIf="isSymptom(survey_item)">
+<div class="survey_chunk" *ngIf="isSymptom(survey_item)">
     <app-survey-symptom [symptom] = "getSymptom(survey_item)"></app-survey-symptom>
 </div>
 
 
-<div *ngIf="isTreatment(survey_item)">
+<div class="survey_chunk" *ngIf="isTreatment(survey_item)">
     <app-survey-treatment [treatment] = "getTreatment(survey_item)"></app-survey-treatment>
 </div>
 
-<div *ngIf="isIllness(survey_item)">
+<div class="survey_chunk" *ngIf="isIllness(survey_item)">
     <app-survey-illness [illness] = "getIllness(survey_item)"></app-survey-illness>
 </div>

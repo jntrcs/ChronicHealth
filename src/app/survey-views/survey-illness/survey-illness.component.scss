@@ -1,7 +1,4 @@
-.illness-component {
-    margin-left: 10px;
-  }
-  
+
   .option-container {
     display: flex;
     justify-content: space-around;
@@ -12,17 +9,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 25px;
+    width: 125px;
     height: 25px;
     cursor: pointer;
     font-size: 12px;
     text-align: center;
     border: 1px solid transparent;
-    border-color: #007bff;
+    border-color: var(--ion-color-illness-shade);
   }
   
   .selected {
-    background-color: #007bff;
+    background-color: var(--ion-color-illness);
     color: white;
-    border-color: #007bff;
+    border-color: var(--ion-color-illness-shade);
   }
