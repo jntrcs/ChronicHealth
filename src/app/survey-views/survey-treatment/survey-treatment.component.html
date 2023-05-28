@@ -6,6 +6,8 @@
   <app-survey-count-treatment [treatment] = "treatment"></app-survey-count-treatment>
 </div>
 
-<ion-list>
-  <app-survey-symptom *ngFor="let side_effects of treatment.side_effects" [symptom]="side_effects"></app-survey-symptom>
+
+
+<ion-list class="symptom-list">
+  <app-compact-symptom *ngFor="let side_effects of treatment.side_effects" [symptom]="side_effects"></app-compact-symptom>
 </ion-list>

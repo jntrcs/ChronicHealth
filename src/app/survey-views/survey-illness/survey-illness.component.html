@@ -7,13 +7,19 @@
       <ion-col size="auto">
         <ion-item lines="none" class="option-container">
           <ion-label class="option-label" [class.selected]="get_selected_option() === 'suspected'" (click)="selectOption('suspected')">Suspected</ion-label>
-          <ion-label class="option-label" [class.selected]="get_selected_option() === 'medically confirmed'" (click)="selectOption('medically confirmed')">Medically Confirmed</ion-label>
+          <ion-label class="option-label" [class.selected]="get_selected_option() === 'medically confirmed'" (click)="selectOption('medically confirmed')">Confirmed</ion-label>
         </ion-item>
       </ion-col>
     </ion-row>
 
 <ion-list class="symptom-list">
   <app-compact-symptom *ngFor="let symptom of illness.symptoms" [symptom]="symptom"></app-compact-symptom>
+  <ion-button class="add-more" color="illness">
+    <ion-icon name="add">
+  
+    </ion-icon>
+  </ion-button>
 </ion-list>
+
 
 </div>

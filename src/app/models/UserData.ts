@@ -24,7 +24,7 @@ export class UserData {
 
   this.all_illnesses = [
     new Illness("Flu", [new Symptom("Body Aches", "severity", false),
-                        new Symptom("Congestion", "severity", false)])
+                        new Symptom("Congestion", "count", false)])
   ]
 
 
@@ -33,7 +33,6 @@ export class UserData {
       this.static_survey.push(this.all_treatments[1]) ;
       this.static_survey.push(this.all_illnesses[0]);
       
-      console.log(this.static_survey)
     }
   
     public all_symptoms: Symptom[];

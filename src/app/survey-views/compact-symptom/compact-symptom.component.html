@@ -5,11 +5,11 @@
       <p>{{ symptom .name }}</p>
     </ion-col>
     <ion-col size="auto">
-      <div *ngIf="symptom.measurement.isPresentMeasurement()">
+      <div *ngIf="symptom.measurement.isPresentMeasurement()" class="compact-present">
         <app-present-view [measurement] = "symptom.measurement.get_measurement_class()"></app-present-view  >
     </div>
     
-    <div *ngIf="symptom.measurement.isCountMeasurement()">
+    <div *ngIf="symptom.measurement.isCountMeasurement()" class="compact-count">
         <app-count-view [measurement] = "symptom.measurement.get_measurement_class()"></app-count-view>
     </div>
     
