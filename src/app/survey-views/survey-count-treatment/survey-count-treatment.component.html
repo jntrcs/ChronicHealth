@@ -1,5 +1,14 @@
 <div class="survey-count-component"><h5>{{ this.treatment.name }}</h5>
 
-  <app-count-view [measurement] = "getCountMeasurement()"></app-count-view>
 
+  <ion-row>
+    <ion-col size="auto">
+      <h5>{{ this.treatment.name }} - #: </h5>
+
+    </ion-col>
+    <ion-col>
+      <app-count-view [measurement] = "getCountMeasurement()"></app-count-view>
+
+    </ion-col>
+  </ion-row>
 </div>

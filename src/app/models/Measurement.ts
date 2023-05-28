@@ -1,9 +1,14 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export abstract class Measurement {
   name: string;
   color: string
+  public id:string;
   constructor(name: string, color: string) {
     this.name=name;
     this.color = color;
+    this.id = uuidv4();
+
   }
 
   isPresentMeasurement():boolean{

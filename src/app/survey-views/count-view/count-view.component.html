@@ -1,5 +1,7 @@
-<ion-item class="custom-item" lines="none">
-  <ion-range [color]="measurement.color"  min="0" max="24" step="1" value=0 snaps=true ticks=true (ionChange)="updateCount($event)">
+  <!--<ion-range [color]="measurement.color"  min="0" max="24" step="1" value=0 snaps=true ticks=true (ionChange)="updateCount($event)">
    <div slot="label">{{ getCount() }}</div>
-  </ion-range>
-</ion-item>
+  </ion-range>-->
+
+
+<ion-input [(ngModel)]="this.measurement.count" [id]="this.measurement.id" background-color="gray"></ion-input>
+<ion-picker [trigger]="this.measurement.id" [columns]="pickerColumns" [buttons]="pickerButtons"></ion-picker>

@@ -1,3 +1,9 @@
 .custom-item ion-range {
     margin-left: 0px;
   }
+
+  ion-input {
+    text-decoration: underline;
+    text-decoration-color: var(  --ion-color-primary);
+    font-size: 20px; 
+  }

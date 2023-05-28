@@ -14,6 +14,7 @@ import { SurveyPresentTreatmentComponent } from './survey-present-treatment/surv
 import { SurveyCountTreatmentComponent } from './survey-count-treatment/survey-count-treatment.component';
 import { SurveyIllnessComponent } from './survey-illness/survey-illness.component';
 import { CompactSymptomComponent } from './compact-symptom/compact-symptom.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { CompactSymptomComponent } from './compact-symptom/compact-symptom.compo
   SurveyItemViewComponent, CountViewComponent, SeverityViewComponent, PresentViewComponent,
   SurveyPresentTreatmentComponent, SurveyCountTreatmentComponent, SurveyIllnessComponent, CompactSymptomComponent],
   imports: [
-    CommonModule, IonicModule
+    CommonModule, IonicModule, FormsModule
   ],
   exports: [SurveyTreatmentComponent, SurveySymptomComponent,SurveySeveritySymptomComponent,
     SurveyPresentSymptomComponent, SurveySeveritySymptomComponent, SurveyCountSymptomComponent,
