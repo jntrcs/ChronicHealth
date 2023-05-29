@@ -23,7 +23,7 @@ export class UserData {
   ];
 
   this.all_illnesses = [
-    new Illness("Flu", [new Symptom("Body Aches", "severity", false),
+    new Illness("Flutter fsdfsd", [new Symptom("Body Aches", "severity", false),
                         new Symptom("Congestion", "count", false)])
   ]
 

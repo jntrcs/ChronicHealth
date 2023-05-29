@@ -1,10 +1,28 @@
-<ion-grid>
-  <ion-row>
-    <ion-col>
-      <div class="name-toggle-container">
-        <h5>{{ treatment.name }}</h5>
+<ion-row style="display: flex;  justify-content: space-between;">
+  <ion-col size="10">
+    <ion-row>
+      <ion-col>
+        <h5>{{ this.treatment.name }} - #:</h5>
+
+      </ion-col>
+      <ion-col>     
         <app-present-view [measurement]="getPresentMeasurement()"></app-present-view>
-      </div>
-    </ion-col>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-col>
+
+    <ion-col class="button-row" size="2">  
+      <ion-button class="add-more" color="treatment" size="small">
+        <ion-icon name="pencil"></ion-icon>
+      </ion-button>
+      </ion-col>
   </ion-row>
-</ion-grid>
+  <ion-row>
+
+</ion-row>
+
+
+
+
