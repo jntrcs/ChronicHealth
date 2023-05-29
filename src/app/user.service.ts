@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserData } from './models/UserData';
 import { SurveyItem } from './models/SurveyItem';
 import { Symptom } from './models/Symptom';
+import { DayRecord } from './models/DayRecord';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +14,13 @@ constructor(){
   this.user_data = new UserData;
 }
 
+
+get_survey(){
+  return(this.user_data.full_survey);
+}
+
 get_static_survey(){
-  return(this.user_data.static_survey)
+  return(this.user_data.static_survey);
 }
 
 set_static_survey(static_survey: SurveyItem[]){
@@ -49,5 +55,13 @@ getSurveyItemByID(id: string): Symptom | null{
   return(symptom||null);
 }
 
+create_day_record(survey: SurveyItem[], date:Date = new Date()){
+  this.user_data.history.set(this.string_date(date), new DayRecord(survey));
+  console.log(this.user_data.history);
+}
+
+public string_date(date: Date): string {
+  return(date.toISOString().split('T')[0]);
+}
 
 }

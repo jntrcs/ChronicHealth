@@ -8,20 +8,20 @@
 
 <ion-content>
   <ion-list>
-    <app-survey-item-view *ngFor="let survey_item of static_survey" [survey_item]="survey_item"></app-survey-item-view>
+    <app-survey-item-view *ngFor="let survey_item of survey" [survey_item]="survey_item"></app-survey-item-view>
   </ion-list>
  
   <ion-row>
     <ion-col>
-      <ion-button color="primary">Save</ion-button>
+      <ion-button (click) = "save_record()" color="primary">Save</ion-button>
 
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col>
-    <ion-button color="symptom">Record a Symptom</ion-button>
+    <ion-button  color="symptom">Record a Symptom</ion-button>
     <ion-button color="illness" >Record an Illness</ion-button>
-    <ion-button color="treatment">Record a Treatment</ion-button>
+    <ion-button color="treatment">Record a Treatment</ion-button> 
   </ion-col>
   </ion-row>
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../user.service';
 import { SurveyItem } from '../models/SurveyItem';
+import { DayRecord } from '../models/DayRecord';
 
 @Component({
   selector: 'app-tab1',
@@ -10,9 +11,13 @@ import { SurveyItem } from '../models/SurveyItem';
 export class Tab1Page {
 
 
-  public static_survey: SurveyItem[];
+  public survey: SurveyItem[];
 
   constructor(private userService: UserService) {
-    this.static_survey = userService.get_static_survey();
+    this.survey = userService.get_survey();
+  }
+
+  save_record(){
+    this.userService.create_day_record(this.survey);
   }
 }

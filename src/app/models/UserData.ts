@@ -1,3 +1,4 @@
+import { DayRecord } from "./DayRecord";
 import { Illness } from "./Illness";
 import { SurveyItem } from "./SurveyItem";
 import { Symptom } from "./Symptom";
@@ -27,17 +28,23 @@ export class UserData {
                         new Symptom("Congestion", "count", false)])
   ]
 
+  this.history = new Map();
+
 
       this.static_survey = [...this.all_symptoms].slice(0,3);
       this.static_survey.push(this.all_treatments[0])   ;
       this.static_survey.push(this.all_treatments[1]) ;
       this.static_survey.push(this.all_illnesses[0]);
-      
+       
+      this.full_survey = this.static_survey
     }
   
     public all_symptoms: Symptom[];
     public all_illnesses: Illness[];
     public all_treatments: Treatment[];
     public static_survey: SurveyItem[];
-    // public history: DayRecords[];
+    public full_survey: SurveyItem[];
+    public history:  Map<string, DayRecord>;
+
+
   }

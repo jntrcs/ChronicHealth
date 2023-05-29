@@ -24,6 +24,7 @@ export abstract class Measurement {
   }
 
   abstract get_measurement_class():any;
+  abstract get_value():string;
 
 }
 
@@ -36,6 +37,10 @@ export class PresentMeasurement extends Measurement {
   get_measurement_class():PresentMeasurement{
     return(this)
   }
+
+  get_value(): string {
+    return this.isPresent.toString()
+  }
 }
 
 export class CountMeasurement extends Measurement {
@@ -46,6 +51,10 @@ export class CountMeasurement extends Measurement {
   get_measurement_class():CountMeasurement{
     return(this)
   }
+
+  get_value(): string {
+    return this.count.toString()
+  }
 }
 
 export class SeverityMeasurement extends Measurement {
@@ -55,5 +64,9 @@ export class SeverityMeasurement extends Measurement {
   }
   get_measurement_class():SeverityMeasurement{
     return(this)
+  }
+
+  get_value(): string {
+    return this.severity;
   }
 }
