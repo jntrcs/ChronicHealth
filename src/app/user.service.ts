@@ -49,6 +49,10 @@ add_to_static_survey(survey_item: SurveyItem){
   this.user_data.static_survey.push(survey_item);
 }
 
+add_to_dynamic_survey(survey_item: SurveyItem){
+  this.user_data.dynamic_survey.push(survey_item);
+}
+
 getSurveyItemByID(id: string): Symptom | null{
   const symptom = this.user_data.all_symptoms.find((item: Symptom) => item.id === id);
 

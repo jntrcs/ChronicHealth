@@ -11,9 +11,24 @@ import { UserService } from 'src/app/user.service';
 export class PreconfiguredSearchSymptomComponent  implements OnInit {
 
   public symptom_list: SurveyItem[];
+  public source: string;
  // private all_symptoms: SurveyItem[];
   constructor(userService: UserService, private router: Router) {
-    this.symptom_list = userService.filter_by_id(userService.get_symptoms(), userService.get_static_survey());
+    const inputs = history.state;
+    
+    this.source = inputs.source;
+console.log(this.source);
+    if (this.source === "static survey editor"){
+      this.symptom_list = userService.filter_by_id(userService.get_symptoms(), userService.get_static_survey());
+      console.log('hi')
+    }//else if(this.source=="dynamic survey adder"){
+    else{
+      this.symptom_list = userService.get_symptoms();
+      console.log('bye')
+
+    }
+
+
    }
 
   ngOnInit() {}
@@ -21,13 +36,16 @@ export class PreconfiguredSearchSymptomComponent  implements OnInit {
   
 
   openSymptomCreator(){
-    const navigationExtras: NavigationExtras = {
-      state: {
-        add_to_static_survey: true,
-        cancel_return_url: '/preconfigured-search-symptom',
-        success_return_url: '/static-survey-editor'
+    //if (this.source == "static survey editor"){
+
+      const navigationExtras: NavigationExtras = {
+        state: {
+          add_to_static_survey: true,
+          cancel_return_url: '/preconfigured-search-symptom',
+          success_return_url: '/static-survey-editor'
+        }
       }
-    }
+    //}
     this.router.navigate(['/symptom-editor'], navigationExtras);
 
   }

@@ -24,7 +24,7 @@ export class UserData {
   ];
 
   this.all_illnesses = [
-    new Illness("Flutter fsdfsd", [new Symptom("Body Aches", "severity", false),
+    new Illness("Flu", [new Symptom("Body Aches", "severity", false),
                         new Symptom("Congestion", "count", false)])
   ]
 
@@ -34,9 +34,9 @@ export class UserData {
       this.static_survey = [...this.all_symptoms].slice(0,3);
       this.static_survey.push(this.all_treatments[0])   ;
       this.static_survey.push(this.all_treatments[1]) ;
-      this.static_survey.push(this.all_illnesses[0]);
-       
-      this.full_survey = this.static_survey
+      this.dynamic_survey = [];
+      this.dynamic_survey.push(this.all_illnesses[0])
+      this.full_survey = [...this.static_survey, ...this.dynamic_survey];
     }
   
     public all_symptoms: Symptom[];
@@ -45,6 +45,7 @@ export class UserData {
     public static_survey: SurveyItem[];
     public full_survey: SurveyItem[];
     public history:  Map<string, DayRecord>;
+    public dynamic_survey: SurveyItem[];
 
 
   }

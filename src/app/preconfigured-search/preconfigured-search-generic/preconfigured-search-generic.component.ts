@@ -43,11 +43,16 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
 
 
   }
+
+  
   
   addToStaticSurvey(survey_item: SurveyItem){
     this.userService.add_to_static_survey(survey_item);
     this.router.navigate(['/static-survey-editor']);
+  }
 
-
+  addToDynamicSurvey(survey_item: SurveyItem){
+    this.userService.add_to_static_survey(survey_item);
+    this.router.navigate(['/static-survey-editor']);
   }
 }

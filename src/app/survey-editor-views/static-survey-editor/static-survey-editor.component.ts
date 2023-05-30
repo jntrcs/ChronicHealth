@@ -31,7 +31,7 @@ export class StaticSurveyEditorComponent  implements OnInit {
     const confirmationModal = await this.modalController.create({
       component: ConfirmationModal,
       componentProps: {
-        message: 'Are you sure you want to delete this item?'
+        message: 'Are you sure you want to remove this item from your survey?'
       }
     });
   
@@ -48,7 +48,12 @@ export class StaticSurveyEditorComponent  implements OnInit {
 
   openPreConfiguredSearch(type: string){
     if (type==='symptom'){
-      this.router.navigate(['/preconfigured-search-symptom']);
+      const navigationExtras: NavigationExtras = {
+        state: {
+          source: 'static survey editor'
+        }
+      }
+      this.router.navigate(['/preconfigured-search-symptom'], navigationExtras);
 
     }
 
