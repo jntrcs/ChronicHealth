@@ -65,6 +65,7 @@ export class StaticSurveyEditorComponent  implements OnInit {
       const navigationExtras: NavigationExtras = {
         state: {
           add_to_static_survey: false,
+          add_to_dynamic_survey: false,
           cancel_return_url: '/static-survey-editor',
           success_return_url: '/static-survey-editor',
           symptom_id: survey_item.id

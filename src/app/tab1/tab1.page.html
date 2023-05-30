@@ -8,7 +8,9 @@
 
 <ion-content>
   <ion-list>
-    <app-survey-item-view *ngFor="let survey_item of survey" [survey_item]="survey_item"></app-survey-item-view>
+    <app-survey-item-view *ngFor="let survey_item of static_survey" [survey_item]="survey_item"></app-survey-item-view>
+    <app-survey-item-view *ngFor="let survey_item of dynamic_survey" [survey_item]="survey_item"></app-survey-item-view>
+
   </ion-list>
  
   <ion-row>

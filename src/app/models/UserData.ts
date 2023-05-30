@@ -36,14 +36,12 @@ export class UserData {
       this.static_survey.push(this.all_treatments[1]) ;
       this.dynamic_survey = [];
       this.dynamic_survey.push(this.all_illnesses[0])
-      this.full_survey = [...this.static_survey, ...this.dynamic_survey];
     }
   
     public all_symptoms: Symptom[];
     public all_illnesses: Illness[];
     public all_treatments: Treatment[];
     public static_survey: SurveyItem[];
-    public full_survey: SurveyItem[];
     public history:  Map<string, DayRecord>;
     public dynamic_survey: SurveyItem[];
 

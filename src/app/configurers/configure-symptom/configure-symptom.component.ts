@@ -18,12 +18,19 @@ export class ConfigureSymptomComponent  implements OnInit {
   add_to_static_survey: boolean = false;
   cancel_return_url: string = '';
   success_return_url: string ='';
+  add_to_dynamic_survey:boolean = false;
 
   constructor(private userService: UserService, private router: Router){
+
     const inputs = history.state;
-    this.add_to_static_survey = inputs.add_to_static_survey;
+    console.log(inputs.add_to_dynamic_survey);
+    console.log(Boolean(inputs.add_to_dynamic_survey));
+
+    this.add_to_static_survey = Boolean(inputs.add_to_static_survey);
+    this.add_to_dynamic_survey = Boolean(inputs.add_to_dynamic_survey);
     this.success_return_url = inputs.success_return_url;
     this.cancel_return_url = inputs.cancel_return_url;
+
 
    if (typeof inputs.symptom_id !=='undefined'){
     this.symptom = userService.getSurveyItemByID(inputs.symptom_id);
@@ -35,6 +42,7 @@ export class ConfigureSymptomComponent  implements OnInit {
 
    }
 
+   console.log(this.add_to_dynamic_survey)
   }
 
   saveSymptom() {
@@ -48,9 +56,17 @@ export class ConfigureSymptomComponent  implements OnInit {
     }
   }
     const symptom = new Symptom(this.symptomName, this.symptomMeasurement);
+    console.log(this.add_to_dynamic_survey)
+
     if (this.add_to_static_survey){
       this.userService.add_to_static_survey(symptom);
     }
+    if (this.add_to_dynamic_survey){
+      this.userService.add_to_dynamic_survey(symptom);
+
+
+    }
+    console.log(this.userService.get_dynamic_survey())
     this.userService.get_symptoms().push(symptom);
     this.router.navigate([this.success_return_url]);
 

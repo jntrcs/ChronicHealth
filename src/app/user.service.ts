@@ -16,11 +16,15 @@ constructor(){
 
 
 get_survey(){
-  return(this.user_data.full_survey);
+  return([...this.user_data.static_survey, ...this.user_data.dynamic_survey]);
 }
 
 get_static_survey(){
   return(this.user_data.static_survey);
+}
+
+get_dynamic_survey(){
+  return(this.user_data.dynamic_survey);
 }
 
 set_static_survey(static_survey: SurveyItem[]){

@@ -6,7 +6,7 @@
 <ion-item *ngFor="let survey_item of filtered_survey_items">
 
 
- <ion-list class="settings-card"  (click)="addToStaticSurvey(survey_item)">
+ <ion-list class="settings-card"  (click)="process_item(survey_item)">
     <div class="settings-button">
       <ion-label> {{survey_item.name}}</ion-label>
     </div>

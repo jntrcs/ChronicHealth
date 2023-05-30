@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../user.service';
 import { SurveyItem } from '../models/SurveyItem';
 import { DayRecord } from '../models/DayRecord';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -12,19 +12,27 @@ import { Router } from '@angular/router';
 export class Tab1Page {
 
 
-  public survey: SurveyItem[];
+  public static_survey: SurveyItem[];
+  public dynamic_survey: SurveyItem[];
+
 
   constructor(private userService: UserService, private router:Router) {
-    this.survey = userService.get_survey();
+    this.static_survey = userService.get_static_survey();
+    this.dynamic_survey = userService.get_dynamic_survey();
   }
 
   save_record(){
-    this.userService.create_day_record(this.survey);
+    this.userService.create_day_record([...this.static_survey, ...this.dynamic_survey]);
   }
 
   openPreConfiguredSearch(type: string){
-    if(type==='symtpom'){
-      this.router.navigate(['/preconfigured-search-symptom']);
+    if(type==='symptom'){
+      const navigationExtras: NavigationExtras = {
+        state: {
+          source: 'dynamic survey adder'
+        }
+      }
+      this.router.navigate(['/preconfigured-search-symptom'], navigationExtras);
     }
 
     }

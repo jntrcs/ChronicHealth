@@ -13,9 +13,11 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
   filtered_survey_items: SurveyItem[] = [];
 
   @Input() survey_item_list!: SurveyItem[];
+  @Input() add_to_static_survey!: boolean;
+  @Input() add_to_dynamic_survey!: boolean;
 
   constructor(private userService: UserService, private router: Router) {
- 
+    
    }
 
   ngOnInit() {
@@ -44,7 +46,14 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
 
   }
 
-  
+  process_item(survey_item:SurveyItem){
+    if (this.add_to_static_survey){
+      this.addToStaticSurvey(survey_item);
+    }else if(this.add_to_dynamic_survey){
+      this.addToDynamicSurvey(survey_item);
+    }
+
+  }
   
   addToStaticSurvey(survey_item: SurveyItem){
     this.userService.add_to_static_survey(survey_item);
@@ -52,7 +61,7 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
   }
 
   addToDynamicSurvey(survey_item: SurveyItem){
-    this.userService.add_to_static_survey(survey_item);
-    this.router.navigate(['/static-survey-editor']);
+    this.userService.add_to_dynamic_survey(survey_item);
+    this.router.navigate(['/']);
   }
 }
