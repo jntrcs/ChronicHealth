@@ -1,3 +1,18 @@
-<p>
-  preconfigured-search-treatment works!
-</p>
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button default-href="#"></ion-back-button>
+  </ion-buttons>
+  <ion-title>Select a Treatment</ion-title>
+</ion-toolbar>
+
+<ion-content>
+  <app-preconfigured-search-generic [survey_item_list]="treatment_list" 
+  [add_to_static_survey] ='this.add_to_static_survey' [add_to_dynamic_survey]="this.add_to_dynamic_survey"></app-preconfigured-search-generic>
+
+
+  <ion-fab  horizontal="end" vertical="bottom">
+    <ion-fab-button color="treatment" (click)="openTreatmentCreator()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

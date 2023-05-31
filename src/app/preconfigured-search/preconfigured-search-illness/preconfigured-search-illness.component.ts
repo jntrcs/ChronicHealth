@@ -14,7 +14,7 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
   source:string;
   add_to_dynamic_survey:boolean=true;
   add_to_static_survey:boolean=false; 
-  
+
   constructor(private userService: UserService) {
     this.illness_list = [];
 
@@ -30,6 +30,35 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
   ngOnInit() {}
 
   openIllnessCreator(){
+   /*   let navigationExtras: NavigationExtras;
+    
+      if (this.source === 'static survey editor') {
+        navigationExtras = {
+          state: {
+            add_to_static_survey: true,
+            add_to_dynamic_survey: false,
+            cancel_return_url: '/preconfigured-search-symptom',
+            success_return_url: '/static-survey-editor'
+          }
+        };
+      } else if (this.source === 'dynamic survey adder') {
+        navigationExtras = {
+          state: {
+            add_to_static_survey: false,
+            add_to_dynamic_survey: true,
+            cancel_return_url: '/preconfigured-search-symptom',
+            success_return_url: '/'
+          }
+        };
+      } else {
+        // Default navigation extras if neither condition is met
+        navigationExtras = {
+          state: {
+            // Default values if needed
+          }
+        };
 
   }
+}*/
+}
 }

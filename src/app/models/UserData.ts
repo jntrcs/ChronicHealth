@@ -32,10 +32,11 @@ export class UserData {
 
 
       this.static_survey = [...this.all_symptoms].slice(0,3);
-      this.static_survey.push(this.all_treatments[0])   ;
+      //this.static_survey.push(this.all_treatments[0])   ;
       this.static_survey.push(this.all_treatments[1]) ;
       this.dynamic_survey = [];
      // this.dynamic_survey.push(this.all_illnesses[0])
+     this.sortSurveyItemsByName(this.all_symptoms);
     }
   
     public all_symptoms: Symptom[];
@@ -46,4 +47,9 @@ export class UserData {
     public dynamic_survey: SurveyItem[];
 
 
+
+    public sortSurveyItemsByName(surveyItems: SurveyItem[]):void {
+      surveyItems.sort((a, b) => a.name.localeCompare(b.name));
   }
+    }
+

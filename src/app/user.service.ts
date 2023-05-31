@@ -39,6 +39,10 @@ get_illnesses(){
   return(this.user_data.all_illnesses)
 }
 
+get_treatments(){
+  return(this.user_data.all_treatments)
+}
+
 set_symptoms(symptoms: Symptom[]){
   this.user_data.all_symptoms = symptoms
 }
@@ -75,5 +79,14 @@ create_day_record(survey: SurveyItem[], date:Date = new Date()){
 public string_date(date: Date): string {
   return(date.toISOString().split('T')[0]);
 }
+
+public add_symptom(symptom:Symptom){
+  this.get_symptoms().push(symptom);
+  this.user_data.sortSurveyItemsByName(this.get_symptoms());
+
+}
+
+
+
 
 }

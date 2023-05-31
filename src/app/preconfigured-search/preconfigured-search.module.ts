@@ -10,13 +10,15 @@ import { PreconfiguredSearchTreatmentComponent } from './preconfigured-search-tr
 
 @NgModule({
   declarations: [PreconfiguredSearchSymptomComponent, PreconfiguredSearchGenericComponent,
-  PreconfiguredSearchIllnessComponent, PreconfiguredSearchTreatmentComponent],
+  PreconfiguredSearchIllnessComponent, PreconfiguredSearchTreatmentComponent,
+PreconfiguredSearchTreatmentComponent],
   imports: [
     CommonModule,
     IonicModule,
     ConfigurersModule
   ],
   exports: [PreconfiguredSearchSymptomComponent, PreconfiguredSearchGenericComponent,
-    PreconfiguredSearchIllnessComponent, PreconfiguredSearchTreatmentComponent]
+    PreconfiguredSearchIllnessComponent, PreconfiguredSearchTreatmentComponent,
+  PreconfiguredSearchTreatmentComponent]
 })
 export class PreconfiguredSearchModule { }

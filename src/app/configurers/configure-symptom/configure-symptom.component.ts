@@ -61,7 +61,7 @@ export class ConfigureSymptomComponent  implements OnInit {
 
 
     }
-    this.userService.get_symptoms().push(symptom);
+    this.userService.add_symptom(symptom); 
     this.router.navigate([this.success_return_url]);
 
   }
