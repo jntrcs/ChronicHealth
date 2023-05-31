@@ -35,6 +35,25 @@ export class Tab1Page {
       this.router.navigate(['/preconfigured-search-symptom'], navigationExtras);
     }
 
+    if(type==='treatment'){
+      const navigationExtras: NavigationExtras = {
+        state: {
+          source: 'dynamic survey adder'
+        }
+      }
+      //this.router.navigate(['/preconfigured-search-symptom'], navigationExtras);
+    }
+
+    if(type==='illness'){
+      const navigationExtras: NavigationExtras = {
+        state: {
+          source: 'dynamic survey adder'
+        }
+      }
+      this.router.navigate(['/preconfigured-search-illness'], navigationExtras);
+    }
+
+
     }
 
 }

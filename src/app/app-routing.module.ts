@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { StaticSurveyEditorComponent } from './survey-editor-views/static-survey-editor/static-survey-editor.component';
 import { PreconfiguredSearchSymptomComponent } from './preconfigured-search/preconfigured-search-symptom/preconfigured-search-symptom.component';
 import { ConfigureSymptomComponent } from './configurers/configure-symptom/configure-symptom.component';
+import { PreconfiguredSearchIllnessComponent } from './preconfigured-search/preconfigured-search-illness/preconfigured-search-illness.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,14 @@ const routes: Routes = [
   },
   {
     path: 'preconfigured-search-symptom',
+    component: PreconfiguredSearchSymptomComponent,
+  },
+  {
+    path: 'preconfigured-search-illness',
+    component: PreconfiguredSearchIllnessComponent,
+  },
+  {
+    path: 'preconfigured-search-treatment',
     component: PreconfiguredSearchSymptomComponent,
   },
   {

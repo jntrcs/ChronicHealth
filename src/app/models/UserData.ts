@@ -35,7 +35,7 @@ export class UserData {
       this.static_survey.push(this.all_treatments[0])   ;
       this.static_survey.push(this.all_treatments[1]) ;
       this.dynamic_survey = [];
-      this.dynamic_survey.push(this.all_illnesses[0])
+     // this.dynamic_survey.push(this.all_illnesses[0])
     }
   
     public all_symptoms: Symptom[];

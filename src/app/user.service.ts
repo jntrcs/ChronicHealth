@@ -35,6 +35,10 @@ get_symptoms(){
   return(this.user_data.all_symptoms)
 }
 
+get_illnesses(){
+  return(this.user_data.all_illnesses)
+}
+
 set_symptoms(symptoms: Symptom[]){
   this.user_data.all_symptoms = symptoms
 }

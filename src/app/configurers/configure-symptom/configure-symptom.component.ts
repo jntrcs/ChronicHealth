@@ -23,9 +23,6 @@ export class ConfigureSymptomComponent  implements OnInit {
   constructor(private userService: UserService, private router: Router){
 
     const inputs = history.state;
-    console.log(inputs.add_to_dynamic_survey);
-    console.log(Boolean(inputs.add_to_dynamic_survey));
-
     this.add_to_static_survey = Boolean(inputs.add_to_static_survey);
     this.add_to_dynamic_survey = Boolean(inputs.add_to_dynamic_survey);
     this.success_return_url = inputs.success_return_url;
@@ -42,7 +39,6 @@ export class ConfigureSymptomComponent  implements OnInit {
 
    }
 
-   console.log(this.add_to_dynamic_survey)
   }
 
   saveSymptom() {
@@ -56,7 +52,6 @@ export class ConfigureSymptomComponent  implements OnInit {
     }
   }
     const symptom = new Symptom(this.symptomName, this.symptomMeasurement);
-    console.log(this.add_to_dynamic_survey)
 
     if (this.add_to_static_survey){
       this.userService.add_to_static_survey(symptom);
@@ -66,7 +61,6 @@ export class ConfigureSymptomComponent  implements OnInit {
 
 
     }
-    console.log(this.userService.get_dynamic_survey())
     this.userService.get_symptoms().push(symptom);
     this.router.navigate([this.success_return_url]);
 
