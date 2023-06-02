@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { Illness } from 'src/app/models/Illness';
 import { SurveyItem } from 'src/app/models/SurveyItem';
 import { UserService } from 'src/app/user.service';
@@ -15,7 +16,7 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
   add_to_dynamic_survey:boolean=true;
   add_to_static_survey:boolean=false; 
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router:Router) {
     this.illness_list = [];
 
     const inputs = history.state;
@@ -30,23 +31,17 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
   ngOnInit() {}
 
   openIllnessCreator(){
-   /*   let navigationExtras: NavigationExtras;
+
+
+     let navigationExtras: NavigationExtras;
     
-      if (this.source === 'static survey editor') {
-        navigationExtras = {
-          state: {
-            add_to_static_survey: true,
-            add_to_dynamic_survey: false,
-            cancel_return_url: '/preconfigured-search-symptom',
-            success_return_url: '/static-survey-editor'
-          }
-        };
-      } else if (this.source === 'dynamic survey adder') {
+
+    if (this.source === 'dynamic survey adder') {
         navigationExtras = {
           state: {
             add_to_static_survey: false,
             add_to_dynamic_survey: true,
-            cancel_return_url: '/preconfigured-search-symptom',
+            cancel_return_url: '/preconfigured-search-illness',
             success_return_url: '/'
           }
         };
@@ -59,6 +54,8 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
         };
 
   }
-}*/
+  this.router.navigate(['/illness-editor'], navigationExtras);
+
 }
 }
+

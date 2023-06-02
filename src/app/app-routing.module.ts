@@ -5,6 +5,7 @@ import { PreconfiguredSearchSymptomComponent } from './preconfigured-search/prec
 import { ConfigureSymptomComponent } from './configurers/configure-symptom/configure-symptom.component';
 import { PreconfiguredSearchIllnessComponent } from './preconfigured-search/preconfigured-search-illness/preconfigured-search-illness.component';
 import { PreconfiguredSearchTreatmentComponent } from './preconfigured-search/preconfigured-search-treatment/preconfigured-search-treatment.component';
+import { ConfigureIllnessComponent } from './configurers/configure-illness/configure-illness.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'symptom-editor',
     component: ConfigureSymptomComponent,
+  },
+  {
+    path: 'illness-editor',
+    component: ConfigureIllnessComponent,
   }
 ];
 @NgModule({

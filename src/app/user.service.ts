@@ -3,6 +3,7 @@ import { UserData } from './models/UserData';
 import { SurveyItem } from './models/SurveyItem';
 import { Symptom } from './models/Symptom';
 import { DayRecord } from './models/DayRecord';
+import { Illness } from './models/Illness';
 
 @Injectable({
   providedIn: 'root',
@@ -65,11 +66,18 @@ add_to_dynamic_survey(survey_item: SurveyItem){
   this.user_data.dynamic_survey.push(survey_item);
 }
 
-getSurveyItemByID(id: string): Symptom | null{
+getSymptomByID(id: string): Symptom | null{
   const symptom = this.user_data.all_symptoms.find((item: Symptom) => item.id === id);
 
   return(symptom||null);
 }
+
+getIllnessByID(id: string): Illness | null{
+  const illness = this.user_data.all_illnesses.find((item: Illness) => item.id === id);
+
+  return(illness||null);
+}
+
 
 create_day_record(survey: SurveyItem[], date:Date = new Date()){
   this.user_data.history.set(this.string_date(date), new DayRecord(survey));

@@ -1,0 +1,29 @@
+<div>
+  <h2>{{ mode === 'add' ? 'Add Illness' : 'Edit Illness' }}</h2>
+  <form (ngSubmit)="mode === 'add' ? saveIllness() : updateIllness()" #illnessForm="ngForm">
+    <ion-item>
+      <ion-input labelPlacement="floating" label="Illness Name:" [(ngModel)]="illnessName" name="illnessName" required></ion-input>
+    </ion-item>
+
+<app-typeahead [items] = "this.all_symptoms" mode="symptom">
+
+</app-typeahead>
+<ion-item (click)="create_symptom()">
+  <ion-icon icon="add"></ion-icon>
+  <ion-label>New symptom</ion-label>
+</ion-item>
+
+    <div class="button-group">
+      <ion-button color="primary" type="submit" [disabled]="!illnessForm.form.valid">{{ mode === 'add' ? 'Save' : 'Update' }}</ion-button>
+      <ion-button color="danger" (click)="cancel_click()">Cancel</ion-button>
+    </div>
+  </form>
+</div>
+
+<ion-alert
+  [isOpen]="isAlertOpen"
+  header="Name Taken"
+  message="This illness already exists. Please choose another name."
+  [buttons]="alertButtons"
+  (didDismiss)="setOpen(false)"
+></ion-alert>

@@ -30,7 +30,7 @@ export class ConfigureSymptomComponent  implements OnInit {
 
 
    if (typeof inputs.symptom_id !=='undefined'){
-    this.symptom = userService.getSurveyItemByID(inputs.symptom_id);
+    this.symptom = userService.getSymptomByID(inputs.symptom_id);
     if(this.symptom!==null){
       this.mode = 'edit'
       this.symptomName = this.symptom.name;
