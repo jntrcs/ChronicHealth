@@ -37,15 +37,6 @@ export class TypeaheadMultiSelectComponent implements OnInit {
     return item.id;
   }
 
-  cancelChanges() {
-
-    this.selectionCancel.emit();
-  }
-
-  confirmChanges() {
-
-    this.selectionChange.emit(this.workingSelectedValues);
-  }
 
   searchbarInput(ev:any) {
 
@@ -92,6 +83,8 @@ export class TypeaheadMultiSelectComponent implements OnInit {
     } else {
       this.workingSelectedValues = this.workingSelectedValues.filter((item) => item !== value);
     }
+    this.selectionChange.emit(this.workingSelectedValues);
+
   }
 
 }

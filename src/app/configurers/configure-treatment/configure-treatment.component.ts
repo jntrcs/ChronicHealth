@@ -22,6 +22,7 @@ export class ConfigureTreatmentComponent  implements OnInit {
   success_return_url: string ='';
   add_to_dynamic_survey:boolean = false;
   all_side_effects:Symptom[];
+  selected_symptom_ids:string[];
 
   constructor(private userService: UserService, private router: Router){
 
@@ -31,6 +32,8 @@ export class ConfigureTreatmentComponent  implements OnInit {
     this.success_return_url = inputs.success_return_url;
     this.cancel_return_url = inputs.cancel_return_url;
     this.all_side_effects = userService.get_side_effects();
+    this.selected_symptom_ids =[];
+
 
 
    if (typeof inputs.treatment_id !=='undefined'){
@@ -55,7 +58,9 @@ export class ConfigureTreatmentComponent  implements OnInit {
     }
   }
 
-  const treatment = new Treatment(this.treatmentName, this.treatmentMeasurement, []);
+  const symptoms:Symptom[] = this.selected_symptom_ids.map(item => this.userService.getSideEffectByID(item)!);
+
+  const treatment = new Treatment(this.treatmentName, this.treatmentMeasurement, symptoms);
   if(this.add_to_dynamic_survey){
     this.userService.add_to_dynamic_survey(treatment);
   }
@@ -84,7 +89,6 @@ export class ConfigureTreatmentComponent  implements OnInit {
   }
 
   cancel_click() {
-    console.log(this.cancel_return_url);
     this.router.navigate([this.cancel_return_url]);
   }
 
@@ -121,6 +125,10 @@ export class ConfigureTreatmentComponent  implements OnInit {
         }
       };
       this.router.navigate(['/side-effect-editor'], navigationExtras);
+    }
+
+    selectionChanged(selected_symptom_ids: string[]) {
+      this.selected_symptom_ids = selected_symptom_ids;
     }
 }
 

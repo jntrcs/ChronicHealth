@@ -47,8 +47,6 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
   }
 
   process_item(survey_item:SurveyItem){
-    console.log(this.add_to_dynamic_survey);
-    console.log(this.add_to_static_survey);
     if (this.add_to_static_survey){
       this.addToStaticSurvey(survey_item);
     }else if(this.add_to_dynamic_survey){

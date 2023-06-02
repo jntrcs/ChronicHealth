@@ -77,6 +77,12 @@ getSymptomByID(id: string): Symptom | null{
   return(symptom||null);
 }
 
+getSideEffectByID(id: string): Symptom | null{
+  const symptom = this.user_data.all_side_effects.find((item: Symptom) => item.id === id);
+
+  return(symptom||null);
+}
+
 getIllnessByID(id: string): Illness | null{
   const illness = this.user_data.all_illnesses.find((item: Illness) => item.id === id);
 

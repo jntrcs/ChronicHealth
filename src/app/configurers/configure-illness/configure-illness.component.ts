@@ -20,6 +20,7 @@ export class ConfigureIllnessComponent  implements OnInit {
   success_return_url: string ='';
   add_to_dynamic_survey:boolean = false;
   all_symptoms:Symptom[];
+  selected_symptom_ids:string[];
 
   constructor(private userService: UserService, private router: Router){
 
@@ -29,6 +30,7 @@ export class ConfigureIllnessComponent  implements OnInit {
     this.success_return_url = inputs.success_return_url;
     this.cancel_return_url = inputs.cancel_return_url;
     this.all_symptoms = userService.get_symptoms();
+    this.selected_symptom_ids =[];
 
 
    if (typeof inputs.illness_id !=='undefined'){
@@ -53,7 +55,11 @@ export class ConfigureIllnessComponent  implements OnInit {
     }
   }
 
-  const illness = new Illness(this.illnessName, []);
+
+  const symptoms:Symptom[] = this.selected_symptom_ids.map(item => this.userService.getSymptomByID(item)!);
+
+
+  const illness = new Illness(this.illnessName, symptoms);
   if(this.add_to_dynamic_survey){
     this.userService.add_to_dynamic_survey(illness);
   }
@@ -82,7 +88,6 @@ export class ConfigureIllnessComponent  implements OnInit {
   }
 
   cancel_click() {
-    console.log(this.cancel_return_url);
     this.router.navigate([this.cancel_return_url]);
   }
 
@@ -118,5 +123,10 @@ export class ConfigureIllnessComponent  implements OnInit {
         }
       };
       this.router.navigate(['/symptom-editor'], navigationExtras);
+    }
+
+
+    selectionChanged(selected_symptom_ids: string[]) {
+      this.selected_symptom_ids = selected_symptom_ids;
     }
 }

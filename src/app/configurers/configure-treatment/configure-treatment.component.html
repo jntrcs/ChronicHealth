@@ -14,7 +14,7 @@
       <ion-radio color="treatment" labelPlacement="end" value="count">Count (# of doses)</ion-radio><br />
     </ion-radio-group>
 
-<app-typeahead [items] = "this.all_side_effects" mode="side effect">
+<app-typeahead [items] = "this.all_side_effects" mode="side effect"  (selectionChange)="selectionChanged($event)">
 
 </app-typeahead>
 <ion-item (click)="create_side_effect()">

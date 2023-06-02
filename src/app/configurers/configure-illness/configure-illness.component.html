@@ -5,7 +5,8 @@
       <ion-input labelPlacement="floating" label="Illness Name:" [(ngModel)]="illnessName" name="illnessName" required></ion-input>
     </ion-item>
 
-<app-typeahead [items] = "this.all_symptoms" mode="symptom">
+<app-typeahead [items] = "this.all_symptoms" mode="symptom"
+  (selectionChange)="selectionChanged($event)">
 
 </app-typeahead>
 <ion-item (click)="create_symptom()">
