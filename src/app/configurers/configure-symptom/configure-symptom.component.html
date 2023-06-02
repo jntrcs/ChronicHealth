@@ -1,4 +1,4 @@
-<div>
+<ion-content>
   <h2>{{ mode === 'add' ? 'Add Symptom' : 'Edit Symptom' }}</h2>
   <form (ngSubmit)="mode === 'add' ? saveSymptom() : updateSymptom()" #symptomForm="ngForm">
     <ion-item>
@@ -19,7 +19,7 @@
       <ion-button color="danger" (click)="cancel_click()">Cancel</ion-button>
     </div>
   </form>
-</div>
+</ion-content>
 
 <ion-alert
   [isOpen]="isAlertOpen"

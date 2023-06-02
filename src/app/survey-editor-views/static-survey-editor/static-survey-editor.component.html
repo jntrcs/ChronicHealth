@@ -6,7 +6,7 @@
 </ion-toolbar>
 
 <ion-content class="ion-padding">
-  <p>The every day section of the survey let's you choose the things you want to track every single day. You can add, remove, and rearrange survey components on this page.</p>
+  <p>The every day section of the survey let's you choose the things you want to track every day. You can add, remove, and rearrange survey questions on this page.</p>
 
   <ion-reorder-group [disabled]="false" (ionItemReorder)="reorderItems($event)">
     <ion-item *ngFor="let survey_item of survey_list" ionReorder>
