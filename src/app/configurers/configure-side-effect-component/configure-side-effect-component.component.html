@@ -1,0 +1,30 @@
+<div>
+  <h2>{{ mode === 'add' ? 'Add Side Effect' : 'Edit Side Effect' }}</h2>
+  <form (ngSubmit)="mode === 'add' ? saveSymptom() : updateSymptom()" #symptomForm="ngForm">
+    <ion-item>
+      <ion-input labelPlacement="floating" label="Side Effect Name:" [(ngModel)]="symptomName" name="symptomName" required></ion-input>
+    </ion-item>
+
+    <ion-label>
+      Track this side effect as:
+    </ion-label><br>
+    <ion-radio-group value="severity" [(ngModel)]="symptomMeasurement" name="symptomMeasurement">
+      <ion-radio labelPlacement="end" value="severity">Severity</ion-radio><br />
+      <ion-radio labelPlacement="end" value="present">Present / Absent</ion-radio><br />
+      <ion-radio labelPlacement="end" value="count">Count (# of occurrences)</ion-radio><br />
+    </ion-radio-group>
+
+    <div class="button-group">
+      <ion-button color="primary" type="submit" [disabled]="!symptomForm.form.valid">{{ mode === 'add' ? 'Save' : 'Update' }}</ion-button>
+      <ion-button color="danger" (click)="cancel_click()">Cancel</ion-button>
+    </div>
+  </form>
+</div>
+
+<ion-alert
+  [isOpen]="isAlertOpen"
+  header="Name Taken"
+  message="This side effect already exists. Please choose another name."
+  [buttons]="alertButtons"
+  (didDismiss)="setOpen(false)"
+></ion-alert>

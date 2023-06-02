@@ -18,7 +18,7 @@
 
   <ion-list  [inset]="false">
     <ion-item *ngFor="let item of filteredItems; trackBy: trackItems">
-      <ion-checkbox [value]="item.id" [color] = "this.mode"
+      <ion-checkbox [value]="item.id" [color] = "this.color"
       [checked]="isChecked(item.id)" (ionChange)="checkboxChange($event)"
         >{{ item.name }}</ion-checkbox
       >

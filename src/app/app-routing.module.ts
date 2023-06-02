@@ -6,6 +6,8 @@ import { ConfigureSymptomComponent } from './configurers/configure-symptom/confi
 import { PreconfiguredSearchIllnessComponent } from './preconfigured-search/preconfigured-search-illness/preconfigured-search-illness.component';
 import { PreconfiguredSearchTreatmentComponent } from './preconfigured-search/preconfigured-search-treatment/preconfigured-search-treatment.component';
 import { ConfigureIllnessComponent } from './configurers/configure-illness/configure-illness.component';
+import { ConfigureTreatmentComponent } from './configurers/configure-treatment/configure-treatment.component';
+import { ConfigureSideEffectComponentComponent } from './configurers/configure-side-effect-component/configure-side-effect-component.component';
 
 const routes: Routes = [
   {
@@ -34,8 +36,17 @@ const routes: Routes = [
     component: ConfigureSymptomComponent,
   },
   {
+    path: 'symptom-effect-editor',
+    component: ConfigureSideEffectComponentComponent,
+  },
+  {
     path: 'illness-editor',
     component: ConfigureIllnessComponent,
+  }
+  ,
+  {
+    path: 'treatment-editor',
+    component: ConfigureTreatmentComponent,
   }
 ];
 @NgModule({

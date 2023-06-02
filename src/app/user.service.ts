@@ -4,6 +4,7 @@ import { SurveyItem } from './models/SurveyItem';
 import { Symptom } from './models/Symptom';
 import { DayRecord } from './models/DayRecord';
 import { Illness } from './models/Illness';
+import { Treatment } from './models/Treatment';
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +35,10 @@ set_static_survey(static_survey: SurveyItem[]){
 
 get_symptoms(){
   return(this.user_data.all_symptoms)
+}
+
+get_side_effects(){
+  return(this.user_data.all_side_effects)
 }
 
 get_illnesses(){
@@ -78,6 +83,13 @@ getIllnessByID(id: string): Illness | null{
   return(illness||null);
 }
 
+getTreatmentByID(id: string): Treatment | null{
+  const treatment = this.user_data.all_treatments.find((item: Treatment) => item.id === id);
+
+  return(treatment||null);
+}
+
+
 
 create_day_record(survey: SurveyItem[], date:Date = new Date()){
   this.user_data.history.set(this.string_date(date), new DayRecord(survey));
@@ -94,7 +106,11 @@ public add_symptom(symptom:Symptom){
 
 }
 
+public add_side_effect(symptom:Symptom){
+  this.get_side_effects().push(symptom);
+  this.user_data.sortSurveyItemsByName(this.get_side_effects());
 
+}
 
 
 }

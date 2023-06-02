@@ -10,6 +10,16 @@ export class TypeaheadMultiSelectComponent implements OnInit {
   @Input() items: SurveyItem[] = [];
   @Input() selectedItems: string[] = [];
   @Input() mode!:string;
+  
+  color: string;
+
+  constructor(){
+    if (this.mode==='symptom'){
+      this.color='symptom'
+    }else{
+      this.color="side-effect"
+    }
+  }
 
   @Output() selectionCancel = new EventEmitter<void>();
   @Output() selectionChange = new EventEmitter<string[]>();

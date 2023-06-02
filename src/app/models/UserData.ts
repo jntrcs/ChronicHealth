@@ -16,6 +16,7 @@ export class UserData {
         new Symptom("Fatigue", 'present')
   ];
 
+  this.all_side_effects = [new Symptom("Fatigue", 'present')];
   this.all_treatments = [
     new Treatment("Allergy Pill", "present", []),
     new Treatment("Rituxin", "count", [new Symptom("Fatigue", "present", true),
@@ -40,6 +41,7 @@ export class UserData {
     }
   
     public all_symptoms: Symptom[];
+    public all_side_effects: Symptom[];
     public all_illnesses: Illness[];
     public all_treatments: Treatment[];
     public static_survey: SurveyItem[];
