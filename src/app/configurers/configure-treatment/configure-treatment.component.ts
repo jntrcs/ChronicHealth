@@ -41,6 +41,7 @@ export class ConfigureTreatmentComponent  implements OnInit {
     if(this.treatment!==null){
       this.mode = 'edit'
       this.treatmentName = this.treatment.name;
+      this.treatmentMeasurement = this.treatment.measurement.name;
     }
 
    }

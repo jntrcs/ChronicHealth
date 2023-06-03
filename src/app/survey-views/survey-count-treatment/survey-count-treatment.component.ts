@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { CountMeasurement } from 'src/app/models/Measurement';
 import { Treatment } from 'src/app/models/Treatment';
 
@@ -10,7 +11,7 @@ import { Treatment } from 'src/app/models/Treatment';
 export class SurveyCountTreatmentComponent  implements OnInit {
 
   @Input() treatment!: Treatment;
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {}
 
@@ -18,7 +19,16 @@ export class SurveyCountTreatmentComponent  implements OnInit {
     return(this.treatment.measurement as CountMeasurement)
   }
 
-  editTreatment(){
-    
+  edit_treatment(treatment:Treatment){
+    const navigationExtras: NavigationExtras = {
+      state: {
+        add_to_static_survey: false,
+        add_to_dynamic_survey: false,
+        cancel_return_url: '/',
+        success_return_url: '/',
+        treatment_id: treatment.id
+      }
+    }
+    this.router.navigate(['/treatment-editor'], navigationExtras);
   }
 }
