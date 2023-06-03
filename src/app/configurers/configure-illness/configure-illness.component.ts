@@ -60,8 +60,14 @@ export class ConfigureIllnessComponent  implements OnInit {
 
 
   const illness = new Illness(this.illnessName, symptoms);
+
+  this.userService.add_illness(illness);
   if(this.add_to_dynamic_survey){
     this.userService.add_to_dynamic_survey(illness);
+  }
+
+  if(this.add_to_static_survey){
+    this.userService.add_to_static_survey(illness);
   }
    // const symptom = new Symptom(this.symptomName, this.symptomMeasurement);
 

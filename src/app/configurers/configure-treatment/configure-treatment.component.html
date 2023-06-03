@@ -1,4 +1,4 @@
-<div>
+<ion-content>
   <h2>{{ mode === 'add' ? 'Add Treatment' : 'Edit Treatment' }}</h2>
   <form (ngSubmit)="mode === 'add' ? saveTreatment() : updateTreatment()" #treatmentForm="ngForm">
     <ion-item>
@@ -6,7 +6,7 @@
        required></ion-input>
     </ion-item>
 
-    <ion-label>
+    <ion-label class = "tracker">
       Track this treatment as:
     </ion-label><br>
     <ion-radio-group value="present" [(ngModel)]="treatmentMeasurement" name="treatmentMeasurement" >
@@ -27,7 +27,6 @@
       <ion-button color="danger" (click)="cancel_click()">Cancel</ion-button>
     </div>
   </form>
-</div>
 
 <ion-alert
   [isOpen]="isAlertOpen"
@@ -36,3 +35,5 @@
   [buttons]="alertButtons"
   (didDismiss)="setOpen(false)"
 ></ion-alert>
+
+</ion-content>

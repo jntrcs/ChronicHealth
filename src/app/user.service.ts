@@ -65,10 +65,16 @@ remove_from_static_survey(index:number){
 
 add_to_static_survey(survey_item: SurveyItem){
   this.user_data.static_survey.push(survey_item);
+  // If adding to static survey, remove it from dynamic survey
+  this.remove_from_dynamic_survey(survey_item);
 }
 
 add_to_dynamic_survey(survey_item: SurveyItem){
   this.user_data.dynamic_survey.push(survey_item);
+}
+
+remove_from_dynamic_survey(survey_item:SurveyItem){
+  this.filter_by_id(this.user_data.dynamic_survey, [survey_item]);
 }
 
 getSymptomByID(id: string): Symptom | null{
@@ -118,5 +124,16 @@ public add_side_effect(symptom:Symptom){
 
 }
 
+public add_treatment(treatment:Treatment){
+  this.get_treatments().push(treatment);
+  this.user_data.sortSurveyItemsByName(this.get_treatments());
+
+}
+
+public add_illness(illness:Illness){
+  this.get_illnesses().push(illness);
+  this.user_data.sortSurveyItemsByName(this.get_illnesses());
+
+}
 
 }

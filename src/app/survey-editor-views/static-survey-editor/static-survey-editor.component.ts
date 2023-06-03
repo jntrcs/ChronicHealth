@@ -55,6 +55,13 @@ export class StaticSurveyEditorComponent  implements OnInit {
       }
       this.router.navigate(['/preconfigured-search-symptom'], navigationExtras);
 
+    }else if (type==='treatment'){
+      const navigationExtras: NavigationExtras = {
+        state: {
+          source: 'static survey editor'
+        }
+      }
+      this.router.navigate(['/preconfigured-search-treatment'], navigationExtras);
     }
 
 

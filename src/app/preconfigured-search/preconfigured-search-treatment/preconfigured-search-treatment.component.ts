@@ -24,13 +24,17 @@ export class PreconfiguredSearchTreatmentComponent  implements OnInit {
     if (this.source === "dynamic survey adder"){
       this.treatment_list = userService.filter_by_id(userService.get_treatments(), userService.get_survey());
 
+    }else if (this.source==="static survey editor"){
+      this.treatment_list = userService.filter_by_id(userService.get_treatments(), userService.get_static_survey());
+      this.add_to_dynamic_survey = false;
+      this.add_to_static_survey = true;
     }
    }
 
   ngOnInit() {}
 
   openTreatmentCreator(){
-    let navigationExtras: NavigationExtras;
+    let navigationExtras: NavigationExtras = {};
     
 
     if (this.source === 'dynamic survey adder') {
@@ -42,11 +46,14 @@ export class PreconfiguredSearchTreatmentComponent  implements OnInit {
             success_return_url: '/'
           }
         };
-      } else {
+      } else if (this.source==="static survey editor"){
         // Default navigation extras if neither condition is met
         navigationExtras = {
           state: {
-            // Default values if needed
+            add_to_static_survey: true,
+            add_to_dynamic_survey: false,
+            cancel_return_url: '/static-survey-editor',
+            success_return_url: '/static-survey-editor'
           }
         };
 

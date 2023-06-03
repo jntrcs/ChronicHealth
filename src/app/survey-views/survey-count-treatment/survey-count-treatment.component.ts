@@ -17,4 +17,8 @@ export class SurveyCountTreatmentComponent  implements OnInit {
   getCountMeasurement():CountMeasurement{
     return(this.treatment.measurement as CountMeasurement)
   }
+
+  editTreatment(){
+    
+  }
 }
