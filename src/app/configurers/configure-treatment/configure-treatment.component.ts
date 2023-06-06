@@ -42,6 +42,7 @@ export class ConfigureTreatmentComponent  implements OnInit {
       this.mode = 'edit'
       this.treatmentName = this.treatment.name;
       this.treatmentMeasurement = this.treatment.measurement.name;
+      this.selected_symptom_ids = this.treatment.side_effects.map(item => item.id);
     }
 
    }
@@ -85,11 +86,22 @@ export class ConfigureTreatmentComponent  implements OnInit {
   }
 
   updateTreatment(){
-    //add validation
-    // this.symptom = this.symptom as Symptom;
-    // this.symptom.changeMeasurement(this.symptomMeasurement);
-    // this.treatment.name = this.treatmentName;
-    // this.router.navigate([this.success_return_url]);
+    this.treatment = this.treatment!
+    const isNameDuplicate = this.userService.filter_by_id(this.userService.get_treatments(), [this.treatment]).some(
+      treatment => treatment.name.toLowerCase() === this.treatmentName.toLowerCase());
+
+    if (isNameDuplicate) {
+      this.setOpen(true);
+      return; // Prevent saving the duplicate symptom
+    }
+
+    this.treatment.name = this.treatmentName;
+    this.treatment.changeMeasurement(this.treatmentMeasurement);
+
+    const symptoms:Symptom[] = this.selected_symptom_ids.map(item => this.userService.getSideEffectByID(item)!);
+    this.treatment.side_effects = symptoms;
+    this.router.navigate([this.success_return_url]);
+
 
   }
 

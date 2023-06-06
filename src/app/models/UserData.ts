@@ -16,11 +16,12 @@ export class UserData {
         new Symptom("Fatigue", 'present')
   ];
 
-  this.all_side_effects = [new Symptom("Fatigue", 'present')];
+  this.all_side_effects = [new Symptom("Leg pain", 'present'),
+     new Symptom("Fatigue", "present", true),
+      new Symptom("Pain", "severity", true)];
   this.all_treatments = [
     new Treatment("Allergy Pill", "present", []),
-    new Treatment("Rituxin", "count", [new Symptom("Fatigue", "present", true),
-    new Symptom("Pain", "severity", true)])
+    new Treatment("Rituxin", "count", this.all_side_effects.slice(1,2))
 
   ];
 
