@@ -36,7 +36,7 @@ const routes: Routes = [
     component: ConfigureSymptomComponent,
   },
   {
-    path: 'symptom-effect-editor',
+    path: 'side-effect-editor',
     component: ConfigureSideEffectComponentComponent,
   },
   {

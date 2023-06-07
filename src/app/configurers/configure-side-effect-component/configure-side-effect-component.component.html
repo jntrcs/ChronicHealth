@@ -1,4 +1,4 @@
-<div>
+<ion-content>
   <h2>{{ mode === 'add' ? 'Add Side Effect' : 'Edit Side Effect' }}</h2>
   <form (ngSubmit)="mode === 'add' ? saveSymptom() : updateSymptom()" #symptomForm="ngForm">
     <ion-item>
@@ -9,17 +9,17 @@
       Track this side effect as:
     </ion-label><br>
     <ion-radio-group value="severity" [(ngModel)]="symptomMeasurement" name="symptomMeasurement">
-      <ion-radio labelPlacement="end" value="severity">Severity</ion-radio><br />
-      <ion-radio labelPlacement="end" value="present">Present / Absent</ion-radio><br />
-      <ion-radio labelPlacement="end" value="count">Count (# of occurrences)</ion-radio><br />
+      <ion-radio color = "side-effect" labelPlacement="end" value="severity">Severity</ion-radio><br />
+      <ion-radio color = "side-effect" labelPlacement="end" value="present">Present / Absent</ion-radio><br />
+      <ion-radio color = "side-effect" labelPlacement="end" value="count">Count (# of occurrences)</ion-radio><br />
     </ion-radio-group>
 
     <div class="button-group">
-      <ion-button color="primary" type="submit" [disabled]="!symptomForm.form.valid">{{ mode === 'add' ? 'Save' : 'Update' }}</ion-button>
+      <ion-button color="side-effect" type="submit" [disabled]="!symptomForm.form.valid">{{ mode === 'add' ? 'Save' : 'Update' }}</ion-button>
       <ion-button color="danger" (click)="cancel_click()">Cancel</ion-button>
     </div>
   </form>
-</div>
+</ion-content>
 
 <ion-alert
   [isOpen]="isAlertOpen"
