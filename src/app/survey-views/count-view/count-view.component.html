@@ -3,5 +3,7 @@
   </ion-range>-->
 
 
-<ion-input [(ngModel)]="this.measurement.count" [id]="this.measurement.id" background-color="gray"></ion-input>
-<ion-picker [trigger]="this.measurement.id" [columns]="pickerColumns" [buttons]="pickerButtons"></ion-picker>
+<ion-input [(ngModel)]="this.measurement.count" [id]="this.measurement.id" background-color="gray" 
+[style.textDecorationColor]="'var(--ion-color-' + this.color + ')'"></ion-input>
+<ion-picker [trigger]="this.measurement.id" [columns]="pickerColumns"
+ [buttons]="pickerButtons"  [ngClass]="'picker-' + color"></ion-picker>

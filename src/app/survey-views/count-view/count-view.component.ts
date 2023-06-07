@@ -10,28 +10,17 @@ import { CountMeasurement } from 'src/app/models/Measurement';
 export class CountViewComponent  implements OnInit {
 
   @Input() measurement!: CountMeasurement
+  @Input() color!: string
+  public pickerColumns:any;
+  public pickerButtons:any;
 
   constructor() {
-
-
+  
    
   }
 
-  ngOnInit() {}
-
-  updateCount(event: Event) {
-    this.measurement.count = Number((event as RangeCustomEvent).detail.value)
-    //this.symptom.measurement.count = Number((event as RangeCustomEvent).detail.value);
-     //this.count = event.detail.value as number;
-   }
- 
-   getCount(){
-     return(this.measurement.count)
-    //return(this.measurement.count)
-   }
-
-
-    public pickerColumns = [
+  ngOnInit() {
+    this.pickerColumns = [
       {
         name: 'count',
         options: [
@@ -140,16 +129,33 @@ export class CountViewComponent  implements OnInit {
       },
     ];
   
-    public pickerButtons = [
+    this.pickerButtons = [
       {
         text: 'Cancel',
         role: 'cancel',
+        cssClass: `picker-button-${this.color}`,
       },
       {
         text: 'Select',
         handler: (value:any) => {
           this.measurement.count = value.count.value;
         },
+      cssClass: `picker-button-${this.color}`,
       },
     ];
+  }
+
+  updateCount(event: Event) {
+    this.measurement.count = Number((event as RangeCustomEvent).detail.value)
+    //this.symptom.measurement.count = Number((event as RangeCustomEvent).detail.value);
+     //this.count = event.detail.value as number;
+   }
+ 
+   getCount(){
+     return(this.measurement.count)
+    //return(this.measurement.count)
+   }
+
+
+
 }

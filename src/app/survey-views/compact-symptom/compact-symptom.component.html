@@ -10,7 +10,7 @@
     </div>
     
     <div *ngIf="symptom.measurement.isCountMeasurement()" class="compact-count">
-        <app-count-view [measurement] = "symptom.measurement.get_measurement_class()"></app-count-view>
+        <app-count-view color="illness" [measurement] = "symptom.measurement.get_measurement_class()"></app-count-view>
     </div>
     
     <div *ngIf="symptom.measurement.isSeverityMeasurement()" class="compact-severity">

@@ -24,3 +24,38 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+.picker-button-symptom {
+    color: var(--ion-color-symptom) !important;
+  }
+
+  .picker-button-treatment {
+    color: var(--ion-color-treatment) !important;
+  }
+
+  .picker-button-illness {
+    color: var(--ion-color-illness) !important;
+  }
+
+  .picker-button-side-effect {
+    color: var(--ion-color-side-effect) !important;
+  }
+
+.picker-symptom .picker-opt-selected {
+    color: var(--ion-color-symptom) !important;
+  }
+
+  .picker-treatment .picker-opt-selected {
+        color: var(--ion-color-treatment) !important;
+  }
+
+  .picker-side-effect .picker-opt-selected {
+        color: var(--ion-color-side-effect) !important;
+  }
+
+  .picker-illness .picker-opt-selected {
+        color: var(--ion-color-illness) !important;
+  }
+
+  

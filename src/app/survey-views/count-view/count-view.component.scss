@@ -4,7 +4,10 @@
 
   ion-input {
     text-decoration: underline;
-    text-decoration-color: var(  --ion-color-primary);
     font-size: 20px;
     margin-left: 5px; 
+  }
+
+  .picker-button-symptom {
+    color: var(--ion-color-treatment);
   }
