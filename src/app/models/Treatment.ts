@@ -41,4 +41,9 @@ export class Treatment extends SurveyItem {
       }        
     }
 
+    public setSideEffects(side_effects: Symptom[]){
+      this.side_effects = side_effects;
+      this.convert_symptom_measurements(this.side_effects);
+    }
+
   }

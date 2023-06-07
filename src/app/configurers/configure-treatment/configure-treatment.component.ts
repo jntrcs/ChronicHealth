@@ -99,7 +99,8 @@ export class ConfigureTreatmentComponent  implements OnInit {
     this.treatment.changeMeasurement(this.treatmentMeasurement);
 
     const symptoms:Symptom[] = this.selected_symptom_ids.map(item => this.userService.getSideEffectByID(item)!);
-    this.treatment.side_effects = symptoms;
+    this.treatment.setSideEffects(symptoms);
+    console.log(this.treatment.side_effects)
     this.router.navigate([this.success_return_url]);
 
 
