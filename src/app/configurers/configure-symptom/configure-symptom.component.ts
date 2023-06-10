@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Symptom } from 'src/app/models/Symptom';
 import { UserService } from 'src/app/user.service';
 
@@ -14,6 +14,9 @@ export class ConfigureSymptomComponent  implements OnInit {
   @Input() symptomMeasurement!: string;
   @Input() mode!: 'add' | 'edit';
   @Input() symptom!: Symptom |null;
+
+  @Output() new_symtpom_id = new EventEmitter<string>();
+
 
   add_to_static_survey: boolean = false;
   cancel_return_url: string = '';
@@ -62,6 +65,8 @@ export class ConfigureSymptomComponent  implements OnInit {
 
     }
     this.userService.add_symptom(symptom); 
+    this.new_symtpom_id.emit(symptom.id);
+
     this.router.navigate([this.success_return_url]);
 
   }

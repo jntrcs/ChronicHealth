@@ -13,8 +13,10 @@ export class UserData {
         new Symptom('Fever',  'present'),
         new Symptom('Cough',  'count'),
         new Symptom("Weak legs", 'severity'),
-        new Symptom("Fatigue", 'present')
+        new Symptom("Body Aches", "severity", false),
+        new Symptom("Congestion", "count", false)
   ];
+
 
   this.all_side_effects = [new Symptom("Leg pain", 'present', true),
      new Symptom("Fatigue", "present", true),
@@ -27,8 +29,7 @@ export class UserData {
   ];
 
   this.all_illnesses = [
-    new Illness("Flu", [new Symptom("Body Aches", "severity", false),
-                        new Symptom("Congestion", "count", false)])
+    new Illness("Flu", [this.all_symptoms[4], this.all_symptoms[5]])
   ]
 
   this.history = new Map();
@@ -37,7 +38,7 @@ export class UserData {
       this.static_survey = [...this.all_symptoms].slice(0,3);
       //this.static_survey.push(this.all_treatments[0])   ;
       this.static_survey.push(this.all_treatments[1]) ;
-      this.dynamic_survey = [];
+      this.dynamic_survey = [this.all_illnesses[0]];
      // this.dynamic_survey.push(this.all_illnesses[0])
      this.sortSurveyItemsByName(this.all_symptoms);
     }

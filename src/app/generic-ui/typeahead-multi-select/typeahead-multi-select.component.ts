@@ -14,11 +14,7 @@ export class TypeaheadMultiSelectComponent implements OnInit {
   color: string;
 
   constructor(){
-    if (this.mode==='symptom'){
-      this.color='symptom'
-    }else{
-      this.color="side-effect"
-    }
+    this.color="symptom"
   }
 
   @Output() selectionCancel = new EventEmitter<void>();
@@ -30,6 +26,12 @@ export class TypeaheadMultiSelectComponent implements OnInit {
   ngOnInit() {
     this.filteredItems = this.items;
     this.workingSelectedValues = [...this.selectedItems];
+
+    if (this.mode==='symptom'){
+      this.color='symptom'
+    }else{
+      this.color="side-effect"
+    }
   }
 
   trackItems(index: number, item: SurveyItem) {

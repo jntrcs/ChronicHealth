@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { Illness } from 'src/app/models/Illness';
 
 @Component({
@@ -10,7 +11,7 @@ export class SurveyIllnessComponent  implements OnInit {
 
 
   @Input() illness!: Illness;
-  constructor() { 
+  constructor(private router:Router) { 
   
   }
 
@@ -32,4 +33,18 @@ export class SurveyIllnessComponent  implements OnInit {
       //return(this.symptom.measurement.severity);
     }
 
-}
+    edit_illness(){
+      const navigationExtras: NavigationExtras = {
+        state: {
+          add_to_static_survey: false,
+          add_to_dynamic_survey: false,
+          cancel_return_url: '/',
+          success_return_url: '/',
+          illness_id: this.illness.id
+        }
+      }
+      this.router.navigate(['/illness-editor'], navigationExtras);
+    }
+  }
+
+
