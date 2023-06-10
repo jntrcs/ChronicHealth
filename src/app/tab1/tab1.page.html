@@ -7,7 +7,24 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <div class="date-selector">
+    <ion-icon
+      name="arrow-back"
+      (click)="decrementDate()"
+    ></ion-icon>
+
+    <div class="date-text">
+      {{ currentDate | date:'mediumDate' }}
+    </div>
+
+    <ion-icon
+      name="arrow-forward"
+      [class.disabled]="isToday(currentDate)"
+      (click)="incrementDate()"
+    ></ion-icon>
+  </div>
+
+  <ion-list class="survey_list">
     <app-survey-item-view *ngFor="let survey_item of static_survey" [survey_item]="survey_item"></app-survey-item-view>
     <app-survey-item-view *ngFor="let survey_item of dynamic_survey" [survey_item]="survey_item"></app-survey-item-view>
 

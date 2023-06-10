@@ -14,11 +14,42 @@ export class Tab1Page {
 
   public static_survey: SurveyItem[];
   public dynamic_survey: SurveyItem[];
+  currentDate: Date = new Date();
+
 
 
   constructor(private userService: UserService, private router:Router) {
     this.static_survey = userService.get_static_survey();
     this.dynamic_survey = userService.get_dynamic_survey();
+  }
+
+  incrementDate() {
+    const newDate = new Date(this.currentDate);
+    newDate.setDate(newDate.getDate() + 1);
+    this.currentDate = newDate;
+    this.emitDateChange();
+  }
+
+  decrementDate() {
+    const newDate = new Date(this.currentDate);
+    newDate.setDate(newDate.getDate() - 1);
+    this.currentDate = newDate;
+    this.emitDateChange();
+  }
+
+  isToday(date: Date): boolean {
+    const today = new Date();
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
+  }
+
+  emitDateChange() {
+    // You can emit the date change event here using Ionic's Events or EventEmitter
+    // For simplicity, let's just console.log the date change
+    console.log('Date changed:', this.currentDate);
   }
 
   save_record(){

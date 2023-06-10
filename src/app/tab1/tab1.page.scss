@@ -3,3 +3,36 @@ ion-title {
     justify-content: center;
     align-items: center;
   }
+
+
+  .date-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border-bottom: 1px solid #aaa;
+    background-color: rgb(209, 213, 206);
+    margin-top: 0px;
+    padding-top:8px;
+    padding-bottom:8px;
+  }
+  
+  .date-selector ion-icon {
+    font-size: 24px;
+    cursor: pointer;
+    margin: 0 10px;
+  }
+  
+  .date-selector ion-icon.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  .date-selector .date-text {
+    font-size: 20px;
+  }
+
+ 
+  .survey_list {
+    padding-top: 0px;
+  }
