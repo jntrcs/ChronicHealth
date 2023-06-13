@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Symptom } from 'src/app/models/Symptom';
-import { UserService } from 'src/app/user.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-configure-symptom',

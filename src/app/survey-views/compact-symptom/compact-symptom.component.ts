@@ -9,6 +9,7 @@ import { Symptom } from 'src/app/models/Symptom';
 export class CompactSymptomComponent  implements OnInit {
 
   @Input() symptom!: Symptom;
+  @Input() is_disabled!: boolean;
   constructor() { }
 
   ngOnInit() {}

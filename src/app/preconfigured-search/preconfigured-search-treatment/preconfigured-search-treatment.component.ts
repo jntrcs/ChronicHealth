@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { SurveyItem } from 'src/app/models/SurveyItem';
-import { UserService } from 'src/app/user.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-preconfigured-search-treatment',

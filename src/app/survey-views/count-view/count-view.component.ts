@@ -11,11 +11,12 @@ export class CountViewComponent  implements OnInit {
 
   @Input() measurement!: CountMeasurement
   @Input() color!: string
+  @Input() is_disabled!: boolean;
   public pickerColumns:any;
   public pickerButtons:any;
 
   constructor() {
-  
+  this.is_disabled = false;
    
   }
 

@@ -10,7 +10,9 @@ import { PresentMeasurement } from 'src/app/models/Measurement';
 export class PresentViewComponent  implements OnInit {
 
   @Input() measurement!:PresentMeasurement;
+  @Input() is_disabled!:boolean;
   constructor() {
+    this.is_disabled = false;
    }
 
   ngOnInit() {}

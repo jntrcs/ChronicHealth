@@ -8,12 +8,17 @@ import { SeverityMeasurement } from 'src/app/models/Measurement';
 })
 export class SeverityViewComponent  implements OnInit {
 
-  @Input() measurement!:SeverityMeasurement
-  constructor() { }
+  @Input() measurement!:SeverityMeasurement;
+  @Input() is_disabled!:boolean;
+  constructor() {
+    this.is_disabled = false;
+
+   }
 
   ngOnInit() {}
 
   selectOption(option: string) {
+    if(this.is_disabled)return;
     this.measurement.severity = option;
     //this.symptom.measurement.severity = option;
   }

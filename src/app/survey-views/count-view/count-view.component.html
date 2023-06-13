@@ -4,6 +4,7 @@
 
 
 <ion-input [(ngModel)]="this.measurement.count" [id]="this.measurement.id" background-color="gray" 
+[disabled] = "is_disabled"
 [style.textDecorationColor]="'var(--ion-color-' + this.color + ')'"></ion-input>
-<ion-picker [trigger]="this.measurement.id" [columns]="pickerColumns"
+<ion-picker [trigger]="is_disabled ? null : this.measurement.id" [columns]="pickerColumns"
  [buttons]="pickerButtons"  [ngClass]="'picker-' + color"></ion-picker>

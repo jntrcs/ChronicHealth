@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SurveyItem } from 'src/app/models/SurveyItem';
 import { ConfirmationModal } from 'src/app/generic-ui/confirmation-modal-component/confirmation-modal.component';
 import { ModalController } from '@ionic/angular';
-import { UserService } from 'src/app/user.service';
+import { UserService } from 'src/app/services/user.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { Symptom } from 'src/app/models/Symptom';
 

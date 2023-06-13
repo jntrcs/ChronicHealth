@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { Illness } from 'src/app/models/Illness';
 import { Symptom } from 'src/app/models/Symptom';
-import { UserService } from 'src/app/user.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-configure-illness',

@@ -11,8 +11,9 @@ export class SurveyIllnessComponent  implements OnInit {
 
 
   @Input() illness!: Illness;
+  @Input() is_disabled!: boolean;
   constructor(private router:Router) { 
-  
+  this.is_disabled = true;
   }
 
   ngOnInit() {}
@@ -20,6 +21,7 @@ export class SurveyIllnessComponent  implements OnInit {
 
 
     selectOption(option: string) {
+      if (this.is_disabled)return;
       this.illness.doctor_confirmed = option==='medically confirmed';
       //this.symptom.measurement.severity = option;
     }
