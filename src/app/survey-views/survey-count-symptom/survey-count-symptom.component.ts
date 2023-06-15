@@ -12,6 +12,7 @@ import { CountMeasurement } from 'src/app/models/Measurement';
 export class SurveyCountSymptomComponent  implements OnInit {
 
   @Input() symptom!: Symptom;
+  @Input() is_disabled!: boolean;
 
   ngOnInit() {}
 

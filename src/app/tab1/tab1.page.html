@@ -25,8 +25,8 @@
   </div>
 
   <ion-list class="survey_list">
-    <app-survey-item-view *ngFor="let survey_item of static_survey" [survey_item]="survey_item"></app-survey-item-view>
-    <app-survey-item-view *ngFor="let survey_item of dynamic_survey" [survey_item]="survey_item"></app-survey-item-view>
+    <app-survey-item-view [is_disabled]="is_disabled" *ngFor="let survey_item of static_survey" [survey_item]="survey_item"></app-survey-item-view>
+    <app-survey-item-view [is_disabled]="is_disabled" *ngFor="let survey_item of dynamic_survey" [survey_item]="survey_item"></app-survey-item-view>
 
   </ion-list>
  

@@ -9,6 +9,7 @@ import { Symptom } from 'src/app/models/Symptom';
 })
 export class SurveySeveritySymptomComponent  implements OnInit {
   @Input() symptom!: Symptom;
+  @Input() is_disabled!: boolean;
 
   constructor() {}
 

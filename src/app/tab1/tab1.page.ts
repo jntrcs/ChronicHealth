@@ -13,6 +13,7 @@ import { AppStateService } from '../services/app-state.service';
 export class Tab1Page {
 
 
+  public is_disabled:boolean;
   public static_survey: SurveyItem[];
   public dynamic_survey: SurveyItem[];
   currentDate: Date = new Date();
@@ -23,6 +24,7 @@ export class Tab1Page {
      private router:Router) {
     this.static_survey = userService.get_static_survey();
     this.dynamic_survey = userService.get_dynamic_survey();
+    this.is_disabled = false;
   }
 
   incrementDate() {
@@ -56,6 +58,7 @@ export class Tab1Page {
 
   save_record(){
     this.userService.create_day_record([...this.static_survey, ...this.dynamic_survey]);
+    this.is_disabled = true;
   }
 
   openPreConfiguredSearch(type: string){

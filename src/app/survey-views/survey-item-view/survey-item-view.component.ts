@@ -12,6 +12,7 @@ import { Treatment } from 'src/app/models/Treatment';
 export class SurveyItemViewComponent  implements OnInit {
 
   @Input() survey_item!: SurveyItem;
+  @Input() is_disabled!:boolean;
 
 
 

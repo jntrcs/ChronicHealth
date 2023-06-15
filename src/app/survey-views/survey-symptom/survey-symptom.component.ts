@@ -12,6 +12,7 @@ import { Symptom } from 'src/app/models/Symptom';
 })
 export class SurveySymptomComponent  implements OnInit {
   @Input()symptom!: Symptom;
+  @Input() is_disabled!: boolean;
 
 
   constructor(){

@@ -1,12 +1,12 @@
 <div class="survey_chunk" *ngIf="isSymptom(survey_item)">
-    <app-survey-symptom [symptom] = "getSymptom(survey_item)"></app-survey-symptom>
+    <app-survey-symptom [is_disabled]="is_disabled"  [symptom] = "getSymptom(survey_item)"></app-survey-symptom>
 </div>
 
 
 <div class="survey_chunk" *ngIf="isTreatment(survey_item)">
-    <app-survey-treatment [treatment] = "getTreatment(survey_item)"></app-survey-treatment>
+    <app-survey-treatment [is_disabled]="is_disabled"  [treatment] = "getTreatment(survey_item)"></app-survey-treatment>
 </div>
 
 <div class="survey_chunk" *ngIf="isIllness(survey_item)">
-    <app-survey-illness [illness] = "getIllness(survey_item)"></app-survey-illness>
+    <app-survey-illness [is_disabled]="is_disabled"  [illness] = "getIllness(survey_item)"></app-survey-illness>
 </div>

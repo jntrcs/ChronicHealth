@@ -5,10 +5,10 @@ import { SurveyItem } from "./SurveyItem";
 import { Symptom } from "./Symptom";
 import { SymptomRecord } from "./SymptomRecord";
 import { Treatment } from "./Treatment";
+import { TreatmentRecord } from "./TreatmentRecord";
 
   export class DayRecord {
 
-    public date: Date;
     public records: ItemRecord[];
 
       constructor(survey: SurveyItem[]) {

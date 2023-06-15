@@ -5,6 +5,7 @@ import { Symptom } from '../models/Symptom';
 import { DayRecord } from '../models/DayRecord';
 import { Illness } from '../models/Illness';
 import { Treatment } from '../models/Treatment';
+import { AppStateService } from './app-state.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ import { Treatment } from '../models/Treatment';
 export class UserService {
   private user_data: UserData;
 
-constructor(){
+constructor(private appState:AppStateService){
   this.user_data = new UserData;
 }
 
@@ -104,13 +105,11 @@ getTreatmentByID(id: string): Treatment | null{
 
 
 create_day_record(survey: SurveyItem[], date:Date = new Date()){
-  this.user_data.history.set(this.string_date(date), new DayRecord(survey));
+  this.user_data.history.set(this.appState.string_date, new DayRecord(survey));
   console.log(this.user_data.history);
 }
 
-public string_date(date: Date): string {
-  return(date.toISOString().split('T')[0]);
-}
+
 
 public add_symptom(symptom:Symptom){
   this.get_symptoms().push(symptom);
