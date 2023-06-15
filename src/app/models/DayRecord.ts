@@ -4,14 +4,14 @@ import { ItemRecord } from "./ItemRecord";
 import { SurveyItem } from "./SurveyItem";
 import { Symptom } from "./Symptom";
 import { SymptomRecord } from "./SymptomRecord";
+import { Treatment } from "./Treatment";
 
   export class DayRecord {
 
     public date: Date;
     public records: ItemRecord[];
 
-      constructor(survey: SurveyItem[], date: Date = new Date()) {
-        this.date = date;
+      constructor(survey: SurveyItem[]) {
         this.records = [];
 
         for (const item of survey) {
@@ -19,7 +19,9 @@ import { SymptomRecord } from "./SymptomRecord";
               this.records.push(new SymptomRecord(item));
             } else if (item instanceof Illness) {
                 this.records.push(new IllnessRecord(item));
-              } 
+              } else if (item instanceof Treatment){
+                this.records.push(new TreatmentRecord(item));
+              }
             }
           }
 

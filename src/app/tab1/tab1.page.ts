@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { SurveyItem } from '../models/SurveyItem';
 import { DayRecord } from '../models/DayRecord';
 import { NavigationExtras, Router } from '@angular/router';
+import { AppStateService } from '../services/app-state.service';
 
 @Component({
   selector: 'app-tab1',
@@ -18,7 +19,8 @@ export class Tab1Page {
 
 
 
-  constructor(private userService: UserService, private router:Router) {
+  constructor(private userService: UserService, private stateService: AppStateService,
+     private router:Router) {
     this.static_survey = userService.get_static_survey();
     this.dynamic_survey = userService.get_dynamic_survey();
   }
@@ -49,7 +51,7 @@ export class Tab1Page {
   emitDateChange() {
     // You can emit the date change event here using Ionic's Events or EventEmitter
     // For simplicity, let's just console.log the date change
-    console.log('Date changed:', this.currentDate);
+    this.stateService.survey_date = this.currentDate;
   }
 
   save_record(){
