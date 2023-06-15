@@ -13,7 +13,7 @@ export class SurveyIllnessComponent  implements OnInit {
   @Input() illness!: Illness;
   @Input() is_disabled!: boolean;
   constructor(private router:Router) { 
-  this.is_disabled = true;
+  this.is_disabled = false;
   }
 
   ngOnInit() {}

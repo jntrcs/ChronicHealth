@@ -10,7 +10,10 @@ import { Treatment } from 'src/app/models/Treatment';
 export class SurveyTreatmentComponent  implements OnInit {
 
   @Input() treatment!:Treatment;
-  constructor() { }
+  @Input() is_disabled!:boolean;
+  constructor() {
+    this.is_disabled = false;
+  }
 
   ngOnInit() {}
 

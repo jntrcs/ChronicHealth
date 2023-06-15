@@ -11,7 +11,10 @@ import { Treatment } from 'src/app/models/Treatment';
 export class SurveyCountTreatmentComponent  implements OnInit {
 
   @Input() treatment!: Treatment;
-  constructor(private router:Router) { }
+  @Input() is_disabled!: boolean;
+  constructor(private router:Router) {
+    this.is_disabled=true;
+   }
 
   ngOnInit() {}
 

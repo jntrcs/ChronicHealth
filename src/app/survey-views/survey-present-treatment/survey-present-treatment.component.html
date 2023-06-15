@@ -6,7 +6,7 @@
 
       </ion-col>
       <ion-col>     
-        <app-present-view [measurement]="getPresentMeasurement()"></app-present-view>
+        <app-present-view [is_disabled] = "is_disabled" [measurement]="getPresentMeasurement()"></app-present-view>
       </ion-col>
     </ion-row>
 
@@ -14,7 +14,7 @@
   </ion-col>
 
     <ion-col class="button-row" size="2">  
-      <ion-button class="add-more" color="treatment" size="small" (click)="edit_treatment(treatment)">
+      <ion-button [disabled] ="is_disabled" class="add-more" color="treatment" size="small" (click)="edit_treatment(treatment)">
         <ion-icon name="pencil"></ion-icon>
       </ion-button>
       </ion-col>

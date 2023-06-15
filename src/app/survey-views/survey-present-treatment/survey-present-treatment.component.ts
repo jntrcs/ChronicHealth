@@ -11,11 +11,14 @@ import { Treatment } from 'src/app/models/Treatment';
 export class SurveyPresentTreatmentComponent  implements OnInit {
 
   @Input() treatment!:Treatment;
+  @Input() is_disabled!: boolean;
 
   color: string = 'treatment'
   constructor(private router:Router
 
-  ) { }
+  ) {
+    this.is_disabled = true;
+   }
 
   ngOnInit() {}
 

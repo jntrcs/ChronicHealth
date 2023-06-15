@@ -1,13 +1,13 @@
 <div *ngIf="isPresentMeasurement(treatment.measurement)">
-  <app-survey-present-treatment [treatment] = "treatment"></app-survey-present-treatment >
+  <app-survey-present-treatment [is_disabled] = "is_disabled" [treatment] = "treatment"></app-survey-present-treatment >
 </div>
 
 <div *ngIf="isCountMeasurement(treatment.measurement)">
-  <app-survey-count-treatment [treatment] = "treatment"></app-survey-count-treatment>
+  <app-survey-count-treatment [is_disabled] = "is_disabled" [treatment] = "treatment"></app-survey-count-treatment>
 </div>
 
 
 
 <ion-list class="symptom-list">
-  <app-compact-symptom *ngFor="let side_effects of treatment.side_effects" [symptom]="side_effects"></app-compact-symptom>
+  <app-compact-symptom *ngFor="let side_effects of treatment.side_effects" [symptom]="side_effects" [is_disabled] = "is_disabled"></app-compact-symptom>
 </ion-list>

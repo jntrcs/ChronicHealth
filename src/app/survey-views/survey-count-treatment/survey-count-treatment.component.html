@@ -9,7 +9,7 @@
 
         </ion-col>
         <ion-col>     
-             <app-count-view color="treatment" [measurement] = "getCountMeasurement()"></app-count-view>
+             <app-count-view [is_disabled] = "is_disabled" color="treatment" [measurement] = "getCountMeasurement()"></app-count-view>
         </ion-col>
       </ion-row>
 
@@ -17,7 +17,7 @@
     </ion-col>
 
       <ion-col class="button-row" size="2">  
-        <ion-button class="add-more" color="treatment" size="small" (click)="edit_treatment(treatment)">
+        <ion-button class="add-more" [disabled]="is_disabled" color="treatment" size="small" (click)="edit_treatment(treatment)">
           <ion-icon name="pencil"></ion-icon>
         </ion-button>
         </ion-col>
