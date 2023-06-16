@@ -23,6 +23,6 @@ export class AppStateService {
 
 
   stringify_date(date: Date): string {
-    return(date.toISOString().split('T')[0]);
+    return(date.toLocaleString().split(',')[0]);
   }
 }

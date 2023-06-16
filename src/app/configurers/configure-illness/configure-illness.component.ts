@@ -39,9 +39,6 @@ export class ConfigureIllnessComponent  implements OnInit {
       this.mode = 'edit'
       this.illnessName = this.illness.name;
       this.selected_symptom_ids = this.illness.symptoms.map(item => item.id);
-      console.log('constructor');
-      console.log(this.illness);
-      console.log(this.selected_symptom_ids);
     }
 
    }
@@ -90,7 +87,6 @@ export class ConfigureIllnessComponent  implements OnInit {
 
   updateIllness(){
     this.illness = this.illness!
-    console.log(this.selected_symptom_ids);
     const isNameDuplicate = this.userService.filter_by_id(this.userService.get_illnesses(), [this.illness]).some(
       treatment => treatment.name.toLowerCase() === this.illnessName.toLowerCase());
 

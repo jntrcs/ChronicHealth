@@ -24,7 +24,6 @@ import { Symptom } from './Symptom';
       }
 
       public setSymptoms(symptoms: Symptom[]){
-        console.log(symptoms)
 
         this.symptoms = symptoms;
         this.convert_symptom_measurements(this.symptoms);

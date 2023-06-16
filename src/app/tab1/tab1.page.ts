@@ -52,8 +52,12 @@ export class Tab1Page {
 
   emitDateChange() {
     // You can emit the date change event here using Ionic's Events or EventEmitter
-    // For simplicity, let's just console.log the date change
-    this.stateService.survey_date = this.currentDate;
+    this.stateService.set_date(this.currentDate);
+    if(this.userService.check_day_has_data(this.stateService.string_date)){
+      this.is_disabled = true;
+    } else{
+      this.is_disabled = false;
+    }
   }
 
   save_record(){

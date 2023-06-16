@@ -135,4 +135,11 @@ public add_illness(illness:Illness){
 
 }
 
+public check_day_has_data(date: string){
+
+  return this.user_data.history.has(date);
+}
+
+
+
 }
