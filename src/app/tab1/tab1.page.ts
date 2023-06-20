@@ -23,7 +23,7 @@ export class Tab1Page {
   constructor(private userService: UserService, private stateService: AppStateService,
      private router:Router) {
     this.static_survey = userService.get_static_survey();
-    this.dynamic_survey = userService.get_dynamic_survey();
+    this.dynamic_survey = userService.get_dynamic_survey(stateService.string_date);
     this.is_disabled = false;
   }
 
@@ -94,6 +94,10 @@ export class Tab1Page {
       this.router.navigate(['/preconfigured-search-treatment'], navigationExtras);
     }
 
+    }
+
+    update_record(){
+      this.is_disabled = false;
     }
 
 }

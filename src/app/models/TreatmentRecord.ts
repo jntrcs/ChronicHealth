@@ -22,7 +22,26 @@ export class TreatmentRecord extends ItemRecord{
         }
       }
 
+      override isActiveID(): string {
+          if(this.isActive()){
+            return this.treatment_id;
+          }else{
+            return '';
+          }
+      }
 
+
+      isActive(): boolean{
+        var treatment_present:boolean = false;
+        if(this.measurement_type === "CountMeasurement" && this.measurement_value!=="0"){
+            treatment_present = true;
+          }else if(this.measurement_type == "PresentMeasurement" && this.measurement_value==='true'){
+            treatment_present = true;
+          }
+
+        return treatment_present || 
+        this.side_effect_records.map((symptom_record)=>symptom_record.isActive()).some((item) => item === true);;
+      }
     
 
     }

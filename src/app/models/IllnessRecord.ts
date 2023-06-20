@@ -18,6 +18,18 @@ export class IllnessRecord extends ItemRecord{
         }
       }
 
+      isActiveID():string{
+        if (this.isActive()){
+          return(this.illness_id);
+        }else{
+          return '';
+        }
+
+      }
+
+      isActive():boolean{
+        return this.symptom_records.map((symptom_record)=>symptom_record.isActive()).some((item) => item === true);
+      }
 
     
 

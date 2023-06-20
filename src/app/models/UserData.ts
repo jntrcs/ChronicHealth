@@ -33,6 +33,7 @@ export class UserData {
   ]
 
   this.history = new Map();
+  this.history.set("6/14/2023", new DayRecord([this.all_illnesses[0]]));
 
 
       this.static_survey = [...this.all_symptoms].slice(0,3);
@@ -56,5 +57,38 @@ export class UserData {
     public sortSurveyItemsByName(surveyItems: SurveyItem[]):void {
       surveyItems.sort((a, b) => a.name.localeCompare(b.name));
   }
+
+  public determine_active_item_ids(survey_date_string: string): string[]{
+// loop through the last (1) days with data
+// determine what symptoms were recorded >0
+//determine what treaments/illnesses are present
+// filter out the ones already showing on the static survey
+//return an array of SurveyItems
+    const survey_date = new Date(survey_date_string);
+    const date_strings = Array.from(this.history.keys());
+    const dateObjects = date_strings.map((dateString) => new Date(dateString));
+    //remove future dates
+    const pastDates = dateObjects.filter((element) => element < survey_date);
+    pastDates.sort((a, b) => b.getTime() - a.getTime());
+    if(pastDates.length <1){
+      return [];
     }
+
+    const active_item_ids:string[] =[];
+    console.log(this.history);
+    for (let i = 0; i <= 0; i++) {
+      // Your loop body code here
+      console.log(this.history);
+      console.log(pastDates[i].toLocaleString().split(',')[0])
+      const record: DayRecord = this.history.get(pastDates[i].toLocaleString().split(',')[0])!
+      console.log(record);
+      const ids: string[] = record.determineActiveConcerns();
+      active_item_ids.concat(ids);
+
+    }
+
+    return active_item_ids;
+
+  }
+}
 

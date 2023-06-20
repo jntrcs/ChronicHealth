@@ -14,6 +14,29 @@ export class SymptomRecord extends ItemRecord{
         this.value_string = symptom.measurement.get_value();
       }
 
+      isActiveID(): string {
+        if(this.isActive()){
+          return this.symptom_id;
+        }else{
+          return '';
+        }
+      }
+
+      isActive(): boolean{
+        if(this.measurement_type === "CountMeasurement" && this.value_string!=="0"){
+          return true;
+        }else if(this.measurement_type == "PresentMeasurement" && this.value_string==='true'){
+          return true;
+        } else if (this.measurement_type=="SeverityMeasurement" &&
+        (this.value_string === 'severe' || this.value_string==='moderate' || this.value_string ==='mild')){
+          return true;
+        }
+
+        return false;
+      }
+
+
+
 
     
 

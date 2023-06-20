@@ -32,8 +32,11 @@
  
   <ion-row>
     <ion-col>
-      <ion-button (click) = "save_record()" color="primary">Save</ion-button>
 
+      <ion-button (click) = "update_record()" *ngIf="is_disabled; else enabledButton" color="primary">Update</ion-button>
+<ng-template #enabledButton>
+  <ion-button (click) = "save_record()" color="primary">Save</ion-button>
+</ng-template>
     </ion-col>
   </ion-row>
   <ion-row>

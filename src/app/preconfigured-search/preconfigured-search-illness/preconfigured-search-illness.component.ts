@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Illness } from 'src/app/models/Illness';
 import { SurveyItem } from 'src/app/models/SurveyItem';
+import { AppStateService } from 'src/app/services/app-state.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,14 +17,14 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
   add_to_dynamic_survey:boolean=true;
   add_to_static_survey:boolean=false; 
 
-  constructor(private userService: UserService, private router:Router) {
+  constructor(private userService: UserService, private router:Router, private stateService:AppStateService) {
     this.illness_list = [];
 
     const inputs = history.state;
 
     this.source = inputs.source;
     if (this.source === "dynamic survey adder"){
-      this.illness_list = userService.filter_by_id(userService.get_illnesses(), userService.get_dynamic_survey());
+      this.illness_list = userService.filter_by_id(userService.get_illnesses(), userService.get_dynamic_survey(stateService.string_date));
 
     }
    }

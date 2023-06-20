@@ -25,7 +25,15 @@ import { TreatmentRecord } from "./TreatmentRecord";
             }
           }
 
+      determineActiveConcerns():string[]{
+        // Loop through all the records and determine if the concern is active
+        // return an array of all active ids
+        return this.records.map((record) =>record.isActiveID()).filter((item) => item !== ''); 
       }
+          
+
+      
+  }
 
 
     
