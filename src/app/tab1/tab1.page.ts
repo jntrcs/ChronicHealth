@@ -23,7 +23,7 @@ export class Tab1Page {
   constructor(private userService: UserService, private stateService: AppStateService,
      private router:Router) {
     this.static_survey = userService.get_static_survey();
-    this.dynamic_survey = userService.get_dynamic_survey(stateService.string_date);
+    this.dynamic_survey = userService.calculate_dynamic_survey(stateService.string_date);
     this.is_disabled = false;
   }
 
@@ -58,6 +58,7 @@ export class Tab1Page {
     } else{
       this.is_disabled = false;
     }
+    this.dynamic_survey = this.userService.calculate_dynamic_survey(this.stateService.string_date);
   }
 
   save_record(){

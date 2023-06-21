@@ -26,11 +26,12 @@ get_static_survey(){
   return(this.user_data.static_survey);
 }
 
-get_dynamic_survey(date:string):SurveyItem[]{
+calculate_dynamic_survey(date:string):SurveyItem[]{
   const all_active_ids: string[] = this.user_data.determine_active_item_ids(date);
   const all_active_items = all_active_ids.map((id)=>this.getSurveyItemByID(id)).filter((item): item is SurveyItem => item !== null);
   const not_in_static = this.filter_by_id(all_active_items, this.user_data.static_survey)
-  return(not_in_static);
+  this.user_data.dynamic_survey = not_in_static;
+  return(this.user_data.dynamic_survey);
 }
 
 set_static_survey(static_survey: SurveyItem[]){
@@ -130,7 +131,6 @@ getTreatmentByID(id: string): Treatment | null{
 
 create_day_record(survey: SurveyItem[], date:Date = new Date()){
   this.user_data.history.set(this.appState.string_date, new DayRecord(survey));
-  console.log(this.user_data.history);
 }
 
 

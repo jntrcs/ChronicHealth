@@ -28,7 +28,7 @@ export class SymptomRecord extends ItemRecord{
         }else if(this.measurement_type == "PresentMeasurement" && this.value_string==='true'){
           return true;
         } else if (this.measurement_type=="SeverityMeasurement" &&
-        (this.value_string === 'severe' || this.value_string==='moderate' || this.value_string ==='mild')){
+        (this.value_string === 'Severe' || this.value_string==='Moderate' || this.value_string ==='Mild')){
           return true;
         }
 

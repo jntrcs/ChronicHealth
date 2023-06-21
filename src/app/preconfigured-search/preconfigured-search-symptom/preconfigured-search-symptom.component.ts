@@ -68,7 +68,6 @@ export class PreconfiguredSearchSymptomComponent  implements OnInit {
       };
     }
 
-  
     this.router.navigate(['/symptom-editor'], navigationExtras);
   }
 

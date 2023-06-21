@@ -15,7 +15,7 @@ export class ConfigureSymptomComponent  implements OnInit {
   @Input() mode!: 'add' | 'edit';
   @Input() symptom!: Symptom |null;
 
-  @Output() new_symtpom_id = new EventEmitter<string>();
+  //@Output() new_symtpom_id = new EventEmitter<string>();
 
 
   add_to_static_survey: boolean = false;
@@ -23,7 +23,8 @@ export class ConfigureSymptomComponent  implements OnInit {
   success_return_url: string ='';
   add_to_dynamic_survey:boolean = false;
 
-  constructor(private userService: UserService, private router: Router, private event: Event){
+  constructor(private userService: UserService, private router: Router){
+    console.log('hi')
 
     const inputs = history.state;
     this.add_to_static_survey = Boolean(inputs.add_to_static_survey);
@@ -41,6 +42,7 @@ export class ConfigureSymptomComponent  implements OnInit {
     }
 
    }
+
 
   }
 
@@ -65,7 +67,7 @@ export class ConfigureSymptomComponent  implements OnInit {
 
     }
     this.userService.add_symptom(symptom); 
-    this.new_symtpom_id.emit(symptom.id);
+    //this.new_symtpom_id.emit(symptom.id);
 
     this.router.navigate([this.success_return_url]);
 

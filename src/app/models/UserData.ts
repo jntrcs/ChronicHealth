@@ -74,19 +74,14 @@ export class UserData {
       return [];
     }
 
-    const active_item_ids:string[] =[];
-    console.log(this.history);
+    var active_item_ids:string[] =[];
     for (let i = 0; i <= 0; i++) {
       // Your loop body code here
-      console.log(this.history);
-      console.log(pastDates[i].toLocaleString().split(',')[0])
       const record: DayRecord = this.history.get(pastDates[i].toLocaleString().split(',')[0])!
-      console.log(record);
       const ids: string[] = record.determineActiveConcerns();
-      active_item_ids.concat(ids);
+      active_item_ids = active_item_ids.concat(ids);
 
     }
-
     return active_item_ids;
 
   }
