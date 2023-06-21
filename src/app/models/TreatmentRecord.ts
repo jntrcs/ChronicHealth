@@ -42,6 +42,10 @@ export class TreatmentRecord extends ItemRecord{
         return treatment_present || 
         this.side_effect_records.map((symptom_record)=>symptom_record.isActive()).some((item) => item === true);;
       }
+
+      set_item_to_record():void{
+
+      }
     
 
     }

@@ -31,6 +31,8 @@ export class IllnessRecord extends ItemRecord{
         return this.symptom_records.map((symptom_record)=>symptom_record.isActive()).some((item) => item === true);
       }
 
-    
+      set_item_to_record():void{
+
+      }
 
     }

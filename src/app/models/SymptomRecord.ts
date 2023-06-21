@@ -35,7 +35,9 @@ export class SymptomRecord extends ItemRecord{
         return false;
       }
 
+      set_item_to_record():void{
 
+      }
 
 
     

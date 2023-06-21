@@ -164,6 +164,10 @@ public check_day_has_data(date: string){
   return this.user_data.history.has(date);
 }
 
+public set_items_to_days_values(date: string){
+  const record: DayRecord = this.user_data.history.get(date)!;
+  record.set_survey_item_values();
+}
 
 
 }

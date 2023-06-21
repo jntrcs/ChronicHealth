@@ -30,6 +30,10 @@ import { TreatmentRecord } from "./TreatmentRecord";
         // return an array of all active ids
         return this.records.map((record) =>record.isActiveID()).filter((item) => item !== ''); 
       }
+
+      set_survey_item_values(){
+        this.records.map((item)=>item.set_item_to_record());
+      }
           
 
       
