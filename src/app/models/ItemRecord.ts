@@ -3,11 +3,13 @@ import { SurveyItem } from './SurveyItem';
 
 export abstract class ItemRecord {
 
-    public id:string;
+    public record_id:string;
+    public survey_item_id:string;
 
 
-      constructor() {
-        this.id  = uuidv4();
+    constructor(survey_item_id: string) {
+      this.survey_item_id = survey_item_id;
+        this.record_id  = uuidv4();
       }
 
     //abstract get_item_record(survey_item: SurveyItem):ItemRecord;

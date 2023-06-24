@@ -7,7 +7,6 @@ import { Treatment } from "./Treatment";
 
 export class TreatmentRecord extends ItemRecord{
 
-    public treatment_id: string;
     public side_effect_records: SymptomRecord[];
     public measurement_type: string;
     public measurement_value: string;
@@ -15,9 +14,8 @@ export class TreatmentRecord extends ItemRecord{
 
     
     constructor(treatment: Treatment) {
-        super();
+        super(treatment.id);
         this.treatment = treatment;
-        this.treatment_id = treatment.id;
         this.measurement_type =  treatment.measurement.constructor.name;
         this.measurement_value = treatment.measurement.get_value();
         this.side_effect_records=[];
@@ -28,7 +26,7 @@ export class TreatmentRecord extends ItemRecord{
 
       override isActiveID(): string {
           if(this.isActive()){
-            return this.treatment_id;
+            return this.survey_item_id;
           }else{
             return '';
           }
@@ -50,11 +48,8 @@ export class TreatmentRecord extends ItemRecord{
       set_item_to_record():void{
         this.treatment.measurement.set_value(this.measurement_value);
 
-        console.log(this.side_effect_records);
-        console.log(this.treatment.side_effects);
-    
         this.side_effect_records.map(record => 
-            this.treatment.side_effects.find((item: Symptom) => item.id === record.symptom_id)!
+            this.treatment.side_effects.find((item: Symptom) => item.id === record.survey_item_id)!
             .measurement.set_value(record.value_string)
             );
         

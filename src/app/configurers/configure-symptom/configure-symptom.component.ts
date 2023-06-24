@@ -24,7 +24,6 @@ export class ConfigureSymptomComponent  implements OnInit {
   add_to_dynamic_survey:boolean = false;
 
   constructor(private userService: UserService, private router: Router){
-    console.log('hi')
 
     const inputs = history.state;
     this.add_to_static_survey = Boolean(inputs.add_to_static_survey);

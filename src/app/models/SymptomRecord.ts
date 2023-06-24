@@ -4,22 +4,20 @@ import { Symptom } from "./Symptom";
 
 export class SymptomRecord extends ItemRecord{
 
-    public symptom_id: string;
     public measurement_type: string;
     public value_string: string;
     public symptom: Symptom;
     
     constructor(symptom: Symptom) {
-        super();
+        super(symptom.id);
         this.symptom = symptom;
-        this.symptom_id = symptom.id;
         this.measurement_type =  symptom.measurement.constructor.name;
         this.value_string = symptom.measurement.get_value();
       }
 
       isActiveID(): string {
         if(this.isActive()){
-          return this.symptom_id;
+          return this.survey_item_id;
         }else{
           return '';
         }
