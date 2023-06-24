@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export class SurveyItem {
+export abstract class SurveyItem {
     public id: string;
     public name: string;
 
@@ -8,4 +8,6 @@ export class SurveyItem {
         this.id = uuidv4();
         this.name = name;
     }
+
+    abstract set_to_default():void;
 }

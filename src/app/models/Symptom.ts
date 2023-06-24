@@ -33,6 +33,9 @@ export class Symptom extends SurveyItem {
       this.measurement = this.createMeasurement(measurementString);
     }
 
+    public override set_to_default(): void {
+      this.measurement.set_value_to_default();
+    }
 
     
     

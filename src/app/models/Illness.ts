@@ -29,4 +29,7 @@ import { Symptom } from './Symptom';
         this.convert_symptom_measurements(this.symptoms);
       }
 
+      public override set_to_default(): void {
+      
+      }
     }

@@ -26,12 +26,18 @@ get_static_survey(){
   return(this.user_data.static_survey);
 }
 
+//Use calculate dynamic survey if you want to calculate and set dynamic survey for a specific date
 calculate_dynamic_survey(date:string):SurveyItem[]{
   const all_active_ids: string[] = this.user_data.determine_active_item_ids(date);
   const all_active_items = all_active_ids.map((id)=>this.getSurveyItemByID(id)).filter((item): item is SurveyItem => item !== null);
   const not_in_static = this.filter_by_id(all_active_items, this.user_data.static_survey)
   this.user_data.dynamic_survey = not_in_static;
   return(this.user_data.dynamic_survey);
+}
+
+// use get dynamic survey if you want to get the dynamic survey that's already calculated.
+get_dynamic_survey():SurveyItem[]{
+  return this.user_data.dynamic_survey;
 }
 
 set_static_survey(static_survey: SurveyItem[]){
@@ -167,6 +173,12 @@ public check_day_has_data(date: string){
 public set_items_to_days_values(date: string){
   const record: DayRecord = this.user_data.history.get(date)!;
   record.set_survey_item_values();
+}
+
+public set_items_to_default(){
+  this.user_data.static_survey.map(item=>item.set_to_default());
+  this.user_data.dynamic_survey.map(item=>item.set_to_default());
+
 }
 
 

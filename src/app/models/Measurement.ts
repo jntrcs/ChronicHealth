@@ -25,6 +25,8 @@ export abstract class Measurement {
 
   abstract get_measurement_class():any;
   abstract get_value():string;
+  abstract set_value(value:string):void;
+  abstract set_value_to_default():void;
 
 }
 
@@ -41,6 +43,14 @@ export class PresentMeasurement extends Measurement {
   get_value(): string {
     return this.isPresent.toString()
   }
+
+  set_value(value:string){
+    this.isPresent = value==='true';
+  }
+
+  override set_value_to_default(): void {
+    this.isPresent = false;
+  }
 }
 
 export class CountMeasurement extends Measurement {
@@ -55,6 +65,14 @@ export class CountMeasurement extends Measurement {
   get_value(): string {
     return this.count.toString()
   }
+
+  set_value(value:string){
+    this.count = parseInt(value);
+  }
+
+  override set_value_to_default(): void {
+    this.count = 0;
+  }
 }
 
 export class SeverityMeasurement extends Measurement {
@@ -68,5 +86,13 @@ export class SeverityMeasurement extends Measurement {
 
   get_value(): string {
     return this.severity;
+  }
+
+  set_value(value:string){
+    this.severity = value;
+  }
+
+  override set_value_to_default(): void {
+    this.severity = "None";
   }
 }

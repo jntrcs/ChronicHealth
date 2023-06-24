@@ -33,7 +33,8 @@ export class UserData {
   ]
 
   this.history = new Map();
-  this.history.set("6/14/2023", new DayRecord([this.all_illnesses[0]]));
+  this.history.set("6/22/2023", new DayRecord([this.all_illnesses[0],
+  this.all_symptoms[1]]));
 
 
       this.static_survey = [...this.all_symptoms].slice(0,3);

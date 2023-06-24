@@ -53,8 +53,10 @@ export class Tab1Page {
   emitDateChange() {
     // You can emit the date change event here using Ionic's Events or EventEmitter
     this.stateService.set_date(this.currentDate);
+    this.userService.set_items_to_default();
     if(this.userService.check_day_has_data(this.stateService.string_date)){
       this.is_disabled = true;
+      this.userService.set_items_to_days_values(this.stateService.string_date);
     } else{
       this.is_disabled = false;
     }

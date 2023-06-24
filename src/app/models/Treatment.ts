@@ -46,4 +46,7 @@ export class Treatment extends SurveyItem {
       this.convert_symptom_measurements(this.side_effects);
     }
 
+    public override set_to_default(): void {
+      
+    }
   }
