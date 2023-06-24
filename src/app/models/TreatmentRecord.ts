@@ -11,10 +11,12 @@ export class TreatmentRecord extends ItemRecord{
     public side_effect_records: SymptomRecord[];
     public measurement_type: string;
     public measurement_value: string;
+    public treatment: Treatment;
 
     
     constructor(treatment: Treatment) {
         super();
+        this.treatment = treatment;
         this.treatment_id = treatment.id;
         this.measurement_type =  treatment.measurement.constructor.name;
         this.measurement_value = treatment.measurement.get_value();
@@ -46,7 +48,16 @@ export class TreatmentRecord extends ItemRecord{
       }
 
       set_item_to_record():void{
+        this.treatment.measurement.set_value(this.measurement_value);
 
+        console.log(this.side_effect_records);
+        console.log(this.treatment.side_effects);
+    
+        this.side_effect_records.map(record => 
+            this.treatment.side_effects.find((item: Symptom) => item.id === record.symptom_id)!
+            .measurement.set_value(record.value_string)
+            );
+        
       }
     
 

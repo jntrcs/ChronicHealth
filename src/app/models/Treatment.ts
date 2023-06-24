@@ -47,6 +47,7 @@ export class Treatment extends SurveyItem {
     }
 
     public override set_to_default(): void {
-      
+      this.measurement.set_value_to_default();
+      this.side_effects.map(side_effect => side_effect.set_to_default());
     }
   }
