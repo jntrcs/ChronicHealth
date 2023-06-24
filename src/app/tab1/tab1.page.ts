@@ -53,6 +53,7 @@ export class Tab1Page {
   emitDateChange() {
     // You can emit the date change event here using Ionic's Events or EventEmitter
     this.stateService.set_date(this.currentDate);
+    this.dynamic_survey = this.userService.calculate_dynamic_survey(this.stateService.string_date);
     this.userService.set_items_to_default();
     if(this.userService.check_day_has_data(this.stateService.string_date)){
       this.is_disabled = true;
@@ -60,7 +61,6 @@ export class Tab1Page {
     } else{
       this.is_disabled = false;
     }
-    this.dynamic_survey = this.userService.calculate_dynamic_survey(this.stateService.string_date);
   }
 
   save_record(){
@@ -88,7 +88,7 @@ export class Tab1Page {
       this.router.navigate(['/preconfigured-search-illness'], navigationExtras);
     }
 
-    if(type==='treatment'){
+    if(type==='treatment'){ 
       const navigationExtras: NavigationExtras = {
         state: {
           source: 'dynamic survey adder'

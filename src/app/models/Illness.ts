@@ -30,6 +30,6 @@ import { Symptom } from './Symptom';
       }
 
       public override set_to_default(): void {
-      
+        this.symptoms.map(symptom=>symptom.set_to_default());
       }
     }

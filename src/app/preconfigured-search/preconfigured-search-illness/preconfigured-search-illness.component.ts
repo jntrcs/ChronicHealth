@@ -24,7 +24,7 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
 
     this.source = inputs.source;
     if (this.source === "dynamic survey adder"){
-      this.illness_list = userService.filter_by_id(userService.get_illnesses(), userService.calculate_dynamic_survey(stateService.string_date));
+      this.illness_list = userService.filter_by_id(userService.get_illnesses(), userService.get_dynamic_survey());
 
     }
    }

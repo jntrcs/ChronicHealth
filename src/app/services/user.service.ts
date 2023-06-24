@@ -37,7 +37,6 @@ calculate_dynamic_survey(date:string):SurveyItem[]{
   if(this.user_data.history.has(date)){
     const day = this.user_data.history.get(date)!;
     const items = day.records.map(item=>this.getSurveyItemByID(item.survey_item_id)).filter((item): item is SurveyItem => item !== null);
-    console.log(items);
     const day_not_in_static = this.filter_by_id(items, this.user_data.static_survey);
     const day_not_in_static_or_dynamic = this.filter_by_id(day_not_in_static, this.user_data.dynamic_survey);
     this.user_data.dynamic_survey = this.user_data.dynamic_survey.concat(day_not_in_static_or_dynamic);
@@ -195,3 +194,4 @@ public set_items_to_default(){
 
 
 }
+ 
