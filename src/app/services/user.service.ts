@@ -43,6 +43,15 @@ calculate_dynamic_survey(date:string):SurveyItem[]{
 
   }
 
+  //dedupe any symptoms that appear in an illness
+  this.user_data.dynamic_survey.map(survey_item=>{
+    if (survey_item.constructor.name==='Illness'){
+      const illness = (survey_item as Illness);
+      this.filter_from_dynamic_survey(illness.symptoms);
+    }
+  })
+
+
   return(this.user_data.dynamic_survey);
 }
 

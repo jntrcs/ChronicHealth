@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { SurveyItem } from '../models/SurveyItem';
-import { DayRecord } from '../models/DayRecord';
-import { NavigationExtras, Router } from '@angular/router';
+import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { AppStateService } from '../services/app-state.service';
-import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -26,6 +24,15 @@ export class Tab1Page {
     this.static_survey = userService.get_static_survey();
     this.dynamic_survey = userService.calculate_dynamic_survey(stateService.string_date);
     this.is_disabled = false;
+
+
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && event.url === '/') {
+        // This condition checks if the returned page is the home page
+        this.update_dynamic_survey();
+      }
+    });
   }
 
   incrementDate() {
@@ -109,6 +116,11 @@ export class Tab1Page {
       console.log(this.dynamic_survey);
       console.log("userservice:");
       console.log(this.userService.get_dynamic_survey());
+    }
+
+    update_dynamic_survey(){
+      console.log("Updating");
+      this.dynamic_survey = this.userService.get_dynamic_survey();
     }
 
 }
