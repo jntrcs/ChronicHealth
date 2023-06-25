@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SurveyItem } from 'src/app/models/SurveyItem';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { Illness } from 'src/app/models/Illness';
 
 @Component({
   selector: 'app-preconfigured-search-generic',
@@ -62,6 +63,11 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
 
   addToDynamicSurvey(survey_item: SurveyItem){
     this.userService.add_to_dynamic_survey(survey_item);
+    //If what is being added is an illness, eliminate any symptom in the dynamic survey that is not nested under illness
+    if (survey_item.constructor.name==='Illness'){
+      const illness = (survey_item as Illness);
+      this.userService.filter_from_dynamic_survey(illness.symptoms);
+    }
     this.router.navigate(['/']);
   }
 }

@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { SurveyItem } from '../models/SurveyItem';
 import { DayRecord } from '../models/DayRecord';
 import { NavigationExtras, Router } from '@angular/router';
 import { AppStateService } from '../services/app-state.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -101,6 +102,13 @@ export class Tab1Page {
 
     update_record(){
       this.is_disabled = false;
+    }
+
+    logDynamicSurvey(){
+      console.log("this.dynamic_survey")
+      console.log(this.dynamic_survey);
+      console.log("userservice:");
+      console.log(this.userService.get_dynamic_survey());
     }
 
 }

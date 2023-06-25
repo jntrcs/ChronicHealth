@@ -51,6 +51,10 @@ get_dynamic_survey():SurveyItem[]{
   return this.user_data.dynamic_survey;
 }
 
+filter_from_dynamic_survey(items: SurveyItem[]){
+  this.user_data.dynamic_survey = this.filter_by_id(this.get_dynamic_survey(), items)
+}
+
 set_static_survey(static_survey: SurveyItem[]){
   this.user_data.static_survey = static_survey;
 }
@@ -97,7 +101,7 @@ add_to_dynamic_survey(survey_item: SurveyItem){
 }
 
 remove_from_dynamic_survey(survey_item:SurveyItem){
-  this.filter_by_id(this.user_data.dynamic_survey, [survey_item]);
+  this.user_data.dynamic_survey = this.filter_by_id(this.user_data.dynamic_survey, [survey_item]);
 }
 
 getSymptomByID(id: string): Symptom | null{
