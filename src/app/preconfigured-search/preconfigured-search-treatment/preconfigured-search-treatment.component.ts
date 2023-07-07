@@ -14,6 +14,7 @@ export class PreconfiguredSearchTreatmentComponent  implements OnInit {
   source:string;
   add_to_dynamic_survey:boolean=true;
   add_to_static_survey:boolean=false; 
+  edit_selected :boolean = false;
 
   constructor(private userService: UserService, private router:Router) {
     this.treatment_list = [];
@@ -28,6 +29,12 @@ export class PreconfiguredSearchTreatmentComponent  implements OnInit {
       this.treatment_list = userService.filter_by_id(userService.get_treatments(), userService.get_static_survey());
       this.add_to_dynamic_survey = false;
       this.add_to_static_survey = true;
+    }
+    else if (this.source==="settings"){
+      this.treatment_list =userService.get_treatments();
+      this.add_to_dynamic_survey = false;
+      this.add_to_static_survey = false;
+      this.edit_selected = true;
     }
    }
 
@@ -57,7 +64,16 @@ export class PreconfiguredSearchTreatmentComponent  implements OnInit {
           }
         };
 
-  }
+  } else if (this.source==="settings"){
+    navigationExtras = {
+      state: {
+        add_to_static_survey: false,
+        add_to_dynamic_survey: false,
+        cancel_return_url: '/preconfigured-search-treatment',
+        success_return_url: '/preconfigured-search-treatment'
+      }
+    }
+  };
   this.router.navigate(['/treatment-editor'], navigationExtras);
 
 }

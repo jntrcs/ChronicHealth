@@ -76,7 +76,7 @@ export class CountMeasurement extends Measurement {
 }
 
 export class SeverityMeasurement extends Measurement {
-  public severity: string = "Severe"
+  public severity: string = "None"
   constructor(color:string) {
     super('severity', color);
   }

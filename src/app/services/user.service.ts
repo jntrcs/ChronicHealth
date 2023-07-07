@@ -161,6 +161,11 @@ getTreatmentByID(id: string): Treatment | null{
 
 create_day_record(survey: SurveyItem[], date:Date = new Date()){
   this.user_data.history.set(this.appState.string_date, new DayRecord(survey));
+
+  // we need to back date the illness confirmation history to previous days.
+  // If I first recorded an illness on Monday, but I confirm it on Wednesday, it should look as if it's always been confirmed. 
+  // And actually, we need to check this going forward and backward. If I confirm
+
 }
 
 

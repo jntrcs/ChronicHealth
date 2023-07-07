@@ -14,6 +14,7 @@ export class PreconfiguredSearchSymptomComponent  implements OnInit {
   public source: string;
   public add_to_static_survey: boolean = false;
   public add_to_dynamic_survey: boolean = false;
+  public edit_selected:boolean = false;
   
  // private all_symptoms: SurveyItem[];
   constructor(userService: UserService, private router: Router) {
@@ -26,6 +27,9 @@ export class PreconfiguredSearchSymptomComponent  implements OnInit {
     }else if(this.source=="dynamic survey adder"){
       this.symptom_list = userService.filter_by_id(userService.get_symptoms(), userService.get_survey());
       this.add_to_dynamic_survey = true;
+    }else if(this.source=="settings"){
+      this.symptom_list = userService.get_symptoms();
+      this.edit_selected = true;
     }else{
       this.symptom_list = userService.get_symptoms();
 
@@ -57,6 +61,15 @@ export class PreconfiguredSearchSymptomComponent  implements OnInit {
           add_to_dynamic_survey: true,
           cancel_return_url: '/preconfigured-search-symptom',
           success_return_url: '/'
+        }
+      };
+    } else if (this.source === 'settings') {
+      navigationExtras = {
+        state: {
+          add_to_static_survey: false,
+          add_to_dynamic_survey: false,
+          cancel_return_url: '/preconfigured-search-symptom',
+          success_return_url: '/preconfigured-search-symptom'
         }
       };
     } else {

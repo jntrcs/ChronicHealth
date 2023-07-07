@@ -16,4 +16,20 @@
       </div>
     </ion-card-content>
   </ion-card>
+  <ion-card class="settings-card" (click)="goToSymptomListEditor('symptom')">
+    <ion-card-content>
+      <div class="settings-button">
+        <ion-label>Edit Existing Symptoms</ion-label>
+        <ion-icon name="arrow-forward" class="arrow-icon"></ion-icon>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="settings-card" (click)="goToSymptomListEditor('treatment')">
+    <ion-card-content>
+      <div class="settings-button">
+        <ion-label>Edit Existing Treatments</ion-label>
+        <ion-icon name="arrow-forward" class="arrow-icon"></ion-icon>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

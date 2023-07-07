@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 
 
 @Component({
@@ -16,6 +16,27 @@ export class Tab3Page {
   goToStaticSurveyEditor() {
     this.router.navigate(['/static-survey-editor']);
 
+  }
+
+  goToSymptomListEditor(type: string) {
+      if (type==='symptom'){
+        const navigationExtras: NavigationExtras = {
+          state: {
+            source: 'settings'
+          }
+        }
+        this.router.navigate(['/preconfigured-search-symptom'], navigationExtras);
+  
+      }else if (type==='treatment'){
+        const navigationExtras: NavigationExtras = {
+          state: {
+            source: 'settings'
+          }
+        }
+        this.router.navigate(['/preconfigured-search-treatment'], navigationExtras);
+      }
+  
+  
   }
 
 }

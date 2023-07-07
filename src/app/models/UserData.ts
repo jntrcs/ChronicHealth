@@ -8,28 +8,28 @@ export class UserData {
     constructor() {
 // This should load the data from memory.
 //For now, just create a bunch of sample data
-    this.all_symptoms =[
+    this.all_symptoms =[];/*
         new Symptom('Shortness of Breath',  'severity'),
         new Symptom('Fever',  'present'),
         new Symptom('Cough',  'count'),
         new Symptom("Weak legs", 'severity'),
         new Symptom("Body Aches", "severity", false),
         new Symptom("Congestion", "count", false)
-  ];
+  ];*/
 
 
-  this.all_side_effects = [new Symptom("Leg pain", 'present', true),
+  this.all_side_effects = []/*new Symptom("Leg pain", 'present', true),
      new Symptom("Fatigue", "present", true),
-      new Symptom("Pain", "severity", true)];
+      new Symptom("Pain", "severity", true)];*/
       
-  this.all_treatments = [
+  this.all_treatments = []/*
     new Treatment("Allergy Pill", "present", []),
     new Treatment("Rituxin", "count", this.all_side_effects.slice(1,2))
 
-  ];
+  ];*/
 
   this.all_illnesses = [
-    new Illness("Flu", [this.all_symptoms[4], this.all_symptoms[5]])
+   // new Illness("Flu", [this.all_symptoms[4], this.all_symptoms[5]])
   ]
 
   this.history = new Map();
@@ -37,9 +37,9 @@ export class UserData {
   //this.all_symptoms[1]]));
 
 
-      this.static_survey = [...this.all_symptoms].slice(0,3);
+      this.static_survey = []//F...this.all_symptoms].slice(0,3);
       //this.static_survey.push(this.all_treatments[0])   ;
-      this.static_survey.push(this.all_treatments[1]) ;
+      //this.static_survey.push(this.all_treatments[1]) ;
       this.dynamic_survey = [];
      // this.dynamic_survey.push(this.all_illnesses[0])
      this.sortSurveyItemsByName(this.all_symptoms);
