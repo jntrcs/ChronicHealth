@@ -19,11 +19,11 @@ export class Symptom extends SurveyItem {
     private createMeasurement(measurementString: string): Measurement {
       switch (measurementString) {
         case 'present':
-          return new PresentMeasurement(this.is_side_effect ? "side-effect" : "symptom");
+          return new PresentMeasurement();
         case 'count':
-          return new CountMeasurement(this.is_side_effect ? "side-effect" : "symptom");
+          return new CountMeasurement();
         case 'severity':
-          return new SeverityMeasurement(this.is_side_effect ? "side-effect" : "symptom");
+          return new SeverityMeasurement();
         default:
           throw new Error(`Invalid measurement type: ${measurementString}`);
       }
@@ -37,6 +37,5 @@ export class Symptom extends SurveyItem {
       this.measurement.set_value_to_default();
     }
 
-    
     
   }

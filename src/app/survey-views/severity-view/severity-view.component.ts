@@ -10,6 +10,7 @@ export class SeverityViewComponent  implements OnInit {
 
   @Input() measurement!:SeverityMeasurement;
   @Input() is_disabled!:boolean;
+  @Input() color!:string;
   constructor() {
     this.is_disabled = false;
 
@@ -34,7 +35,7 @@ export class SeverityViewComponent  implements OnInit {
 
   get_unselected_class():string{
 
-    switch (this.measurement.color) {
+    switch (this.color) {
       case "symptom":
         return("option-labelsymptom");
       case "illness":

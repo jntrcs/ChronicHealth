@@ -9,5 +9,5 @@
 
 
 <ion-list class="symptom-list">
-  <app-compact-symptom *ngFor="let side_effects of treatment.side_effects" [symptom]="side_effects" [is_disabled] = "is_disabled"></app-compact-symptom>
+  <app-compact-symptom color = "treatment" *ngFor="let side_effects of treatment.side_effects" [symptom]="side_effects" [is_disabled] = "is_disabled"></app-compact-symptom>
 </ion-list>

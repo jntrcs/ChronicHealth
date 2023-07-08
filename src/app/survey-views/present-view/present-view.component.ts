@@ -11,6 +11,7 @@ export class PresentViewComponent  implements OnInit {
 
   @Input() measurement!:PresentMeasurement;
   @Input() is_disabled!:boolean;
+  @Input() color!:string;
   constructor() {
     this.is_disabled = false;
    }

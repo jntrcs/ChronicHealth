@@ -6,15 +6,15 @@
     </ion-col>
     <ion-col size="auto">
       <div *ngIf="symptom.measurement.isPresentMeasurement()" class="compact-present">
-        <app-present-view  [is_disabled]="is_disabled" [measurement] = "symptom.measurement.get_measurement_class()"></app-present-view  >
+        <app-present-view [color] = "color"  [is_disabled]="is_disabled" [measurement] = "symptom.measurement.get_measurement_class()"></app-present-view  >
     </div>
     
     <div *ngIf="symptom.measurement.isCountMeasurement()" class="compact-count">
-        <app-count-view  [is_disabled]="is_disabled" color="illness" [measurement] = "symptom.measurement.get_measurement_class()"></app-count-view>
+        <app-count-view  [is_disabled]="is_disabled" [color]="color" [measurement] = "symptom.measurement.get_measurement_class()"></app-count-view>
     </div>
     
     <div *ngIf="symptom.measurement.isSeverityMeasurement()" class="compact-severity">
-        <app-severity-view  [is_disabled]="is_disabled" [measurement] = "symptom.measurement.get_measurement_class()"></app-severity-view>
+        <app-severity-view [color]="color"  [is_disabled]="is_disabled" [measurement] = "symptom.measurement.get_measurement_class()"></app-severity-view>
     </div>
     </ion-col>
   </ion-row>

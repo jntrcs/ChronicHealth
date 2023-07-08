@@ -1,27 +1,27 @@
 <ion-item lines="none">
  
   <ion-label [class]="get_unselected_class()" 
-  [class.selected-symptom]="isSelected('None') && measurement.color==='symptom'" 
-  [class.selected-sideeffect]="isSelected('None') && measurement.color==='treatment'" 
-  [class.selected-illness]="isSelected('None') && measurement.color==='illness'" 
+  [class.selected-symptom]="isSelected('None') && color==='symptom'" 
+  [class.selected-sideeffect]="isSelected('None') && color==='treatment'" 
+  [class.selected-illness]="isSelected('None') && color==='illness'" 
   (click)="selectOption('None')" [class.disabled]="is_disabled">None</ion-label>
   
   <ion-label [class]="get_unselected_class()" 
-  [class.selected-symptom]="isSelected('Mild') && measurement.color==='symptom'" 
-  [class.selected-sideeffect]="isSelected('Mild') && measurement.color==='treatment'" 
-  [class.selected-illness]="isSelected('Mild') && measurement.color==='illness'" 
+  [class.selected-symptom]="isSelected('Mild') && color==='symptom'" 
+  [class.selected-sideeffect]="isSelected('Mild') && color==='treatment'" 
+  [class.selected-illness]="isSelected('Mild') && color==='illness'" 
   (click)="selectOption('Mild')" [class.disabled]="is_disabled">Mild</ion-label>
   
   <ion-label [class]="get_unselected_class()" 
-  [class.selected-symptom]="isSelected('Moderate') && measurement.color==='symptom'" 
-  [class.selected-sideeffect]="isSelected('Moderate') && measurement.color==='treatment'" 
-  [class.selected-illness]="isSelected('Moderate') && measurement.color==='illness'" 
+  [class.selected-symptom]="isSelected('Moderate') && color==='symptom'" 
+  [class.selected-sideeffect]="isSelected('Moderate') && color==='treatment'" 
+  [class.selected-illness]="isSelected('Moderate') && color==='illness'" 
   (click)="selectOption('Moderate')" [class.disabled]="is_disabled">Moderate</ion-label>
   
   <ion-label [class]="get_unselected_class()" 
-  [class.selected-symptom]="isSelected('Severe') && measurement.color==='symptom'" 
-  [class.selected-sideeffect]="isSelected('Severe') && measurement.color==='treatment'" 
-  [class.selected-illness]="isSelected('Severe') && measurement.color==='illness'" 
+  [class.selected-symptom]="isSelected('Severe') && color==='symptom'" 
+  [class.selected-sideeffect]="isSelected('Severe') && color==='treatment'" 
+  [class.selected-illness]="isSelected('Severe') && color==='illness'" 
   (click)="selectOption('Severe')" [class.disabled]="is_disabled">Severe</ion-label>
 </ion-item>
 

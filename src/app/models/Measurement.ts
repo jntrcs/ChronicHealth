@@ -2,11 +2,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 export abstract class Measurement {
   name: string;
-  color: string
+ // color: string
   public id:string;
-  constructor(name: string, color: string) {
+  constructor(name: string) {
     this.name=name;
-    this.color = color;
+    //this.color = color;
     this.id = uuidv4();
 
   }
@@ -32,8 +32,8 @@ export abstract class Measurement {
 
 export class PresentMeasurement extends Measurement {
   public isPresent: boolean = false;
-  constructor(color: string) {
-    super('present', color);
+  constructor() {
+    super('present');
   }
 
   get_measurement_class():PresentMeasurement{
@@ -55,8 +55,8 @@ export class PresentMeasurement extends Measurement {
 
 export class CountMeasurement extends Measurement {
   public count: number = 0;
-  constructor(color:string) {
-    super('count', color);
+  constructor() {
+    super('count');
   }
   get_measurement_class():CountMeasurement{
     return(this)
@@ -77,8 +77,8 @@ export class CountMeasurement extends Measurement {
 
 export class SeverityMeasurement extends Measurement {
   public severity: string = "None"
-  constructor(color:string) {
-    super('severity', color);
+  constructor() {
+    super('severity');
   }
   get_measurement_class():SeverityMeasurement{
     return(this)

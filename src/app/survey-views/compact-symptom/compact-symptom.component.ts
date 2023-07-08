@@ -10,7 +10,9 @@ export class CompactSymptomComponent  implements OnInit {
 
   @Input() symptom!: Symptom;
   @Input() is_disabled!: boolean;
-  constructor() { }
+  @Input() color!: string;
+  constructor() {
+   }
 
   ngOnInit() {}
 
