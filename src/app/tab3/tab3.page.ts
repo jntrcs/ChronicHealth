@@ -34,6 +34,13 @@ export class Tab3Page {
           }
         }
         this.router.navigate(['/preconfigured-search-treatment'], navigationExtras);
+      }else if (type==='illness'){
+        const navigationExtras: NavigationExtras = {
+          state: {
+            source: 'settings'
+          }
+        }
+        this.router.navigate(['/preconfigured-search-illness'], navigationExtras);
       }
   
   

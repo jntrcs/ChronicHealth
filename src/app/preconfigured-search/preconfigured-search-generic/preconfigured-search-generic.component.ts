@@ -103,5 +103,18 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
       this.router.navigate(['/treatment-editor'], navigationExtras);
   
     }
+    if (survey_item instanceof Illness){
+      const navigationExtras: NavigationExtras = {
+        state: {
+          add_to_static_survey: false,
+          add_to_dynamic_survey: false,
+          cancel_return_url: '/preconfigured-search-illness',
+          success_return_url: '/preconfigured-search-illness',
+          illness_id: survey_item.id
+        }
+      }
+      this.router.navigate(['/illness-editor'], navigationExtras);
+  
+    }
   }
 }

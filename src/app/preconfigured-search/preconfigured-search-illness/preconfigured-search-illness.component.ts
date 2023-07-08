@@ -16,6 +16,7 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
   source:string;
   add_to_dynamic_survey:boolean=true;
   add_to_static_survey:boolean=false; 
+  public edit_selected:boolean = false;
 
   constructor(private userService: UserService, private router:Router, private stateService:AppStateService) {
     this.illness_list = [];
@@ -26,6 +27,10 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
     if (this.source === "dynamic survey adder"){
       this.illness_list = userService.filter_by_id(userService.get_illnesses(), userService.get_dynamic_survey());
 
+    }else if(this.source=="settings"){
+      this.illness_list = this.userService.get_illnesses();
+      this.edit_selected = true;
+      this.add_to_dynamic_survey = false;
     }
    }
 
@@ -34,7 +39,7 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
   openIllnessCreator(){
 
 
-     let navigationExtras: NavigationExtras;
+     let navigationExtras: NavigationExtras = {};
     
 
     if (this.source === 'dynamic survey adder') {
@@ -46,7 +51,15 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
             success_return_url: '/'
           }
         };
-      } else {
+      }else if (this.source === 'settings') {
+        navigationExtras = {
+          state: {
+            add_to_static_survey: false,
+            add_to_dynamic_survey: false,
+            cancel_return_url: '/preconfigured-search-illness',
+            success_return_url: '/preconfigured-search-illness'
+          }
+        }}else {
         // Default navigation extras if neither condition is met
         navigationExtras = {
           state: {
