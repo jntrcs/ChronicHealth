@@ -52,7 +52,7 @@ export class ConfigureSideEffectComponentComponent  implements OnInit {
       return; // Prevent saving the duplicate symptom
     }
   }
-    const symptom = new Symptom(this.symptomName, this.symptomMeasurement, true);
+    const symptom = new Symptom(this.symptomName, this.symptomMeasurement);
 
     if (this.add_to_static_survey){
       this.userService.add_to_static_survey(symptom);
@@ -62,7 +62,7 @@ export class ConfigureSideEffectComponentComponent  implements OnInit {
 
 
     }
-    this.userService.add_side_effect(symptom); 
+    this.userService.add_symptom(symptom); 
     this.router.navigate([this.success_return_url]);
 
   }

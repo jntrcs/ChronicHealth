@@ -73,9 +73,6 @@ get_symptoms(){
 }
 
 
-get_side_effects(){
-  return(this.user_data.all_side_effects)
-}
 
 get_illnesses(){
   return(this.user_data.all_illnesses)
@@ -132,18 +129,9 @@ getSurveyItemByID(id:string):SurveyItem | null{
   if (illness!==null){
     return(illness);
   }
-  const side_effect = this.getSideEffectByID(id)
-  if (side_effect!==null){
-    return(side_effect);
-  }
   return null;
 }
 
-getSideEffectByID(id: string): Symptom | null{
-  const symptom = this.user_data.all_side_effects.find((item: Symptom) => item.id === id);
-
-  return(symptom||null);
-}
 
 getIllnessByID(id: string): Illness | null{
   const illness = this.user_data.all_illnesses.find((item: Illness) => item.id === id);
@@ -176,11 +164,7 @@ public add_symptom(symptom:Symptom){
 
 }
 
-public add_side_effect(symptom:Symptom){
-  this.get_side_effects().push(symptom);
-  this.user_data.sortSurveyItemsByName(this.get_side_effects());
 
-}
 
 public add_treatment(treatment:Treatment){
   this.get_treatments().push(treatment);

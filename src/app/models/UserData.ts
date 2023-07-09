@@ -18,10 +18,10 @@ export class UserData {
   ];*/
 
 
-  this.all_side_effects = []/*new Symptom("Leg pain", 'present', true),
+  /*this.all_side_effects = []/*new Symptom("Leg pain", 'present', true),
      new Symptom("Fatigue", "present", true),
       new Symptom("Pain", "severity", true)];*/
-      
+     
   this.all_treatments = []/*
     new Treatment("Allergy Pill", "present", []),
     new Treatment("Rituxin", "count", this.all_side_effects.slice(1,2))
@@ -46,7 +46,7 @@ export class UserData {
     }
   
     public all_symptoms: Symptom[];
-    public all_side_effects: Symptom[];
+    //public all_side_effects: Symptom[];
     public all_illnesses: Illness[];
     public all_treatments: Treatment[];
     public static_survey: SurveyItem[];

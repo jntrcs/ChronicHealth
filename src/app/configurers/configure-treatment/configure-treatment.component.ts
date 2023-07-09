@@ -31,7 +31,7 @@ export class ConfigureTreatmentComponent  implements OnInit {
     this.add_to_dynamic_survey = Boolean(inputs.add_to_dynamic_survey);
     this.success_return_url = inputs.success_return_url;
     this.cancel_return_url = inputs.cancel_return_url;
-    this.all_side_effects = userService.get_side_effects();
+    this.all_side_effects = userService.get_symptoms();
     this.selected_symptom_ids =[];
 
 
@@ -60,7 +60,7 @@ export class ConfigureTreatmentComponent  implements OnInit {
     }
   }
 
-  const symptoms:Symptom[] = this.selected_symptom_ids.map(item => this.userService.getSideEffectByID(item)!);
+  const symptoms:Symptom[] = this.selected_symptom_ids.map(item => this.userService.getSymptomByID(item)!);
 
   const treatment = new Treatment(this.treatmentName, this.treatmentMeasurement, symptoms);
   this.userService.add_treatment(treatment);
@@ -98,7 +98,7 @@ export class ConfigureTreatmentComponent  implements OnInit {
     this.treatment.name = this.treatmentName;
     this.treatment.changeMeasurement(this.treatmentMeasurement);
 
-    const symptoms:Symptom[] = this.selected_symptom_ids.map(item => this.userService.getSideEffectByID(item)!);
+    const symptoms:Symptom[] = this.selected_symptom_ids.map(item => this.userService.getSymptomByID(item)!);
     this.treatment.setSideEffects(symptoms);
     this.router.navigate([this.success_return_url]);
 
