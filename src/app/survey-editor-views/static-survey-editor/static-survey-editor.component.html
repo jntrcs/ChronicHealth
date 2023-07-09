@@ -8,6 +8,11 @@
 <ion-content class="ion-padding">
   <p>The every day section of the survey let's you choose the things you want to track every day. You can add, remove, and rearrange survey questions on this page.</p>
 
+  <div *ngIf="survey_list.length === 0">
+    <!-- Content to show when survey_list is empty -->
+    <h5>Use the buttons below to set up a symptom/treatment to track every day.</h5>
+  </div>
+
   <ion-reorder-group [disabled]="false" (ionItemReorder)="reorderItems($event)">
     <ion-item *ngFor="let survey_item of survey_list" ionReorder>
       <app-survey-item-editor-view [survey_item]="survey_item"></app-survey-item-editor-view>

@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { Symptom } from 'src/app/models/Symptom';
+import { Treatment } from 'src/app/models/Treatment';
 
 @Component({
   selector: 'app-static-survey-editor',
@@ -79,6 +80,20 @@ export class StaticSurveyEditorComponent  implements OnInit {
         }
       }
       this.router.navigate(['/symptom-editor'], navigationExtras);
+  
+    }
+
+    if (survey_item instanceof Treatment){
+      const navigationExtras: NavigationExtras = {
+        state: {
+          add_to_static_survey: false,
+          add_to_dynamic_survey: false,
+          cancel_return_url: '/static-survey-editor',
+          success_return_url: '/static-survey-editor',
+          treatment_id: survey_item.id
+        }
+      }
+      this.router.navigate(['/treatment-editor'], navigationExtras);
   
     }
 
