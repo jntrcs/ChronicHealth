@@ -6,6 +6,7 @@
 
 <div *ngIf="filtered_survey_items.length === 0">
   <!-- Content to show when survey_list is empty -->
+  <h5>No items to show</h5>
   <h5>Use the button below to configure a new item</h5>
 </div> 
 <ion-item *ngFor="let survey_item of filtered_survey_items">
