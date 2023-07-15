@@ -159,6 +159,7 @@ create_day_record(survey: SurveyItem[], date:Date = new Date()){
 
 
 public add_symptom(symptom:Symptom){
+  this.add_history_item(symptom);
   this.get_symptoms().push(symptom);
   this.user_data.sortSurveyItemsByName(this.get_symptoms());
 
@@ -167,12 +168,14 @@ public add_symptom(symptom:Symptom){
 
 
 public add_treatment(treatment:Treatment){
+  this.add_history_item(treatment);
   this.get_treatments().push(treatment);
   this.user_data.sortSurveyItemsByName(this.get_treatments());
 
 }
 
 public add_illness(illness:Illness){
+  this.add_history_item(illness);
   this.get_illnesses().push(illness);
   this.user_data.sortSurveyItemsByName(this.get_illnesses());
 
@@ -192,6 +195,23 @@ public set_items_to_default(){
   this.user_data.static_survey.map(item=>item.set_to_default());
   this.user_data.dynamic_survey.map(item=>item.set_to_default());
 
+}
+
+public get_history_item(history_id: string, position:number):SurveyItem{
+  return this.user_data.item_history.get(history_id)![position];
+}
+
+add_history_item(survey_item:SurveyItem){
+  console.log(survey_item);
+  if(survey_item.history_place===0){
+    this.user_data.item_history.set(survey_item.history_id, [survey_item])
+  }else{ // this probably doesn't work because you can't just set arbitrary places in an array like that.
+    this.user_data.item_history.get(survey_item.history_id)![survey_item.history_place] = survey_item;
+  }
+}
+
+public get_next_history_slot(history_id:string){
+  return this.user_data.item_history.get(history_id)!.length;
 }
 
 

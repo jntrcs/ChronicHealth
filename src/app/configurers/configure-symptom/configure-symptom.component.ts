@@ -55,7 +55,9 @@ export class ConfigureSymptomComponent  implements OnInit {
       return; // Prevent saving the duplicate symptom
     }
   }
-    const symptom = new Symptom(this.symptomName, this.symptomMeasurement);
+    const symptom = Symptom.createNewSymptom(this.symptomName, this.symptomMeasurement);
+    this.userService.add_symptom(symptom); 
+
 
     if (this.add_to_static_survey){
       this.userService.add_to_static_survey(symptom);
@@ -65,7 +67,6 @@ export class ConfigureSymptomComponent  implements OnInit {
 
 
     }
-    this.userService.add_symptom(symptom); 
     //this.new_symtpom_id.emit(symptom.id);
 
     this.router.navigate([this.success_return_url]);

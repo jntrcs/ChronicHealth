@@ -62,7 +62,7 @@ export class ConfigureTreatmentComponent  implements OnInit {
 
   const symptoms:Symptom[] = this.selected_symptom_ids.map(item => this.userService.getSymptomByID(item)!);
 
-  const treatment = new Treatment(this.treatmentName, this.treatmentMeasurement, symptoms);
+  const treatment = Treatment.createNewTreatment(this.treatmentName, this.treatmentMeasurement, symptoms);
   this.userService.add_treatment(treatment);
   if(this.add_to_dynamic_survey){
     this.userService.add_to_dynamic_survey(treatment);

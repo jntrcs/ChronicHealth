@@ -60,7 +60,7 @@ export class ConfigureIllnessComponent  implements OnInit {
   const symptoms:Symptom[] = this.selected_symptom_ids.map(item => this.userService.getSymptomByID(item)!);
 
 
-  const illness = new Illness(this.illnessName, symptoms);
+  const illness = Illness.createNewIllness(this.illnessName, symptoms);
 
   this.userService.add_illness(illness);
   if(this.add_to_dynamic_survey){

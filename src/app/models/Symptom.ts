@@ -1,16 +1,34 @@
 import { Measurement, PresentMeasurement, 
   CountMeasurement, SeverityMeasurement } from './Measurement'
 import {SurveyItem} from './SurveyItem'
+import { v4 as uuidv4 } from 'uuid';
+
 
 export class Symptom extends SurveyItem {
     constructor(
       name: string,
       //public icon: string,
       measurementString: string, 
-      public is_side_effect: boolean = false
+      history_id: string,
+      history_place:number
+      //public is_side_effect: boolean = false
     ) {
-      super(name);
+      super(name, history_id, history_place);
       this.measurement = this.createMeasurement(measurementString);
+    }
+
+    static createNewSymptom(name:string, measurementString: string){
+      const history_id: string = uuidv4();
+      const history_place = 0;
+      return new Symptom(name, measurementString, history_id, history_place)
+
+    }
+
+    static createEditedSymptom(name:string, measurementString: string,     
+        history_id: string,
+        history_place:number ){
+      return new Symptom(name, measurementString, history_id, history_place);
+
     }
   
     public measurement: Measurement;
@@ -39,3 +57,5 @@ export class Symptom extends SurveyItem {
 
     
   }
+
+

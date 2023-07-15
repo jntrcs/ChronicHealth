@@ -1,5 +1,6 @@
 import { DayRecord } from "./DayRecord";
 import { Illness } from "./Illness";
+import { ItemRecord } from "./ItemRecord";
 import { SurveyItem } from "./SurveyItem";
 import { Symptom } from "./Symptom";
 import { Treatment } from "./Treatment";
@@ -33,6 +34,7 @@ export class UserData {
   ]
 
   this.history = new Map();
+  this.item_history = new Map();
   //this.history.set("6/22/2023", new DayRecord([this.all_illnesses[0],
   //this.all_symptoms[1]]));
 
@@ -51,6 +53,7 @@ export class UserData {
     public all_treatments: Treatment[];
     public static_survey: SurveyItem[];
     public history:  Map<string, DayRecord>;
+    public item_history:  Map<string, SurveyItem[]>;
     public dynamic_survey: SurveyItem[];
 
 
