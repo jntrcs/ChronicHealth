@@ -169,9 +169,7 @@ public add_symptom(symptom:Symptom){
 }
 
 public remove_symptom(symptom:Symptom){
-  console.log(this.get_symptoms());
   this.user_data.all_symptoms = this.filter_by_id(this.user_data.all_symptoms, [symptom]).map(item=>item as Symptom);
-  console.log(this.get_symptoms());
 }
 
 
@@ -225,7 +223,6 @@ public get_next_history_slot(history_id:string){
 }
 
 public editSymptom(old_symptom:Symptom, new_name:string, new_measurement:string){
-  console.log("RUNNING EDITSYMPTOM")
   // if name and measurement string are the same, do nothing
   // if name is different, change all names in the history stack
   // if measurementstring is different, create a new symptom with a new measurement; remove the old symptom from all symptoms; add new to stack

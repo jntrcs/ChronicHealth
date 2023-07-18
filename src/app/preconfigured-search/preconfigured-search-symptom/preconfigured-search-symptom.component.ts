@@ -35,19 +35,12 @@ export class PreconfiguredSearchSymptomComponent  implements OnInit {
 
     }
 
-    /*this.router.events.subscribe((event) => {
-      console.log(event);
 
-      if (event instanceof NavigationEnd && event.url === '/preconfigured-search-symptom') {
-        // This condition checks if the returned page is the home page
-        this.update_symptom_list();
-      }
-    });*/
 
 
    }
 
-  /* update_symptom_list(){
+   update_symptom_list(){
     console.log("updating symptom list");
     console.log(this.userService.get_symptoms());
     if (this.source === "static survey editor"){
@@ -63,17 +56,17 @@ export class PreconfiguredSearchSymptomComponent  implements OnInit {
       this.symptom_list = this.userService.get_symptoms();
 
     }
-    console.log(this.symptom_list);
-   }*/
+   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("running ngOninit")
+    this.router.events.subscribe((event) => {
 
-  logstuff(){
-    console.log("This is the symptom_list");
-    console.log(this.symptom_list);
-
-    console.log('this is user service get symptoms');
-    console.log(this.userService.get_symptoms())
+      if (event instanceof NavigationEnd && event.url === '/preconfigured-search-symptom') {
+        // This condition checks if the returned page is the home page
+        this.update_symptom_list();
+      }
+    });
   }
 
   

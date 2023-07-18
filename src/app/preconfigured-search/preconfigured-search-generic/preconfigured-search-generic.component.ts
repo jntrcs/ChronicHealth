@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { SurveyItem } from 'src/app/models/SurveyItem';
 import { UserService } from 'src/app/services/user.service';
 import { NavigationExtras, Router } from '@angular/router';
@@ -23,6 +23,13 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
   constructor(private userService: UserService, private router: Router) {
     
    }
+
+   ngOnChanges(changes: SimpleChanges) {
+    if (changes['survey_item_list']) {
+      this.filtered_survey_items = this.survey_item_list;
+    }
+  }
+
 
   ngOnInit() {
     this.filtered_survey_items = this.survey_item_list;
