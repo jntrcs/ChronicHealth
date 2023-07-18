@@ -119,7 +119,6 @@ export class Tab1Page {
     }
 
     update_dynamic_survey(){
-      console.log("Updating");
       this.dynamic_survey = this.userService.get_dynamic_survey();
     }
 

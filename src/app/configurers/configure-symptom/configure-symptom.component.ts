@@ -56,6 +56,7 @@ export class ConfigureSymptomComponent  implements OnInit {
     }
   }
     const symptom = Symptom.createNewSymptom(this.symptomName, this.symptomMeasurement);
+    console.log("Running create new symptom!")
     this.userService.add_symptom(symptom); 
 
 
@@ -75,9 +76,11 @@ export class ConfigureSymptomComponent  implements OnInit {
 
   updateSymptom(){
     //add validation
-    this.symptom = this.symptom as Symptom;
-    this.symptom.changeMeasurement(this.symptomMeasurement);
-    this.symptom.name = this.symptomName;
+    if(this.symptom===null)return;
+    this.userService.editSymptom(this.symptom, this.symptomName, this.symptomMeasurement)
+    //this.symptom = this.symptom as Symptom;
+    //this.symptom.changeMeasurement(this.symptomMeasurement);
+    //this.symptom.name = this.symptomName;
     this.router.navigate([this.success_return_url]);
 
   }

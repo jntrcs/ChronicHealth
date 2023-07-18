@@ -160,9 +160,18 @@ create_day_record(survey: SurveyItem[], date:Date = new Date()){
 
 public add_symptom(symptom:Symptom){
   this.add_history_item(symptom);
+
   this.get_symptoms().push(symptom);
+
   this.user_data.sortSurveyItemsByName(this.get_symptoms());
 
+
+}
+
+public remove_symptom(symptom:Symptom){
+  console.log(this.get_symptoms());
+  this.user_data.all_symptoms = this.filter_by_id(this.user_data.all_symptoms, [symptom]).map(item=>item as Symptom);
+  console.log(this.get_symptoms());
 }
 
 
@@ -201,12 +210,13 @@ public get_history_item(history_id: string, position:number):SurveyItem{
   return this.user_data.item_history.get(history_id)![position];
 }
 
-add_history_item(survey_item:SurveyItem){
-  console.log(survey_item);
+public add_history_item(survey_item:SurveyItem){
+
   if(survey_item.history_place===0){
     this.user_data.item_history.set(survey_item.history_id, [survey_item])
   }else{ // this probably doesn't work because you can't just set arbitrary places in an array like that.
-    this.user_data.item_history.get(survey_item.history_id)![survey_item.history_place] = survey_item;
+    this.user_data.item_history.get(survey_item.history_id)!.push(survey_item);
+
   }
 }
 
@@ -214,6 +224,33 @@ public get_next_history_slot(history_id:string){
   return this.user_data.item_history.get(history_id)!.length;
 }
 
+public editSymptom(old_symptom:Symptom, new_name:string, new_measurement:string){
+  console.log("RUNNING EDITSYMPTOM")
+  // if name and measurement string are the same, do nothing
+  // if name is different, change all names in the history stack
+  // if measurementstring is different, create a new symptom with a new measurement; remove the old symptom from all symptoms; add new to stack
+  if(new_name!==old_symptom.name){
+    this.update_all_history_names(old_symptom.history_id, new_name);
+  }
+  if(new_measurement!== old_symptom.measurement.name){
+    var symptom:Symptom = Symptom.createEditedSymptom(new_name, new_measurement, old_symptom.history_id, 
+      this.get_next_history_slot(old_symptom.history_id));
+
+    this.add_symptom(symptom);
+
+
+    this.remove_symptom(old_symptom); 
+
+ 
+  }
+
+}
+
+public update_all_history_names(history_id:string, new_name:string){
+  const items: SurveyItem[] = this.user_data.item_history.get(history_id)!;
+  items.map(item=>item.name = new_name);
+
+}
 
 }
  

@@ -6,6 +6,8 @@
 </ion-toolbar>
 
 <ion-content>
+  <ion-button (click)="logstuff()">Log stuff</ion-button>
+
   <app-preconfigured-search-generic [survey_item_list]="symptom_list" 
   [add_to_static_survey] ='this.add_to_static_survey' 
   [add_to_dynamic_survey]="this.add_to_dynamic_survey"

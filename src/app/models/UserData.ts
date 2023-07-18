@@ -9,8 +9,8 @@ export class UserData {
     constructor() {
 // This should load the data from memory.
 //For now, just create a bunch of sample data
-    this.all_symptoms =[];/*
-        new Symptom('Shortness of Breath',  'severity'),
+    this.all_symptoms =[
+        new Symptom('Shortness of Breath',  'severity', "lskdjf", 0)]/*,
         new Symptom('Fever',  'present'),
         new Symptom('Cough',  'count'),
         new Symptom("Weak legs", 'severity'),
@@ -35,6 +35,7 @@ export class UserData {
 
   this.history = new Map();
   this.item_history = new Map();
+  this.item_history.set('lskdjf', [this.all_symptoms[0]]);
   //this.history.set("6/22/2023", new DayRecord([this.all_illnesses[0],
   //this.all_symptoms[1]]));
 
