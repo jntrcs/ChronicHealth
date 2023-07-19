@@ -56,7 +56,6 @@ export class ConfigureSymptomComponent  implements OnInit {
     }
   }
     const symptom = Symptom.createNewSymptom(this.symptomName, this.symptomMeasurement);
-    console.log("Running create new symptom!")
     this.userService.add_symptom(symptom); 
 
 

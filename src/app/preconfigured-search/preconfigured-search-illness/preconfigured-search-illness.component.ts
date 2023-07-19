@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { Illness } from 'src/app/models/Illness';
 import { SurveyItem } from 'src/app/models/SurveyItem';
 import { AppStateService } from 'src/app/services/app-state.service';
@@ -24,8 +24,12 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
     const inputs = history.state;
 
     this.source = inputs.source;
+    this.update_illness_list();
+   }
+
+   update_illness_list(){
     if (this.source === "dynamic survey adder"){
-      this.illness_list = userService.filter_by_id(userService.get_illnesses(), userService.get_dynamic_survey());
+      this.illness_list = this.userService.filter_by_id(this.userService.get_illnesses(), this.userService.get_dynamic_survey());
 
     }else if(this.source=="settings"){
       this.illness_list = this.userService.get_illnesses();
@@ -34,7 +38,15 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
     }
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+
+      if (event instanceof NavigationEnd && event.url === '/preconfigured-search-illness') {
+        // This condition checks if the returned page is the home page
+        this.update_illness_list();
+      }
+    });
+  }
 
   openIllnessCreator(){
 

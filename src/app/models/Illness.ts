@@ -31,7 +31,6 @@ import { v4 as uuidv4 } from 'uuid';
       }
   
       static createEditedIllness(name:string, symptoms: Symptom[],
-        side_effects: Symptom[],
           history_id: string,
           history_place:number ){
         return new Illness(name, symptoms, history_id, history_place);

@@ -95,11 +95,10 @@ export class ConfigureIllnessComponent  implements OnInit {
       return; // Prevent saving the duplicate symptom
     }
 
-    this.illness.name = this.illnessName;
+    this.userService.editIllness(this.illness, this.illnessName, this.selected_symptom_ids);
 
-    const symptoms:Symptom[] = this.selected_symptom_ids.map(item => this.userService.getSymptomByID(item)!);
-    this.illness.setSymptoms(symptoms);
     this.router.navigate([this.success_return_url]);
+
 
   }
 

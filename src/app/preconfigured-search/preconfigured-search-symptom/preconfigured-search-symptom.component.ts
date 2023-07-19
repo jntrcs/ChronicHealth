@@ -41,8 +41,7 @@ export class PreconfiguredSearchSymptomComponent  implements OnInit {
    }
 
    update_symptom_list(){
-    console.log("updating symptom list");
-    console.log(this.userService.get_symptoms());
+
     if (this.source === "static survey editor"){
       this.symptom_list = this.userService.filter_by_id(this.userService.get_symptoms(), this.userService.get_static_survey());
       this.add_to_static_survey = true;
@@ -59,7 +58,6 @@ export class PreconfiguredSearchSymptomComponent  implements OnInit {
    }
 
   ngOnInit() {
-    console.log("running ngOninit")
     this.router.events.subscribe((event) => {
 
       if (event instanceof NavigationEnd && event.url === '/preconfigured-search-symptom') {

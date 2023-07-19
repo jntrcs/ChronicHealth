@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { SurveyItem } from 'src/app/models/SurveyItem';
 import { UserService } from 'src/app/services/user.service';
 
@@ -22,23 +22,35 @@ export class PreconfiguredSearchTreatmentComponent  implements OnInit {
     const inputs = history.state;
 
     this.source = inputs.source;
+      this.update_treatment_list();
+   }
+
+   update_treatment_list(){
     if (this.source === "dynamic survey adder"){
-      this.treatment_list = userService.filter_by_id(userService.get_treatments(), userService.get_survey());
+      this.treatment_list = this.userService.filter_by_id(this.userService.get_treatments(), this.userService.get_survey());
 
     }else if (this.source==="static survey editor"){
-      this.treatment_list = userService.filter_by_id(userService.get_treatments(), userService.get_static_survey());
+      this.treatment_list = this.userService.filter_by_id(this.userService.get_treatments(), this.userService.get_static_survey());
       this.add_to_dynamic_survey = false;
       this.add_to_static_survey = true;
     }
     else if (this.source==="settings"){
-      this.treatment_list =userService.get_treatments();
+      this.treatment_list = this.userService.get_treatments();
       this.add_to_dynamic_survey = false;
       this.add_to_static_survey = false;
       this.edit_selected = true;
     }
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+
+      if (event instanceof NavigationEnd && event.url === '/preconfigured-search-treatment') {
+        // This condition checks if the returned page is the home page
+        this.update_treatment_list();
+      }
+    });
+  }
 
   openTreatmentCreator(){
     let navigationExtras: NavigationExtras = {};

@@ -164,12 +164,19 @@ public add_symptom(symptom:Symptom){
   this.get_symptoms().push(symptom);
 
   this.user_data.sortSurveyItemsByName(this.get_symptoms());
-
-
 }
 
 public remove_symptom(symptom:Symptom){
   this.user_data.all_symptoms = this.filter_by_id(this.user_data.all_symptoms, [symptom]).map(item=>item as Symptom);
+}
+
+
+public remove_treatment(treatment:Treatment){
+  this.user_data.all_treatments = this.filter_by_id(this.user_data.all_treatments, [treatment]).map(item=>item as Treatment);
+}
+
+public remove_illness(illness:Illness){
+  this.user_data.all_illnesses = this.filter_by_id(this.user_data.all_illnesses, [illness]).map(item=>item as Illness);
 }
 
 
@@ -234,14 +241,89 @@ public editSymptom(old_symptom:Symptom, new_name:string, new_measurement:string)
       this.get_next_history_slot(old_symptom.history_id));
 
     this.add_symptom(symptom);
+    this.remove_symptom(old_symptom);
+      //if symptom is in static or dynamic survey, replace it with the new symptom
+  this.user_data.dynamic_survey = this.replaceSurveyItem(this.user_data.dynamic_survey, old_symptom.id, symptom)
+  this.user_data.static_survey = this.replaceSurveyItem(this.user_data.static_survey, old_symptom.id, symptom)
+
+  }
 
 
-    this.remove_symptom(old_symptom); 
 
- 
+}
+
+public replaceSurveyItem(survey_items: SurveyItem[], id: string, new_survey_item: SurveyItem): SurveyItem[] {
+  const updatedSymptoms = [...survey_items]; // Create a copy of the original array
+
+  const index = updatedSymptoms.findIndex(symptom => symptom.id === id);
+  if (index !== -1) {
+    updatedSymptoms[index] = new_survey_item;
+  }
+  return updatedSymptoms;
+}
+
+public editTreatment(old_treatment:Treatment, new_name:string, new_measurement:string, new_side_effect_ids:string[]){
+  // if name and measurement string are the same, do nothing
+  // if name is different, change all names in the history stack
+  // if measurementstring is different, create a new symptom with a new measurement; remove the old symptom from all symptoms; add new to stack
+  if(new_name!==old_treatment.name){
+    this.update_all_history_names(old_treatment.history_id, new_name);
+  }
+
+  const same_side_effects = this.areArraysEqual(old_treatment.side_effects.map(item=>item.id), new_side_effect_ids);
+
+
+
+  if(new_measurement!== old_treatment.measurement.name || !same_side_effects){
+    var treatment:Treatment = Treatment.createEditedTreatment(new_name, new_measurement,
+      new_side_effect_ids.map(id => this.getSymptomByID(id)).filter((item): item is Symptom => item !== null) ,
+      old_treatment.history_id,   
+      this.get_next_history_slot(old_treatment.history_id));
+    this.add_treatment(treatment);
+    this.remove_treatment(old_treatment);
+    this.user_data.dynamic_survey = this.replaceSurveyItem(this.user_data.dynamic_survey, old_treatment.id, treatment)
+    this.user_data.static_survey = this.replaceSurveyItem(this.user_data.static_survey, old_treatment.id, treatment)
   }
 
 }
+
+//helper function to determine if two arrays have the exact same elements
+private areArraysEqual(array1: string[], array2: string[]): boolean {
+  if (array1.length !== array2.length) {
+    return false;
+  }
+
+  const sortedArray1 = array1.slice().sort();
+  const sortedArray2 = array2.slice().sort();
+
+  for (let i = 0; i < sortedArray1.length; i++) {
+    if (sortedArray1[i] !== sortedArray2[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+
+public editIllness(old_illness:Illness, new_name:string, new_symptom_ids:string[]){
+  if(new_name!==old_illness.name){
+    this.update_all_history_names(old_illness.history_id, new_name);
+  }
+
+  const same_side_effects = this.areArraysEqual(old_illness.symptoms.map(item=>item.id), new_symptom_ids);
+  if(!same_side_effects){
+    var illness:Illness = Illness.createEditedIllness(new_name,
+      new_symptom_ids.map(id => this.getSymptomByID(id)).filter((item): item is Symptom => item !== null) ,
+      old_illness.history_id,   
+      this.get_next_history_slot(old_illness.history_id));
+    this.add_illness(illness);
+    this.remove_illness(old_illness);
+    this.user_data.dynamic_survey = this.replaceSurveyItem(this.user_data.dynamic_survey, old_illness.id, illness)
+    this.user_data.static_survey = this.replaceSurveyItem(this.user_data.static_survey, old_illness.id, illness)
+  }
+}
+
 
 public update_all_history_names(history_id:string, new_name:string){
   const items: SurveyItem[] = this.user_data.item_history.get(history_id)!;

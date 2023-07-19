@@ -28,9 +28,10 @@ export class Tab1Page {
 
 
     this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd && event.url === '/') {
+      if (event instanceof NavigationEnd && (event.url === '/'||event.url=== '/tabs/tab1')) {
         // This condition checks if the returned page is the home page
         this.update_dynamic_survey();
+        this.update_static_survey();
       }
     });
   }
@@ -114,12 +115,21 @@ export class Tab1Page {
     logDynamicSurvey(){
       console.log("this.dynamic_survey")
       console.log(this.dynamic_survey);
-      console.log("userservice:");
+      console.log("userservice dynamic survey:");
       console.log(this.userService.get_dynamic_survey());
+      console.log("this.static_survey")
+      console.log(this.static_survey)
+      console.log("user service static survey");
+      console.log(this.userService.get_static_survey())
     }
 
     update_dynamic_survey(){
+      //this.userService.calculate_dynamic_survey(this.stateService.string_date);
       this.dynamic_survey = this.userService.get_dynamic_survey();
     }
 
+    update_static_survey(){
+      //this.userService.calculate_dynamic_survey(this.stateService.string_date);
+      this.static_survey = this.userService.get_static_survey();
+    }
 }

@@ -68,10 +68,11 @@ export class ConfigureSideEffectComponentComponent  implements OnInit {
   }
 
   updateSymptom(){
-    //add validation
-    this.symptom = this.symptom as Symptom;
-    this.symptom.changeMeasurement(this.symptomMeasurement);
-    this.symptom.name = this.symptomName;
+    if(this.symptom===null)return;
+    this.userService.editSymptom(this.symptom, this.symptomName, this.symptomMeasurement)
+    //this.symptom = this.symptom as Symptom;
+    //this.symptom.changeMeasurement(this.symptomMeasurement);
+    //this.symptom.name = this.symptomName;
     this.router.navigate([this.success_return_url]);
 
   }

@@ -95,11 +95,12 @@ export class ConfigureTreatmentComponent  implements OnInit {
       return; // Prevent saving the duplicate symptom
     }
 
-    this.treatment.name = this.treatmentName;
-    this.treatment.changeMeasurement(this.treatmentMeasurement);
 
-    const symptoms:Symptom[] = this.selected_symptom_ids.map(item => this.userService.getSymptomByID(item)!);
-    this.treatment.setSideEffects(symptoms);
+    
+
+    this.userService.editTreatment(this.treatment, this.treatmentName, 
+      this.treatmentMeasurement, this.selected_symptom_ids);
+
     this.router.navigate([this.success_return_url]);
 
 
