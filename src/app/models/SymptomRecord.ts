@@ -9,7 +9,7 @@ export class SymptomRecord extends ItemRecord{
     public symptom: Symptom;
     
     constructor(symptom: Symptom) {
-        super(symptom.id);
+        super(symptom.id, symptom.history_id, symptom.history_place);
         this.symptom = symptom;
         this.measurement_type =  symptom.measurement.constructor.name;
         this.value_string = symptom.measurement.get_value();

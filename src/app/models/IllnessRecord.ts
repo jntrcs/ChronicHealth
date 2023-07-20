@@ -13,7 +13,7 @@ export class IllnessRecord extends ItemRecord{
 
     
     constructor(illness: Illness) {
-        super(illness.id);
+        super(illness.id, illness.history_id, illness.history_place);
         this.illness = illness;
         this.symptom_records=[];
         for (const symptom of illness.symptoms){

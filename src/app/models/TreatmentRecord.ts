@@ -14,7 +14,7 @@ export class TreatmentRecord extends ItemRecord{
 
     
     constructor(treatment: Treatment) {
-        super(treatment.id);
+        super(treatment.id, treatment.history_id, treatment.history_place);
         this.treatment = treatment;
         this.measurement_type =  treatment.measurement.constructor.name;
         this.measurement_value = treatment.measurement.get_value();

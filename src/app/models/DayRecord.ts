@@ -25,6 +25,7 @@ import { TreatmentRecord } from "./TreatmentRecord";
                 this.records.push(new TreatmentRecord(item));
               }
             }
+            console.log(this.records);
           }
 
       determineActiveConcerns():string[]{
