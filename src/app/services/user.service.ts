@@ -146,6 +146,10 @@ getTreatmentByID(id: string): Treatment | null{
 
 
 create_day_record(survey: SurveyItem[], date:Date = new Date()){
+  // Let's de-dupe all items in the survey so if something is in the static survey and the history it doesn't get replicated
+
+  survey = this.removeDuplicateIds(survey);
+
   this.user_data.history.set(this.appState.string_date, new DayRecord(survey));
 
   // we need to back date the illness confirmation history to previous days.
@@ -300,6 +304,20 @@ private areArraysEqual(array1: string[], array2: string[]): boolean {
   }
 
   return true;
+}
+
+private removeDuplicateIds (arr: SurveyItem[]): SurveyItem[] {
+  const idSet = new Set<string>();
+  const filteredArr: SurveyItem[] = [];
+
+  for (const item of arr) {
+    if (!idSet.has(item.id)) {
+      idSet.add(item.id);
+      filteredArr.push(item);
+    }
+  }
+
+  return filteredArr;
 }
 
 

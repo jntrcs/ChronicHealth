@@ -35,8 +35,8 @@
     <div *ngIf="historical_survey.length === 0">
     <app-survey-item-view  [is_disabled]="is_disabled" *ngFor="let survey_item of static_survey" [survey_item]="survey_item"></app-survey-item-view>
   </div>
-    <app-survey-item-view [is_disabled]="is_disabled" *ngFor="let survey_item of dynamic_survey" [survey_item]="survey_item"></app-survey-item-view>
     <app-survey-item-view [is_disabled]="is_disabled" *ngFor="let survey_item of historical_survey" [survey_item]="survey_item"></app-survey-item-view>
+    <app-survey-item-view [is_disabled]="is_disabled" *ngFor="let survey_item of dynamic_survey" [survey_item]="survey_item"></app-survey-item-view>
 
   </ion-list>
  
