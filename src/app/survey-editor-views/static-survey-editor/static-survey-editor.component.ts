@@ -90,7 +90,8 @@ export class StaticSurveyEditorComponent  implements OnInit {
           add_to_dynamic_survey: false,
           cancel_return_url: '/static-survey-editor',
           success_return_url: '/static-survey-editor',
-          treatment_id: survey_item.id
+          treatment_id: survey_item.id,
+          history_id: survey_item.history_id
         }
       }
       this.router.navigate(['/treatment-editor'], navigationExtras);

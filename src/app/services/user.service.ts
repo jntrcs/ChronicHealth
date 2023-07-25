@@ -143,6 +143,12 @@ getTreatmentByID(id: string): Treatment | null{
   return(treatment||null);
 }
 
+getLatestByID(history_id: string): SurveyItem | null{
+
+  const hist = this.user_data.item_history.get(history_id)!
+  return(hist[hist?.length-1])
+
+}
 
 
 create_day_record(survey: SurveyItem[], date:Date = new Date()){

@@ -104,7 +104,9 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
           add_to_dynamic_survey: false,
           cancel_return_url: '/preconfigured-search-treatment',
           success_return_url: '/preconfigured-search-treatment',
-          treatment_id: survey_item.id
+          treatment_id: survey_item.id,
+          history_id: survey_item.history_id
+
         }
       }
       this.router.navigate(['/treatment-editor'], navigationExtras);
@@ -117,7 +119,8 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
           add_to_dynamic_survey: false,
           cancel_return_url: '/preconfigured-search-illness',
           success_return_url: '/preconfigured-search-illness',
-          illness_id: survey_item.id
+          illness_id: survey_item.id,
+          history_id: survey_item.history_id
         }
       }
       this.router.navigate(['/illness-editor'], navigationExtras);

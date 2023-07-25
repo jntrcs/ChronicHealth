@@ -33,17 +33,20 @@ export class ConfigureIllnessComponent  implements OnInit {
     this.selected_symptom_ids =[];
 
 
-   if (typeof inputs.illness_id !=='undefined'){
-    this.illness = userService.getIllnessByID(inputs.illness_id);
-    if(this.illness!==null){
+    if (typeof inputs.illness_id !=='undefined'){
+
+    const item = userService.getLatestByID(inputs.history_id);
+
+    if(item!==null){
+      this.illness = item as Illness;
       this.mode = 'edit'
       this.illnessName = this.illness.name;
       this.selected_symptom_ids = this.illness.symptoms.map(item => item.id);
     }
 
    }
-
   }
+
 
   saveIllness() {
     if(this.mode==='add'){

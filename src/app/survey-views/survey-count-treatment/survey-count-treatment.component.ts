@@ -29,7 +29,8 @@ export class SurveyCountTreatmentComponent  implements OnInit {
         add_to_dynamic_survey: false,
         cancel_return_url: '/',
         success_return_url: '/',
-        treatment_id: treatment.id
+        treatment_id: treatment.id,
+        history_id: treatment.history_id
       }
     }
     this.router.navigate(['/treatment-editor'], navigationExtras);

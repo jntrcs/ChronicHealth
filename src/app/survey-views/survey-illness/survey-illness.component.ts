@@ -42,7 +42,8 @@ export class SurveyIllnessComponent  implements OnInit {
           add_to_dynamic_survey: false,
           cancel_return_url: '/',
           success_return_url: '/',
-          illness_id: this.illness.id
+          illness_id: this.illness.id,
+          history_id: this.illness.history_id
         }
       }
       this.router.navigate(['/illness-editor'], navigationExtras);

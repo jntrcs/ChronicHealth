@@ -37,8 +37,9 @@ export class ConfigureTreatmentComponent  implements OnInit {
 
 
    if (typeof inputs.treatment_id !=='undefined'){
-    this.treatment = userService.getTreatmentByID(inputs.treatment_id);
-    if(this.treatment!==null){
+    const item = userService.getLatestByID(inputs.history_id);
+    if(item!==null){
+      this.treatment = item as Treatment;
       this.mode = 'edit'
       this.treatmentName = this.treatment.name;
       this.treatmentMeasurement = this.treatment.measurement.name;
