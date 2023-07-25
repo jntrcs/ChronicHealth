@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import { ItemRecord } from './ItemRecord';
 
 export abstract class SurveyItem {
     public id: string;
@@ -17,4 +18,5 @@ export abstract class SurveyItem {
 
 
     abstract set_to_default():void;
+    abstract set_to_record(item_record: ItemRecord):SurveyItem;
 }

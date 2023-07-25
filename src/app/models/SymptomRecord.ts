@@ -6,11 +6,11 @@ export class SymptomRecord extends ItemRecord{
 
     public measurement_type: string;
     public value_string: string;
-    public symptom: Symptom;
+    //public symptom: Symptom;
     
     constructor(symptom: Symptom) {
         super(symptom.id, symptom.history_id, symptom.history_place);
-        this.symptom = symptom;
+        //this.symptom = symptom;
         this.measurement_type =  symptom.measurement.constructor.name;
         this.value_string = symptom.measurement.get_value();
       }
@@ -36,9 +36,9 @@ export class SymptomRecord extends ItemRecord{
         return false;
       }
 
-      set_item_to_record():void{
-        this.symptom.measurement.set_value(this.value_string);
-      }
+     // set_item_to_record():void{
+     //   this.symptom.measurement.set_value(this.value_string);
+//}
 
 
     

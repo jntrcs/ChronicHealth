@@ -15,6 +15,7 @@ export class Tab1Page {
   public is_disabled:boolean;
   public static_survey: SurveyItem[];
   public dynamic_survey: SurveyItem[];
+  public historical_survey: SurveyItem[];
   currentDate: Date = new Date();
 
 
@@ -24,6 +25,7 @@ export class Tab1Page {
     this.static_survey = userService.get_static_survey();
     this.dynamic_survey = userService.calculate_dynamic_survey(stateService.string_date);
     this.is_disabled = false;
+    this.historical_survey = [];
 
 
 
@@ -66,15 +68,18 @@ export class Tab1Page {
     this.userService.set_items_to_default();
     if(this.userService.check_day_has_data(this.stateService.string_date)){
       this.is_disabled = true;
-      this.userService.set_items_to_days_values(this.stateService.string_date);
+      this.historical_survey = this.userService.get_historical_survey(this.stateService.string_date);
+      //this.userService.set_items_to_days_values(this.stateService.string_date);
     } else{
       this.is_disabled = false;
+      this.historical_survey = [];
     }
   }
 
   save_record(){
-    this.userService.create_day_record([...this.static_survey, ...this.dynamic_survey]);
+    this.userService.create_day_record([...this.static_survey, ...this.dynamic_survey, ...this.historical_survey]);
     this.is_disabled = true;
+    this.emitDateChange()
   }
 
   openPreConfiguredSearch(type: string){
@@ -121,6 +126,7 @@ export class Tab1Page {
       console.log(this.static_survey)
       console.log("user service static survey");
       console.log(this.userService.get_static_survey())
+      console.log("historical survey", this.historical_survey);
     }
 
     update_dynamic_survey(){

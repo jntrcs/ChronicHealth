@@ -1,7 +1,9 @@
+import { ItemRecord } from './ItemRecord';
 import { Measurement, PresentMeasurement, 
   CountMeasurement, SeverityMeasurement } from './Measurement'
 import {SurveyItem} from './SurveyItem'
 import { v4 as uuidv4 } from 'uuid';
+import { SymptomRecord } from './SymptomRecord';
 
 
 export class Symptom extends SurveyItem {
@@ -53,6 +55,12 @@ export class Symptom extends SurveyItem {
 
     public override set_to_default(): void {
       this.measurement.set_value_to_default();
+    }
+
+    override set_to_record(item_record: ItemRecord): SurveyItem {
+      const record = item_record as SymptomRecord
+      this.measurement.set_value(record.value_string);
+      return this;
     }
 
     

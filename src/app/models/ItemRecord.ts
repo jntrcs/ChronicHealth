@@ -18,6 +18,6 @@ export abstract class ItemRecord {
 
     //abstract get_item_record(survey_item: SurveyItem):ItemRecord;
     abstract isActiveID(): string;
-    abstract set_item_to_record():void;
+    //abstract set_item_to_record():void;
 
     }

@@ -25,7 +25,7 @@ import { TreatmentRecord } from "./TreatmentRecord";
                 this.records.push(new TreatmentRecord(item));
               }
             }
-            console.log(this.records);
+            //console.log(this.records);
           }
 
       determineActiveConcerns():string[]{
@@ -34,9 +34,9 @@ import { TreatmentRecord } from "./TreatmentRecord";
         return this.records.map((record) =>record.isActiveID()).filter((item) => item !== ''); 
       }
 
-      set_survey_item_values(){
-        this.records.map((item)=>item.set_item_to_record());
-      }
+     // set_survey_item_values(){
+      //  this.records.map((item)=>item.set_item_to_record());
+      //}
           
 
       

@@ -19,7 +19,7 @@ constructor(private appState:AppStateService){
 
 
 get_survey(){
-  return([...this.user_data.static_survey, ...this.user_data.dynamic_survey]);
+  return([...this.user_data.static_survey, ...this.user_data.dynamic_survey, ...this.get_historical_survey(this.appState.get_string_date())]);
 }
 
 get_static_survey(){
@@ -28,20 +28,18 @@ get_static_survey(){
 
 //Use calculate dynamic survey if you want to calculate and set dynamic survey for a specific date
 calculate_dynamic_survey(date:string):SurveyItem[]{
+    //If that date is already in the data set, we should not return anything
+    if(this.user_data.history.has(date)){
+      this.user_data.dynamic_survey = [];
+      return this.user_data.dynamic_survey;
+    }
+
   const all_active_ids: string[] = this.user_data.determine_active_item_ids(date);
   const all_active_items = all_active_ids.map((id)=>this.getSurveyItemByID(id)).filter((item): item is SurveyItem => item !== null);
   const not_in_static = this.filter_by_id(all_active_items, this.user_data.static_survey)
   this.user_data.dynamic_survey = not_in_static;
 
-  //If that date is already in the data set, we also need to return anything specifically recorded for that date.
-  if(this.user_data.history.has(date)){
-    const day = this.user_data.history.get(date)!;
-    const items = day.records.map(item=>this.getSurveyItemByID(item.survey_item_id)).filter((item): item is SurveyItem => item !== null);
-    const day_not_in_static = this.filter_by_id(items, this.user_data.static_survey);
-    const day_not_in_static_or_dynamic = this.filter_by_id(day_not_in_static, this.user_data.dynamic_survey);
-    this.user_data.dynamic_survey = this.user_data.dynamic_survey.concat(day_not_in_static_or_dynamic);
 
-  }
 
   //dedupe any symptoms that appear in an illness
   this.user_data.dynamic_survey.map(survey_item=>{
@@ -200,11 +198,10 @@ public check_day_has_data(date: string){
   return this.user_data.history.has(date);
 }
 
-public set_items_to_days_values(date: string){
-  const record: DayRecord = this.user_data.history.get(date)!;
-  record.set_survey_item_values();
-}
-
+//public set_items_to_days_values(date: string){
+ // const record: DayRecord = this.user_data.history.get(date)!;
+ // record.set_survey_item_values();
+//}
 public set_items_to_default(){
   this.user_data.static_survey.map(item=>item.set_to_default());
   this.user_data.dynamic_survey.map(item=>item.set_to_default());
@@ -330,6 +327,21 @@ public update_all_history_names(history_id:string, new_name:string){
   items.map(item=>item.name = new_name);
 
 }
+
+public get_historical_survey(date:string){
+    //If that date is already in the data set, we also need to return anything specifically recorded for that date.
+  if(this.user_data.history.has(date)){
+    const day = this.user_data.history.get(date)!;
+    const items = day.records.map(item=>this.get_survey_item_from_history(item.history_id, item.history_place).set_to_record(item)).
+      filter((item): item is SurveyItem => item !== null);
+      return items
+  }else return [];
+}
+
+public get_survey_item_from_history(history_id: string, history_place:number):SurveyItem{
+  return this.user_data.item_history.get(history_id)![history_place];
+}
+
 
 }
  

@@ -25,15 +25,18 @@
   </div>
 
   <ion-content class="ion-padding">
-  <div  *ngIf="static_survey.length === 0 && dynamic_survey.length===0">
+  <div  *ngIf="static_survey.length === 0 && dynamic_survey.length===0 && historical_survey.length===0">
     <!-- Content to show when survey_list is empty -->
     <h5>Nothing to ask about today</h5>
     <h5>You can  <a routerLink='/static-survey-editor'>add to your everyday survey</a>, record issues below, or report no issues.</h5>
   </div>
 
   <ion-list class="survey_list">
-    <app-survey-item-view [is_disabled]="is_disabled" *ngFor="let survey_item of static_survey" [survey_item]="survey_item"></app-survey-item-view>
+    <div *ngIf="historical_survey.length === 0">
+    <app-survey-item-view  [is_disabled]="is_disabled" *ngFor="let survey_item of static_survey" [survey_item]="survey_item"></app-survey-item-view>
+  </div>
     <app-survey-item-view [is_disabled]="is_disabled" *ngFor="let survey_item of dynamic_survey" [survey_item]="survey_item"></app-survey-item-view>
+    <app-survey-item-view [is_disabled]="is_disabled" *ngFor="let survey_item of historical_survey" [survey_item]="survey_item"></app-survey-item-view>
 
   </ion-list>
  
@@ -42,8 +45,8 @@
 
       <ion-button (click) = "update_record()" *ngIf="is_disabled; else enabledButton" color="primary">Update</ion-button>
 <ng-template #enabledButton>
-  <ion-button *ngIf="static_survey.length !== 0 || dynamic_survey.length!==0" (click) = "save_record()" color="primary">Save</ion-button>
-  <ion-button *ngIf="static_survey.length === 0 && dynamic_survey.length===0" (click) = "save_record()" color="primary">Report No Issues</ion-button>
+  <ion-button *ngIf="static_survey.length !== 0 || dynamic_survey.length!==0 || historical_survey.length!==0" (click) = "save_record()" color="primary">Save</ion-button>
+  <ion-button *ngIf="static_survey.length === 0 && dynamic_survey.length===0 && historical_survey.length===0" (click) = "save_record()" color="primary">Report No Issues</ion-button>
 
 </ng-template>
     </ion-col>

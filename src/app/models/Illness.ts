@@ -1,3 +1,5 @@
+import { IllnessRecord } from './IllnessRecord';
+import { ItemRecord } from './ItemRecord';
 import { Measurement, PresentMeasurement, 
     CountMeasurement, SeverityMeasurement } from './Measurement'
   import {SurveyItem} from './SurveyItem'
@@ -45,5 +47,17 @@ import { v4 as uuidv4 } from 'uuid';
 
       public override set_to_default(): void {
         this.symptoms.map(symptom=>symptom.set_to_default());
+      }
+
+      override set_to_record(item_record: ItemRecord): SurveyItem {
+
+        const record = item_record as IllnessRecord;
+        this.doctor_confirmed = record.doctor_confirmed === 'true';
+
+        record.symptom_records.map(record => 
+            this.symptoms.find((item: Symptom) => item.id === record.survey_item_id)!
+            .measurement.set_value(record.value_string)
+            );
+        return this;
       }
     }

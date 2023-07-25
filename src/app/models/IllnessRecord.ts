@@ -8,13 +8,13 @@ import { SymptomRecord } from "./SymptomRecord";
 export class IllnessRecord extends ItemRecord{
 
     public symptom_records: SymptomRecord[];
-    public illness:Illness;
+    //public illness:Illness;
     public doctor_confirmed: string;
 
     
     constructor(illness: Illness) {
         super(illness.id, illness.history_id, illness.history_place);
-        this.illness = illness;
+        //this.illness = illness;
         this.symptom_records=[];
         for (const symptom of illness.symptoms){
             this.symptom_records.push(new SymptomRecord(symptom));
@@ -34,7 +34,7 @@ export class IllnessRecord extends ItemRecord{
       isActive():boolean{
         return this.symptom_records.map((symptom_record)=>symptom_record.isActive()).some((item) => item === true);
       }
-
+/*
       set_item_to_record():void{
         this.illness.doctor_confirmed = this.doctor_confirmed === 'true';
 
@@ -43,7 +43,7 @@ export class IllnessRecord extends ItemRecord{
             .measurement.set_value(record.value_string)
             );
         
-      }
+      }*/
 
     }
 
