@@ -257,11 +257,43 @@ public editSymptom(old_symptom:Symptom, new_name:string, new_measurement:string)
   this.user_data.dynamic_survey = this.replaceSurveyItem(this.user_data.dynamic_survey, old_symptom.id, symptom)
   this.user_data.static_survey = this.replaceSurveyItem(this.user_data.static_survey, old_symptom.id, symptom)
 
+  // Any time a symptom is edited, we need to search through all illnesses/treatments and also edit them
+
+  const treatmentsWithTargetSymptom = this.user_data.all_treatments.filter(treatment =>
+    treatment.side_effects.some(side_effect => side_effect.id === old_symptom.id)
+  );
+  
+  // Do something with the filtered treatments
+  treatmentsWithTargetSymptom.forEach(treatment => {
+    // Your logic to handle the treatments with the target symptom ID
+    console.log('Treatment with target symptom:', treatment);
+    const side_effect_ids = treatment.side_effects.map(side_effect=>side_effect.id).filter(id=>id!=old_symptom.id);
+    side_effect_ids.push(symptom.id);
+    this.editTreatment(treatment, treatment.name,
+        treatment.measurement.name, 
+        side_effect_ids);
+  });
+
+
+  //Now do the same thing for illnesses
+  const illnessessWithTargetSymptom = this.user_data.all_illnesses.filter(treatment =>
+    treatment.symptoms.some(side_effect => side_effect.id === old_symptom.id)
+  );
+  
+  // Do something with the filtered treatments
+  illnessessWithTargetSymptom.forEach(illness => {
+    console.log('Illness with target symptom:', illness);
+    const symptom_ids = illness.symptoms.map(symptom=>symptom.id).filter(id=>id!=old_symptom.id);
+    symptom_ids.push(symptom.id);
+    this.editIllness(illness, illness.name,
+      symptom_ids);
+  });
   }
 
 
-
 }
+
+
 
 public replaceSurveyItem(survey_items: SurveyItem[], id: string, new_survey_item: SurveyItem): SurveyItem[] {
   const updatedSymptoms = [...survey_items]; // Create a copy of the original array
