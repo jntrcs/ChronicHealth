@@ -74,6 +74,7 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
   }
 
   addToDynamicSurvey(survey_item: SurveyItem){
+    survey_item.set_to_default();
     this.userService.add_to_dynamic_survey(survey_item);
     //If what is being added is an illness, eliminate any symptom in the dynamic survey that is not nested under illness
     if (survey_item.constructor.name==='Illness'){

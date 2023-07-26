@@ -115,6 +115,9 @@ export class Tab1Page {
 
     update_record(){
       this.is_disabled = false;
+      this.dynamic_survey = this.historical_survey;
+      this.userService.set_dynamic_survey(this.dynamic_survey);
+      this.historical_survey = [];
     }
 
     logDynamicSurvey(){

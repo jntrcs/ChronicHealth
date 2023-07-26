@@ -58,6 +58,10 @@ get_dynamic_survey():SurveyItem[]{
   return this.user_data.dynamic_survey;
 }
 
+set_dynamic_survey(dynamic_survey:SurveyItem[]){
+  this.user_data.dynamic_survey = dynamic_survey;
+}
+
 filter_from_dynamic_survey(items: SurveyItem[]){
   this.user_data.dynamic_survey = this.filter_by_id(this.get_dynamic_survey(), items)
 }
@@ -342,6 +346,7 @@ public editIllness(old_illness:Illness, new_name:string, new_symptom_ids:string[
     this.remove_illness(old_illness);
     this.user_data.dynamic_survey = this.replaceSurveyItem(this.user_data.dynamic_survey, old_illness.id, illness)
     this.user_data.static_survey = this.replaceSurveyItem(this.user_data.static_survey, old_illness.id, illness)
+
   }
 }
 
