@@ -50,6 +50,10 @@ import { v4 as uuidv4 } from 'uuid';
         this.symptoms.map(symptom=>symptom.set_to_default());
       }
 
+      public set_confirmed_to_default():void{
+        this.doctor_confirmed = false;
+      }
+
       override set_to_record(item_record: ItemRecord): SurveyItem {
 
         const record = item_record as IllnessRecord;

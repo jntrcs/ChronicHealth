@@ -80,6 +80,7 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
     if (survey_item.constructor.name==='Illness'){
       const illness = (survey_item as Illness);
       this.userService.filter_from_dynamic_survey(illness.symptoms);
+      illness.set_confirmed_to_default();
     }
     this.router.navigate(['/']);
   }

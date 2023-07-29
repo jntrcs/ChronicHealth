@@ -177,17 +177,18 @@ getLatestByID(history_id: string): SurveyItem | null{
 }
 
 
-create_day_record(survey: SurveyItem[], date:Date = new Date()){
+create_day_record(survey: SurveyItem[]){
   // Let's de-dupe all items in the survey so if something is in the static survey and the history it doesn't get replicated
 
   survey = this.removeDuplicateIds(survey);
   const day_record = new DayRecord(survey);
 
   this.user_data.history.set(this.appState.string_date, day_record);
+  const date = this.appState.survey_date;
 
   // we need to back date the illness confirmation history to previous days.
   // If I first recorded an illness on Monday, but I confirm it on Wednesday, it should look as if it's always been confirmed. 
-  // And actually, we need to check this going forward and backward. If I confirm
+  // And actually, we need to check this going forward and backward. If I confirm it Monday, it should be confirmed Wdnesday
 
   const all_illness_ids = day_record.active_illness_ids.concat(day_record.expiring_illness_ids);
   if(all_illness_ids.length>0){
@@ -198,7 +199,7 @@ create_day_record(survey: SurveyItem[], date:Date = new Date()){
     pastDates.sort((a, b) => b.getTime() - a.getTime());
 
     const futureDates = dateObjects.filter((element) => element > date);
-    pastDates.sort((a, b) => a.getTime() - b.getTime());
+    futureDates.sort((a, b) => a.getTime() - b.getTime());
 
     all_illness_ids.forEach(id => {
       const illness_record = day_record.records.filter(item=>item.survey_item_id ===id).pop() as IllnessRecord;
@@ -207,7 +208,7 @@ create_day_record(survey: SurveyItem[], date:Date = new Date()){
       for (let i = 0; i < pastDates.length; i++) {
         const dateString = pastDates[i].toLocaleString().split(',')[0];
         const pastDayRecord = this.user_data.history.get(dateString);
-    
+        
         if (pastDayRecord?.active_illness_ids.includes(id)) {
           pastDayRecord.records.filter(record => record instanceof IllnessRecord).
           forEach(previous_illness_record=>((previous_illness_record) as IllnessRecord).doctor_confirmed = illness_record.doctor_confirmed);
@@ -219,7 +220,7 @@ create_day_record(survey: SurveyItem[], date:Date = new Date()){
       }
 
         for (let i = 0; i < futureDates.length; i++) {
-          const dateString = pastDates[i].toLocaleString().split(',')[0];
+          const dateString = futureDates[i].toLocaleString().split(',')[0];
           const futureDayRecord = this.user_data.history.get(dateString);
       
           if (futureDayRecord?.active_illness_ids.includes(id)) {
@@ -343,7 +344,6 @@ public editSymptom(old_symptom:Symptom, new_name:string, new_measurement:string)
   // Do something with the filtered treatments
   treatmentsWithTargetSymptom.forEach(treatment => {
     // Your logic to handle the treatments with the target symptom ID
-    console.log('Treatment with target symptom:', treatment);
     const side_effect_ids = treatment.side_effects.map(side_effect=>side_effect.id).filter(id=>id!=old_symptom.id);
     side_effect_ids.push(symptom.id);
     this.editTreatment(treatment, treatment.name,
@@ -359,7 +359,6 @@ public editSymptom(old_symptom:Symptom, new_name:string, new_measurement:string)
   
   // Do something with the filtered treatments
   illnessessWithTargetSymptom.forEach(illness => {
-    console.log('Illness with target symptom:', illness);
     const symptom_ids = illness.symptoms.map(symptom=>symptom.id).filter(id=>id!=old_symptom.id);
     symptom_ids.push(symptom.id);
     this.editIllness(illness, illness.name,

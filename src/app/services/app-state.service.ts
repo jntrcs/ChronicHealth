@@ -13,8 +13,9 @@ export class AppStateService {
   }
 
   set_date(date: Date){
-    this.survey_date = date;
-    this.string_date = this.stringify_date(date);
+    const dateWithoutTime = formatDateWithoutTime(date);
+    this.survey_date = dateWithoutTime;
+    this.string_date = this.stringify_date(dateWithoutTime);
   }
 
   get_string_date():string{
@@ -25,4 +26,11 @@ export class AppStateService {
   stringify_date(date: Date): string {
     return(date.toLocaleString().split(',')[0]);
   }
+}
+
+function formatDateWithoutTime(inputDate: Date): Date {
+  const year = inputDate.getFullYear();
+  const month = inputDate.getMonth();
+  const day = inputDate.getDate();
+  return new Date(year, month, day, 0, 0, 0, 0); // Set time to 00:00:00.000
 }
