@@ -6,6 +6,7 @@ import { DayRecord } from '../models/DayRecord';
 import { Illness } from '../models/Illness';
 import { Treatment } from '../models/Treatment';
 import { AppStateService } from './app-state.service';
+import { IllnessRecord } from '../models/IllnessRecord';
 
 @Injectable({
   providedIn: 'root',
@@ -46,9 +47,30 @@ calculate_dynamic_survey(date:string):SurveyItem[]{
     if (survey_item.constructor.name==='Illness'){
       const illness = (survey_item as Illness);
       this.filter_from_dynamic_survey(illness.symptoms);
-    }
-  })
 
+      }
+    });
+
+      //Also figure out if the illness needs to marked as suspected or confirmed
+
+          // Figure out state of illness
+          const survey_date = new Date(date);
+          const date_strings = Array.from(this.user_data.history.keys());
+          const dateObjects = date_strings.map((dateString) => new Date(dateString));
+          //remove future dates
+          const pastDates = dateObjects.filter((element) => element < survey_date);
+          pastDates.sort((a, b) => b.getTime() - a.getTime());
+          if(pastDates.length <1){
+            return [];
+          }
+      
+    
+          const record: DayRecord = this.user_data.history.get(pastDates[0].toLocaleString().split(',')[0])!
+          const active_illnesses = record.active_illness_ids;
+
+          active_illnesses.forEach(illness_id=>{
+            (this.getSurveyItemByID(illness_id) as Illness).doctor_confirmed = record.getConfirmedStatus(illness_id);
+          })
 
   return(this.user_data.dynamic_survey);
 }
@@ -159,12 +181,67 @@ create_day_record(survey: SurveyItem[], date:Date = new Date()){
   // Let's de-dupe all items in the survey so if something is in the static survey and the history it doesn't get replicated
 
   survey = this.removeDuplicateIds(survey);
+  const day_record = new DayRecord(survey);
 
-  this.user_data.history.set(this.appState.string_date, new DayRecord(survey));
+  this.user_data.history.set(this.appState.string_date, day_record);
 
   // we need to back date the illness confirmation history to previous days.
   // If I first recorded an illness on Monday, but I confirm it on Wednesday, it should look as if it's always been confirmed. 
   // And actually, we need to check this going forward and backward. If I confirm
+
+  const all_illness_ids = day_record.active_illness_ids.concat(day_record.expiring_illness_ids);
+  if(all_illness_ids.length>0){
+    const date_strings = Array.from(this.user_data.history.keys());
+    const dateObjects = date_strings.map((dateString) => new Date(dateString));
+    //remove future dates
+    const pastDates = dateObjects.filter((element) => element < date);
+    pastDates.sort((a, b) => b.getTime() - a.getTime());
+
+    const futureDates = dateObjects.filter((element) => element > date);
+    pastDates.sort((a, b) => a.getTime() - b.getTime());
+
+    all_illness_ids.forEach(id => {
+      const illness_record = day_record.records.filter(item=>item.survey_item_id ===id).pop() as IllnessRecord;
+      let actionPerformed = false; // Flag to track if the action has been performed
+
+      for (let i = 0; i < pastDates.length; i++) {
+        const dateString = pastDates[i].toLocaleString().split(',')[0];
+        const pastDayRecord = this.user_data.history.get(dateString);
+    
+        if (pastDayRecord?.active_illness_ids.includes(id)) {
+          pastDayRecord.records.filter(record => record instanceof IllnessRecord).
+          forEach(previous_illness_record=>((previous_illness_record) as IllnessRecord).doctor_confirmed = illness_record.doctor_confirmed);
+          actionPerformed = true;
+        } else {
+          // Exit the loop when active_illness_ids no longer contains id
+          break;
+        }
+      }
+
+        for (let i = 0; i < futureDates.length; i++) {
+          const dateString = pastDates[i].toLocaleString().split(',')[0];
+          const futureDayRecord = this.user_data.history.get(dateString);
+      
+          if (futureDayRecord?.active_illness_ids.includes(id)) {
+            futureDayRecord.records.filter(record => record instanceof IllnessRecord).
+            forEach(future_illness_record=>((future_illness_record) as IllnessRecord).doctor_confirmed = illness_record.doctor_confirmed);
+            actionPerformed = true;
+          } else {
+            // Exit the loop when active_illness_ids no longer contains id
+            break;
+          }
+
+      }
+    });
+
+
+
+
+  }
+
+
+
+
 
 }
 

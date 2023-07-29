@@ -46,7 +46,7 @@ import { v4 as uuidv4 } from 'uuid';
       }
 
       public override set_to_default(): void {
-        this.doctor_confirmed = false;
+        //this.doctor_confirmed = false;
         this.symptoms.map(symptom=>symptom.set_to_default());
       }
 
