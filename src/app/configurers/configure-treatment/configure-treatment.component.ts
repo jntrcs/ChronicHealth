@@ -14,6 +14,7 @@ export class ConfigureTreatmentComponent  implements OnInit {
   @Input() treatmentName!: string;  
   @Input() mode!: 'add' | 'edit';
   @Input() treatment!: Treatment |null;
+  @Input() historic_treatment!: Treatment | null;
   @Input() treatmentMeasurement!: string;
 
 
@@ -38,8 +39,11 @@ export class ConfigureTreatmentComponent  implements OnInit {
 
    if (typeof inputs.treatment_id !=='undefined'){
     const item = userService.getLatestByID(inputs.history_id);
+    const historic_item = userService.getHistoricByID(inputs.history_id, inputs.treatment_id);
+
     if(item!==null){
       this.treatment = item as Treatment;
+      this.historic_treatment = historic_item as Treatment;
       this.mode = 'edit'
       this.treatmentName = this.treatment.name;
       this.treatmentMeasurement = this.treatment.measurement.name;
@@ -88,6 +92,7 @@ export class ConfigureTreatmentComponent  implements OnInit {
 
   updateTreatment(){
     this.treatment = this.treatment!
+    this.historic_treatment = this.historic_treatment!
     const isNameDuplicate = this.userService.filter_by_id(this.userService.get_treatments(), [this.treatment]).some(
       treatment => treatment.name.toLowerCase() === this.treatmentName.toLowerCase());
 
@@ -99,7 +104,7 @@ export class ConfigureTreatmentComponent  implements OnInit {
 
     
 
-    this.userService.editTreatment(this.treatment, this.treatmentName, 
+    this.userService.editTreatment(this.historic_treatment, this.treatmentName, 
       this.treatmentMeasurement, this.selected_symptom_ids);
 
     this.router.navigate([this.success_return_url]);

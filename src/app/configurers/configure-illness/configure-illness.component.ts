@@ -14,6 +14,7 @@ export class ConfigureIllnessComponent  implements OnInit {
   @Input() illnessName!: string;  
   @Input() mode!: 'add' | 'edit';
   @Input() illness!: Illness |null;
+  @Input() historic_illness!: Illness | null;
 
   add_to_static_survey: boolean = false;
   cancel_return_url: string = '';
@@ -36,12 +37,14 @@ export class ConfigureIllnessComponent  implements OnInit {
     if (typeof inputs.illness_id !=='undefined'){
 
     const item = userService.getLatestByID(inputs.history_id);
+    const historic_item = userService.getHistoricByID(inputs.history_id, inputs.illness_id);
 
     if(item!==null){
       this.illness = item as Illness;
       this.mode = 'edit'
       this.illnessName = this.illness.name;
       this.selected_symptom_ids = this.illness.symptoms.map(item => item.id);
+      this.historic_illness = historic_item as Illness;
     }
 
    }
@@ -89,16 +92,20 @@ export class ConfigureIllnessComponent  implements OnInit {
   }
 
   updateIllness(){
+    this.historic_illness = this.historic_illness!
     this.illness = this.illness!
+    //console.log(this.historic_illness);   
     const isNameDuplicate = this.userService.filter_by_id(this.userService.get_illnesses(), [this.illness]).some(
-      treatment => treatment.name.toLowerCase() === this.illnessName.toLowerCase());
+      illness => illness.name.toLowerCase() === this.illnessName.toLowerCase());
 
     if (isNameDuplicate) {
+      console.log(this.historic_illness);
+      console.log(this.illness)
       this.setOpen(true);
       return; // Prevent saving the duplicate symptom
     }
 
-    this.userService.editIllness(this.illness, this.illnessName, this.selected_symptom_ids);
+    this.userService.editIllness(this.historic_illness, this.illnessName, this.selected_symptom_ids);
 
     this.router.navigate([this.success_return_url]);
 

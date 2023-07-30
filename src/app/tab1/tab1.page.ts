@@ -130,6 +130,7 @@ export class Tab1Page {
       console.log("user service static survey");
       console.log(this.userService.get_static_survey())
       console.log("historical survey", this.historical_survey);
+      console.log('all illnesses', this.userService.get_illnesses())
     }
 
     update_dynamic_survey(){

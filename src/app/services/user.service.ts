@@ -176,6 +176,13 @@ getLatestByID(history_id: string): SurveyItem | null{
 
 }
 
+getHistoricByID(history_id: string, survey_item_id:string): SurveyItem {
+
+  const hist = this.user_data.item_history.get(history_id)!
+  return(hist.filter(item =>item.id==survey_item_id).pop()!)
+
+}
+
 
 create_day_record(survey: SurveyItem[]){
   // Let's de-dupe all items in the survey so if something is in the static survey and the history it doesn't get replicated
@@ -262,11 +269,14 @@ public remove_symptom(symptom:Symptom){
 
 
 public remove_treatment(treatment:Treatment){
-  this.user_data.all_treatments = this.filter_by_id(this.user_data.all_treatments, [treatment]).map(item=>item as Treatment);
+  const latest_treatment = this.getLatestByID(treatment.history_id)!;
+
+  this.user_data.all_treatments = this.filter_by_id(this.user_data.all_treatments, [latest_treatment]).map(item=>item as Treatment);
 }
 
 public remove_illness(illness:Illness){
-  this.user_data.all_illnesses = this.filter_by_id(this.user_data.all_illnesses, [illness]).map(item=>item as Illness);
+  const latest_illness = this.getLatestByID(illness.history_id)!;
+  this.user_data.all_illnesses = this.filter_by_id(this.user_data.all_illnesses, [latest_illness]).map(item=>item as Illness);
 }
 
 
@@ -398,14 +408,15 @@ public editTreatment(old_treatment:Treatment, new_name:string, new_measurement:s
       new_side_effect_ids.map(id => this.getSymptomByID(id)).filter((item): item is Symptom => item !== null) ,
       old_treatment.history_id,   
       this.get_next_history_slot(old_treatment.history_id));
+      this.remove_treatment(old_treatment);
+
     this.add_treatment(treatment);
-    this.remove_treatment(old_treatment);
     this.user_data.dynamic_survey = this.replaceSurveyItem(this.user_data.dynamic_survey, old_treatment.id, treatment)
     this.user_data.static_survey = this.replaceSurveyItem(this.user_data.static_survey, old_treatment.id, treatment)
   }
 
 }
-
+ 
 //helper function to determine if two arrays have the exact same elements
 private areArraysEqual(array1: string[], array2: string[]): boolean {
   if (array1.length !== array2.length) {
@@ -450,8 +461,8 @@ public editIllness(old_illness:Illness, new_name:string, new_symptom_ids:string[
       new_symptom_ids.map(id => this.getSymptomByID(id)).filter((item): item is Symptom => item !== null) ,
       old_illness.history_id,   
       this.get_next_history_slot(old_illness.history_id));
+      this.remove_illness(old_illness);
     this.add_illness(illness);
-    this.remove_illness(old_illness);
     this.user_data.dynamic_survey = this.replaceSurveyItem(this.user_data.dynamic_survey, old_illness.id, illness)
     this.user_data.static_survey = this.replaceSurveyItem(this.user_data.static_survey, old_illness.id, illness)
 
