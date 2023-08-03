@@ -99,8 +99,6 @@ export class ConfigureIllnessComponent  implements OnInit {
       illness => illness.name.toLowerCase() === this.illnessName.toLowerCase());
 
     if (isNameDuplicate) {
-      console.log(this.historic_illness);
-      console.log(this.illness)
       this.setOpen(true);
       return; // Prevent saving the duplicate symptom
     }

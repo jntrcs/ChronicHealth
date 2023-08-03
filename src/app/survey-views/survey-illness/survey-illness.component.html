@@ -6,7 +6,7 @@
           <h5>{{ illness.name }}</h5>
         </ion-col>
         <ion-col class="third-column" size="2">  
-          <ion-button class="add-more" color="illness" size="small" [disabled]="is_disabled">
+          <ion-button class="add-more" color="illness" size="small" [disabled]="is_disabled" (click) = "swap_illness()">
             <ion-icon name="swap-horizontal"></ion-icon>
           </ion-button>
         </ion-col>

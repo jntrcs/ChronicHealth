@@ -7,14 +7,17 @@
 
 <ion-content>
   <app-preconfigured-search-generic [survey_item_list]="illness_list" 
-  [add_to_static_survey] ="this.add_to_static_survey"
-  [add_to_dynamic_survey]="this.add_to_dynamic_survey"
-  [edit_selected]="this.edit_selected" >
+  [add_to_static_survey] ="add_to_static_survey"
+  [add_to_dynamic_survey]="add_to_dynamic_survey"
+  [edit_selected]="edit_selected" 
+  [showAddMessage]="showAddButton"
+  [original_illness_id]="original_illness_id"
+  [original_history_id]="original_history_id">
 </app-preconfigured-search-generic>
 
 
   <ion-fab  horizontal="end" vertical="bottom">
-    <ion-fab-button color="illness" (click)="openIllnessCreator()">
+    <ion-fab-button *ngIf="showAddButton" color="illness" (click)="openIllnessCreator()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

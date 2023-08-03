@@ -48,6 +48,17 @@ export class SurveyIllnessComponent  implements OnInit {
       }
       this.router.navigate(['/illness-editor'], navigationExtras);
     }
+
+    swap_illness(){
+      const navigationExtras: NavigationExtras = {
+        state: {
+          source: 'illness_swapper',
+          illness_id: this.illness.id,
+          history_id: this.illness.history_id
+        }
+      }
+      this.router.navigate(['/preconfigured-search-illness'], navigationExtras);
+    }
   }
 
 

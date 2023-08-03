@@ -435,7 +435,7 @@ private areArraysEqual(array1: string[], array2: string[]): boolean {
   return true;
 }
 
-private removeDuplicateIds (arr: SurveyItem[]): SurveyItem[] {
+public removeDuplicateIds (arr: SurveyItem[]): SurveyItem[] {
   const idSet = new Set<string>();
   const filteredArr: SurveyItem[] = [];
 
@@ -450,7 +450,7 @@ private removeDuplicateIds (arr: SurveyItem[]): SurveyItem[] {
 }
 
 
-public editIllness(old_illness:Illness, new_name:string, new_symptom_ids:string[]){
+public editIllness(old_illness:Illness, new_name:string, new_symptom_ids:string[]): Illness{
   if(new_name!==old_illness.name){
     this.update_all_history_names(old_illness.history_id, new_name);
   }
@@ -465,8 +465,10 @@ public editIllness(old_illness:Illness, new_name:string, new_symptom_ids:string[
     this.add_illness(illness);
     this.user_data.dynamic_survey = this.replaceSurveyItem(this.user_data.dynamic_survey, old_illness.id, illness)
     this.user_data.static_survey = this.replaceSurveyItem(this.user_data.static_survey, old_illness.id, illness)
+    return(illness);
 
   }
+  return(old_illness);
 }
 
 
@@ -490,6 +492,11 @@ public get_survey_item_from_history(history_id: string, history_place:number):Su
   return this.user_data.item_history.get(history_id)![history_place];
 }
 
+public replaceItemInDynamicSurvey(old_item: SurveyItem, new_item: SurveyItem){
+
+  const index =this.get_dynamic_survey().map(item=>item.id).findIndex(id => id===old_item.id);
+  this.get_dynamic_survey().splice(index, 1, new_item);
+}
 
 }
  

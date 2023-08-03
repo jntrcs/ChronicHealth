@@ -19,6 +19,9 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
   @Input() add_to_static_survey!: boolean;
   @Input() add_to_dynamic_survey!: boolean;
   @Input() edit_selected!: boolean;
+  @Input() showAddMessage=true;
+  @Input() original_illness_id='';
+  @Input() original_history_id='';
 
   constructor(private userService: UserService, private router: Router) {
     
@@ -64,7 +67,28 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
       this.addToDynamicSurvey(survey_item);
     }else if(this.edit_selected){
       this.editSelected(survey_item);
+    } else if (this.original_illness_id!==''){
+      this.swapIllness(survey_item as Illness, this.original_illness_id, this.original_history_id);
     }
+
+  }
+
+  swapIllness(selected_item: Illness, original_illness_id:string, original_history_id:string){
+    const orig_illness = this.userService.getHistoricByID(original_history_id, original_illness_id) as Illness;
+
+    const all_old_symptoms = orig_illness.symptoms.map(symptom=>this.userService.getLatestByID(symptom.history_id)!);
+    const symptom_superset = this.userService.removeDuplicateIds(all_old_symptoms.concat(selected_item.symptoms)).map(item=>item.id);
+
+    const new_illness = this.userService.editIllness(selected_item, selected_item.name, symptom_superset);
+
+    this.userService.replaceItemInDynamicSurvey(orig_illness, new_illness);
+
+    this.router.navigate(['/']);
+
+    //remove the illness from dynamic survey (or historical??)
+    //Add the new illness in it's spot (keep ordering)
+    // Edit the new illness to be a superset of symptoms from the old illness and the new illness
+    // Edit history and future to show the new illness in place of the old illness
 
   }
   

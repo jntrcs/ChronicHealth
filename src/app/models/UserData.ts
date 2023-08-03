@@ -30,12 +30,16 @@ export class UserData {
   ];*/
 
   this.all_illnesses = [
-   // new Illness("Flu", [this.all_symptoms[4], this.all_symptoms[5]])
+   new Illness("Flu", [this.all_symptoms[0]], "histid", 0),
+   new Illness("covid", [], "hist_id2", 0)
   ]
 
   this.history = new Map();
   this.item_history = new Map();
   this.item_history.set('lskdjf', [this.all_symptoms[0]]);
+  this.item_history.set("histid", [this.all_illnesses[0]]);
+  this.item_history.set("hist_id2", [this.all_illnesses[1]]);
+
   //this.history.set("6/22/2023", new DayRecord([this.all_illnesses[0],
   //this.all_symptoms[1]]));
 

@@ -17,6 +17,9 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
   add_to_dynamic_survey:boolean=true;
   add_to_static_survey:boolean=false; 
   public edit_selected:boolean = false;
+  showAddButton=true;
+  original_illness_id:string = '';
+  original_history_id:string = '';
 
   constructor(private userService: UserService, private router:Router, private stateService:AppStateService) {
     this.illness_list = [];
@@ -25,6 +28,11 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
 
     this.source = inputs.source;
     this.update_illness_list();
+    if (this.source == "illness_swapper"){
+      this.original_illness_id = inputs.illness_id;
+      this.original_history_id = inputs.history_id;
+    }
+
    }
 
    update_illness_list(){
@@ -35,6 +43,12 @@ export class PreconfiguredSearchIllnessComponent  implements OnInit {
       this.illness_list = this.userService.get_illnesses();
       this.edit_selected = true;
       this.add_to_dynamic_survey = false;
+    }else if (this.source == "illness_swapper"){
+      this.illness_list = this.userService.filter_by_id(this.userService.get_illnesses(), this.userService.get_dynamic_survey());
+      this.add_to_dynamic_survey=false;
+      this.add_to_static_survey = false;
+      this.showAddButton = false;
+
     }
    }
 
