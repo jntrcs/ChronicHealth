@@ -76,14 +76,14 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
   swapIllness(selected_item: Illness, original_illness_id:string, original_history_id:string){
     const orig_illness = this.userService.getHistoricByID(original_history_id, original_illness_id) as Illness;
 
-    const all_old_symptoms = orig_illness.symptoms.map(symptom=>this.userService.getLatestByID(symptom.history_id)!);
-    const symptom_superset = this.userService.removeDuplicateIds(all_old_symptoms.concat(selected_item.symptoms)).map(item=>item.id);
+    //I used to be merging alll the symptoms together, but I don't think that's necessary anymore
+    //const all_old_symptoms = orig_illness.symptoms.map(symptom=>this.userService.getLatestByID(symptom.history_id)!);
+    //const symptom_superset = this.userService.removeDuplicateIds(all_old_symptoms.concat(selected_item.symptoms)).map(item=>item.id);
+    //const new_illness = this.userService.editIllness(selected_item, selected_item.name, symptom_superset);
 
-    const new_illness = this.userService.editIllness(selected_item, selected_item.name, symptom_superset);
+    this.userService.replaceItemInDynamicSurvey(orig_illness, selected_item);
 
-    this.userService.replaceItemInDynamicSurvey(orig_illness, new_illness);
-
-    this.userService.swap_illness_history(orig_illness, new_illness);
+    this.userService.swap_illness_history(orig_illness, selected_item);
     this.router.navigate(['/']);
 
     //remove the illness from dynamic survey (or historical??)
