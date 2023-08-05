@@ -66,10 +66,10 @@ calculate_dynamic_survey(date:string):SurveyItem[]{
       
     
           const record: DayRecord = this.user_data.history.get(pastDates[0].toLocaleString().split(',')[0])!
-          const active_illnesses = record.active_illness_ids;
+          const active_illnesses = record.active_illness_history_ids;
 
-          active_illnesses.forEach(illness_id=>{
-            (this.getSurveyItemByID(illness_id) as Illness).doctor_confirmed = record.getConfirmedStatus(illness_id);
+          active_illnesses.forEach(illness_history_id=>{
+            (this.getLatestByID(illness_history_id) as Illness).doctor_confirmed = record.getConfirmedStatus(illness_history_id);
           })
 
   return(this.user_data.dynamic_survey);
@@ -197,7 +197,7 @@ create_day_record(survey: SurveyItem[]){
   // If I first recorded an illness on Monday, but I confirm it on Wednesday, it should look as if it's always been confirmed. 
   // And actually, we need to check this going forward and backward. If I confirm it Monday, it should be confirmed Wdnesday
 
-  const all_illness_ids = day_record.active_illness_ids.concat(day_record.expiring_illness_ids);
+  const all_illness_ids = day_record.active_illness_history_ids.concat(day_record.expiring_illness_history_ids);
   if(all_illness_ids.length>0){
     const date_strings = Array.from(this.user_data.history.keys());
     const dateObjects = date_strings.map((dateString) => new Date(dateString));
@@ -209,14 +209,14 @@ create_day_record(survey: SurveyItem[]){
     futureDates.sort((a, b) => a.getTime() - b.getTime());
 
     all_illness_ids.forEach(id => {
-      const illness_record = day_record.records.filter(item=>item.survey_item_id ===id).pop() as IllnessRecord;
+      const illness_record = day_record.records.filter(item=>item.history_id ===id).pop() as IllnessRecord;
       let actionPerformed = false; // Flag to track if the action has been performed
 
       for (let i = 0; i < pastDates.length; i++) {
         const dateString = pastDates[i].toLocaleString().split(',')[0];
         const pastDayRecord = this.user_data.history.get(dateString);
         
-        if (pastDayRecord?.active_illness_ids.includes(id)) {
+        if (pastDayRecord?.active_illness_history_ids.includes(id)) {
           pastDayRecord.records.filter(record => record instanceof IllnessRecord).
           forEach(previous_illness_record=>((previous_illness_record) as IllnessRecord).doctor_confirmed = illness_record.doctor_confirmed);
           actionPerformed = true;
@@ -230,7 +230,7 @@ create_day_record(survey: SurveyItem[]){
           const dateString = futureDates[i].toLocaleString().split(',')[0];
           const futureDayRecord = this.user_data.history.get(dateString);
       
-          if (futureDayRecord?.active_illness_ids.includes(id)) {
+          if (futureDayRecord?.active_illness_history_ids.includes(id)) {
             futureDayRecord.records.filter(record => record instanceof IllnessRecord).
             forEach(future_illness_record=>((future_illness_record) as IllnessRecord).doctor_confirmed = illness_record.doctor_confirmed);
             actionPerformed = true;

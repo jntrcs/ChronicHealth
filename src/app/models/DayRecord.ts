@@ -12,13 +12,13 @@ import { TreatmentRecord } from "./TreatmentRecord";
   export class DayRecord {
 
     public records: ItemRecord[];
-    public active_illness_ids: string[];
-    public expiring_illness_ids: string[];
+    public active_illness_history_ids: string[];
+    public expiring_illness_history_ids: string[];
 
       constructor(survey: SurveyItem[]) {
         this.records = [];
-        this.active_illness_ids = [];
-        this.expiring_illness_ids = [];
+        this.active_illness_history_ids = [];
+        this.expiring_illness_history_ids = [];
 
         for (const item of survey) {
             if (item instanceof Symptom) {
@@ -27,9 +27,9 @@ import { TreatmentRecord } from "./TreatmentRecord";
                 const illness_record = new IllnessRecord(item)
                 this.records.push(illness_record);
                 if (illness_record.isActive()){
-                  this.active_illness_ids.push(illness_record.survey_item_id);
+                  this.active_illness_history_ids.push(illness_record.history_id);
                 }else{
-                  this.expiring_illness_ids.push(illness_record.survey_item_id);
+                  this.expiring_illness_history_ids.push(illness_record.history_id);
                 }
               } else if (item instanceof Treatment){
                 this.records.push(new TreatmentRecord(item));
@@ -44,8 +44,8 @@ import { TreatmentRecord } from "./TreatmentRecord";
         return this.records.map((record) =>record.isActiveID()).filter((item) => item !== ''); 
       }
 
-      getConfirmedStatus(illness_id: string):boolean{
-        const illness = (this.records.filter(record => record.survey_item_id ===illness_id).pop() as IllnessRecord)
+      getConfirmedStatus(illness_history_id: string):boolean{
+        const illness = (this.records.filter(record => record.history_id === illness_history_id).pop() as IllnessRecord)
         return(illness.doctor_confirmed==='true');
       }
      // set_survey_item_values(){
