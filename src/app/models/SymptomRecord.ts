@@ -17,7 +17,7 @@ export class SymptomRecord extends ItemRecord{
 
       isActiveID(): string {
         if(this.isActive()){
-          return this.survey_item_id;
+          return this.history_id;
         }else{
           return '';
         }
@@ -40,7 +40,11 @@ export class SymptomRecord extends ItemRecord{
      //   this.symptom.measurement.set_value(this.value_string);
 //}
 
+override contains_hist_id(history_id: string): number {
+  if (this.history_id==history_id)return(1);
+  return(0);
 
+}
     
 
     }

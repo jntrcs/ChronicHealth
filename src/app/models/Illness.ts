@@ -1,3 +1,4 @@
+import { UserService } from '../services/user.service';
 import { IllnessRecord } from './IllnessRecord';
 import { ItemRecord } from './ItemRecord';
 import { Measurement, PresentMeasurement, 
@@ -14,7 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
 
       constructor(name: string, symptoms: Symptom[],
         history_id: string,
-        history_place:number ) {
+        history_place:number) {
         super(name, history_id, history_place);
         this.doctor_confirmed = false;
         this.symptoms =symptoms;

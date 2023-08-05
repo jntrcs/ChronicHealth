@@ -35,8 +35,9 @@ calculate_dynamic_survey(date:string):SurveyItem[]{
       return this.user_data.dynamic_survey;
     }
 
-  const all_active_ids: string[] = this.user_data.determine_active_item_ids(date);
-  const all_active_items = all_active_ids.map((id)=>this.getSurveyItemByID(id)).filter((item): item is SurveyItem => item !== null);
+  const all_active_history_ids: string[] = this.user_data.determine_active_history_ids(date);
+  const all_active_items = all_active_history_ids.map((id)=>this.getLatestByID(id)).filter((item): item is SurveyItem => item !== null);
+
   const not_in_static = this.filter_by_id(all_active_items, this.user_data.static_survey)
   this.user_data.dynamic_survey = not_in_static;
 
@@ -504,6 +505,19 @@ public swap_illness_history(original_illness: Illness, new_illness: Illness){
 
 get_all_history():Map<string, DayRecord>{
   return(this.user_data.history);
+}
+
+public count_historical_records(history_id:string): number{
+
+  const count = Array.from(this.user_data.history.values()).map(day_record =>{
+    return day_record.records.map(record => {
+      return record.contains_hist_id(history_id);
+    }).reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+    
+  })
+
+  return count.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
 }
 }
  

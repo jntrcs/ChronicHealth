@@ -8,6 +8,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class ConfirmationModal {
   @Input() message!: string;
+  @Input() confirm_text: string="Delete";
 
   constructor(private modalController: ModalController) {}
 

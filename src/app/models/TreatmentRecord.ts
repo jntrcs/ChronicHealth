@@ -26,7 +26,7 @@ export class TreatmentRecord extends ItemRecord{
 
       override isActiveID(): string {
           if(this.isActive()){
-            return this.survey_item_id;
+            return this.history_id;
           }else{
             return '';
           }
@@ -43,6 +43,14 @@ export class TreatmentRecord extends ItemRecord{
 
         return treatment_present || 
         this.side_effect_records.map((symptom_record)=>symptom_record.isActive()).some((item) => item === true);;
+      }
+
+      override contains_hist_id(history_id: string): number {
+        if (this.history_id==history_id)return(1)
+
+        return this.side_effect_records.map(symptom_record=> {
+          return symptom_record.contains_hist_id(history_id)
+        }).reduce((sum, val)=>sum+val, 0)
       }
 
      /* set_item_to_record():void{

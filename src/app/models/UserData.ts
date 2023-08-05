@@ -67,7 +67,7 @@ export class UserData {
       surveyItems.sort((a, b) => a.name.localeCompare(b.name));
   }
 
-  public determine_active_item_ids(survey_date_string: string): string[]{
+  public determine_active_history_ids(survey_date_string: string): string[]{
 // loop through the last (1) days with data
 // determine what symptoms were recorded >0
 //determine what treaments/illnesses are present

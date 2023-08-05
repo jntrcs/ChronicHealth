@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { ConfirmationModal } from 'src/app/generic-ui/confirmation-modal-component/confirmation-modal.component';
 import { Symptom } from 'src/app/models/Symptom';
 import { UserService } from 'src/app/services/user.service';
 
@@ -23,7 +25,7 @@ export class ConfigureSymptomComponent  implements OnInit {
   success_return_url: string ='';
   add_to_dynamic_survey:boolean = false;
 
-  constructor(private userService: UserService, private router: Router){
+  constructor(private userService: UserService, private router: Router, private modalController: ModalController){
 
     const inputs = history.state;
     this.add_to_static_survey = Boolean(inputs.add_to_static_survey);
@@ -73,16 +75,47 @@ export class ConfigureSymptomComponent  implements OnInit {
 
   }
 
-  updateSymptom(){
+  async updateSymptom(){
     //add validation
     if(this.symptom===null)return;
-    this.userService.editSymptom(this.symptom, this.symptomName, this.symptomMeasurement)
-    //this.symptom = this.symptom as Symptom;
-    //this.symptom.changeMeasurement(this.symptomMeasurement);
-    //this.symptom.name = this.symptomName;
-    this.router.navigate([this.success_return_url]);
 
-  }
+
+
+    // if the symptom name is changing, determine how many historical symptoms will be affected and ask for confirmation
+    if(this.symptom.name !== this.symptomName){
+      const n_previous_records = this.userService.count_historical_records(this.symptom.history_id);
+      if (n_previous_records>0){
+        const confirmationModal = await this.modalController.create({
+          component: ConfirmationModal,
+          componentProps: {
+            message: 'Changing the name will effect ' + n_previous_records + ' previous records. Are you sure you wish to continue?',
+            confirm_text: 'Yes'
+          }
+        });
+      
+        await confirmationModal.present();
+      
+        const { data } = await confirmationModal.onDidDismiss();
+        if (data?.confirmed) {
+            this.trigger_edit_symptom();
+          }
+      }else{
+        this.trigger_edit_symptom();
+      }
+
+      }else{
+        this.trigger_edit_symptom();
+      }
+    }
+
+    trigger_edit_symptom(){
+      this.userService.editSymptom(this.symptom!, this.symptomName, this.symptomMeasurement)
+      this.router.navigate([this.success_return_url]);
+    }
+
+
+
+  
 
   cancel_click() {
     this.router.navigate([this.cancel_return_url]);
