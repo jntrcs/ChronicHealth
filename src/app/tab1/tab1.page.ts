@@ -130,7 +130,7 @@ export class Tab1Page {
       console.log("user service static survey");
       console.log(this.userService.get_static_survey())
       console.log("historical survey", this.historical_survey);
-      console.log('all illnesses', this.userService.get_illnesses())
+      console.log('history', this.userService.get_all_history())
     }
 
     update_dynamic_survey(){
@@ -142,4 +142,6 @@ export class Tab1Page {
       //this.userService.calculate_dynamic_survey(this.stateService.string_date);
       this.static_survey = this.userService.get_static_survey();
     }
+    
+
 }

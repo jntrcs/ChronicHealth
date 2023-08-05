@@ -83,6 +83,7 @@ export class PreconfiguredSearchGenericComponent  implements OnInit {
 
     this.userService.replaceItemInDynamicSurvey(orig_illness, new_illness);
 
+    this.userService.swap_illness_history(orig_illness, new_illness);
     this.router.navigate(['/']);
 
     //remove the illness from dynamic survey (or historical??)

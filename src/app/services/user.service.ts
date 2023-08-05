@@ -498,5 +498,12 @@ public replaceItemInDynamicSurvey(old_item: SurveyItem, new_item: SurveyItem){
   this.get_dynamic_survey().splice(index, 1, new_item);
 }
 
+public swap_illness_history(original_illness: Illness, new_illness: Illness){
+
+}
+
+get_all_history():Map<string, DayRecord>{
+  return(this.user_data.history);
+}
 }
  
