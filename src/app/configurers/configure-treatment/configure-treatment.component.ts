@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { ConfirmationModal } from 'src/app/generic-ui/confirmation-modal-component/confirmation-modal.component';
 import { Symptom } from 'src/app/models/Symptom';
 import { Treatment } from 'src/app/models/Treatment';
 import { UserService } from 'src/app/services/user.service';
@@ -25,7 +27,7 @@ export class ConfigureTreatmentComponent  implements OnInit {
   all_side_effects:Symptom[];
   selected_symptom_ids:string[];
 
-  constructor(private userService: UserService, private router: Router){
+  constructor(private userService: UserService, private router: Router, private modalController: ModalController){
 
     const inputs = history.state;
     this.add_to_static_survey = Boolean(inputs.add_to_static_survey);
@@ -90,9 +92,8 @@ export class ConfigureTreatmentComponent  implements OnInit {
 
   }
 
-  updateTreatment(){
+  async updateTreatment(){
     this.treatment = this.treatment!
-    this.historic_treatment = this.historic_treatment!
     const isNameDuplicate = this.userService.filter_by_id(this.userService.get_treatments(), [this.treatment]).some(
       treatment => treatment.name.toLowerCase() === this.treatmentName.toLowerCase());
 
@@ -102,14 +103,40 @@ export class ConfigureTreatmentComponent  implements OnInit {
     }
 
 
-    
+     // if the symptom name is changing, determine how many historical symptoms will be affected and ask for confirmation
+     if(this.treatment.name !== this.treatmentName){
+      const n_previous_records = this.userService.count_historical_records(this.treatment.history_id);
+      if (n_previous_records>0){
+        const confirmationModal = await this.modalController.create({
+          component: ConfirmationModal,
+          componentProps: {
+            message: 'Changing the name will effect ' + n_previous_records + ' previous records. Are you sure you wish to continue?',
+            confirm_text: 'Yes'
+          }
+        });
+      
+        await confirmationModal.present();
+      
+        const { data } = await confirmationModal.onDidDismiss();
+        if (data?.confirmed) {
+            this.trigger_edit_treatment();
+          }
+      }else{
+        this.trigger_edit_treatment();
+      }
 
-    this.userService.editTreatment(this.historic_treatment, this.treatmentName, 
+      }else{
+        this.trigger_edit_treatment();
+      }
+
+
+  }
+
+  trigger_edit_treatment(){
+    this.userService.editTreatment(this.historic_treatment!, this.treatmentName, 
       this.treatmentMeasurement, this.selected_symptom_ids);
 
     this.router.navigate([this.success_return_url]);
-
-
   }
 
   cancel_click() {
